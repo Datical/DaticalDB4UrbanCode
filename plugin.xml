@@ -1,51 +1,42 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<plugin xmlns="http://www.urbancode.com/PluginXMLSchema_v1"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<header>
-		<identifier version="1.0" id="com.urbancode.air.plugin.DaticalDB4UDeploy" name="Datical DB" />
-		<description>Datical DB makes it incredibly easy to automate and
+﻿<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://www.urbancode.com/PluginXMLSchema_v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <header>
+    <identifier version="1" id="com.urbancode.air.plugin.DaticalDB4UDeploy" name="Datical DB" />
+    <description>Datical DB makes it incredibly easy to automate and
 			manage database schema changes for high volume, complex releases,
 			across any environment, for any database. No agents required.
 		</description>
-		<tag>Database/Datical DB</tag>
-	</header>
-	<step-type name="Execute Datical DB">
-		<description>Executes Datical DB</description>
-		<properties>
-			<property name="daticalDBInstallDir" required="true">
-				<property-ui type="textBox" label="Datical DB Installation Directory"
-					description="The full path where Datical DB is installed."
-					default-value="${p:resource/daticalDBInstallDir}" />
-			</property>
-			<property name="daticalDBDriversDir" required="true">
-				<property-ui type="textBox" label="Datical DB Driver Directory"
-					description="The full path where Datical DB drivers are located."
-					default-value="${p:resource/daticalDBDriversDir}" />
-			</property>
-			<property name="daticalDBProjectDir" required="trresource/ue">
-				<property-ui type="textBox" label="Datical DB Project Directory"
-					description="The full path where the Datical DB project is located." />
-			</property>
-			<property name="daticalDBServer" required="false">
-				<property-ui type="textBox" label="Datical DB Server"
-					description="The Datical DB Server Name is the name of the server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan. Based on your Action selection below, you may enter none, one, or two Server Names." />
-			</property>
-			<property name="daticalDBAction" required="true">
-				<property-ui type="select" label="Datical DB Action"
-					description="The Datical DB Server Name is the name of the server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan. Based on your Action selection below, you may enter none, one, or two Server Names." />
-				<value label="Forecast">forecast</value>
-				<value label="Snapshot">snapshot</value>
-				<value label="Deploy">deploy</value>
-				<value label="Status">status</value>
-				<value label="Check Drivers">checkdrivers</value>
-				<value label="Diff ChangeLog">diffChangelog</value>
-				<value label="Diff Report">diff</value>
-				<value label="History">history</value>
-			</property>
-		</properties>
-		<post-processing>
-      <![CDATA[
-        
+    <tag>Database/Datical DB</tag>
+  </header>
+  <step-type name="Execute Datical DB">
+    <description>Executes Datical DB</description>
+    <properties>
+      <property name="daticalDBInstallDir" required="true">
+        <property-ui type="textBox" label="Datical DB Installation Directory" description="The full path where Datical DB is installed." default-value="${p:resource/daticalDBInstallDir}" />
+      </property>
+      <property name="daticalDBDriversDir" required="true">
+        <property-ui type="textBox" label="Datical DB Driver Directory" description="The full path where Datical DB drivers are located." default-value="${p:resource/daticalDBDriversDir}" />
+      </property>
+      <property name="daticalDBProjectDir" required="true">
+        <property-ui type="textBox" label="Datical DB Project Directory" description="The full path where the Datical DB project is located." />
+      </property>
+      <property name="daticalDBServer" required="false">
+        <property-ui type="textBox" label="Datical DB Server" description="The Datical DB Server Name is the name of the server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan. Based on your Action selection below, you may enter none, one, or two Server Names." />
+      </property>
+      <property name="daticalDBAction" required="true">
+        <property-ui type="selectBox" label="Datical DB Action" description="The Datical DB Server Name is the name of the server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan. Based on your Action selection below, you may enter none, one, or two Server Names." />
+        <value label="Forecast">forecast</value>
+        <value label="Snapshot">snapshot</value>
+        <value label="Deploy">deploy</value>
+        <value label="Status">status</value>
+        <value label="Check Drivers">checkdrivers</value>
+        <value label="Diff ChangeLog">diffChangelog</value>
+        <value label="Diff Report">diff</value>
+        <value label="History">history</value>
+      </property>
+    </properties>
+    <post-processing><![CDATA[	properties.put("Status", "Success");
+
 	properties.put("Status", "Success");
 
      //
@@ -117,15 +108,14 @@
           }
           properties.put("Error", errors.toString());
      }        
-     ]]&gt;
-    </post-processing>
-
-    <command program='${agent:env/GROOVY_HOME}/bin/groovy'>
-      <arg value='-cp' />
-      <arg path='classes' />
-      <arg file='daticaldb.groovy' />
-      <arg file='${PLUGIN_INPUT_PROPS}' />
-      <arg file='${PLUGIN_OUTPUT_PROPS}' />
+          
+     }]]></post-processing>
+    <command program="${agent:env/GROOVY_HOME}/bin/groovy">
+      <arg value="-cp" />
+      <arg path="classes" />
+      <arg file="daticaldb.groovy" />
+      <arg file="${PLUGIN_INPUT_PROPS}" />
+      <arg file="${PLUGIN_OUTPUT_PROPS}" />
     </command>
   </step-type>
 </plugin>
