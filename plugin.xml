@@ -17,7 +17,7 @@
       <property name="daticalDBDriversDir" required="true">
         <property-ui type="textBox" label="Datical DB Driver Directory" description="The full path where Datical DB drivers are located." default-value="${p:resource/daticalDBDriversDir}" />
       </property>
-      <property name="daticalDBProjectDir" required="trresource/ue">
+      <property name="daticalDBProjectDir" required="true">
         <property-ui type="textBox" label="Datical DB Project Directory" description="The full path where the Datical DB project is located." />
       </property>
       <property name="daticalDBServer" required="false">
