@@ -35,81 +35,14 @@
         <value label="History">history</value>
       </property>
     </properties>
-    <post-processing><![CDATA[	
-
-	properties.put("Status", "Success");
-
-     //
-     // Evaluate the built-in exitCode property, which indicates the exit code
-     // of the script called by the plug-in step. Typically, if the value of
-     // the exitCode property is non-zero, the plug-in step failed.
-     //
-     if (properties.get("exitCode") != 0) {
-     
-          properties.put("Status", "Failure");
-          
-     } else {
-
-          //
-          // Register a scanner to search for the text "error at line" in the log.
-          // The first argument is a regular expression.
-          //
-          // The second argument, an inline function, is invoked once for
-          // every line in the log output that matches the pattern. The "lineNumber"
-          // variable contains the line number where the match occurred, and the
-          // "line" variable is the full text of the line.
-          //
-          scanner.register("(?i)ERROR at line",  function(lineNumber, line) {
-
-              //
-              // In this case, we build up an "Error" property which
-              // contains the text of all errors that are found. We find every
-              // line starting with "error at line" and add it to this list.
-              //
-              var errors = properties.get("Error");
-              if (errors == null) {
-                  errors = new java.util.ArrayList();
-              }
-              errors.add(line);
-
-
-              //
-              // If a line starting with "error at line" is found, the step has
-              // failed, so we set the special "Status" property to "Failure",
-              // indicating to the UrbanCode Deploy server that the step should
-              // be marked as a failure.
-              //
-              properties.put("Status", "Failure");
-          });
-         
-          //
-          // Multiple searches can be registered with the scanner. We add a
-          // second search to look for some interesting text to set as an output
-          // property.
-          //
-          // For example, if there is a line "The value is BLUE", then we end up
-          // with an output property, "Value", with a value of "BLUE".
-          //
-          scanner.register("The value is", function(lineNumber, line) {
-              var value = line.replace("The value is ", "");
-              properties.put("Value", value);
-          });
-         
-          scanner.scan();
-
-
-          //
-          // Convert the collected list of error strings into a single string and
-          // set that as an output property.
-          //
-          var errors = properties.get("Error");
-          if (errors == null) {
-              errors = new java.util.ArrayList();
-          }
-          properties.put("Error", errors.toString());
-     }        
-          
-     }]]></post-processing>
+    <post-processing><![CDATA[
+        if (properties.get("exitCode") != 0) {
+            properties.put(new java.lang.String("Status"), new java.lang.String("Failure"));
+        }
+        else {
+            properties.put("Status", "Success");
+        }
+     ]]></post-processing>
     <command program="${agent:GROOVY_HOME}/bin/groovy">
       <arg value="-cp" />
       <arg path="classes" />

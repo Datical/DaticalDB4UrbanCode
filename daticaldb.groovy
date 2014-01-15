@@ -14,6 +14,8 @@ catch (IOException e) {
 final def cwd = new File('.');
 final def cmdHelper = new CommandHelper(cwd);
 
+
+
 //--------------------------------------------------------------------------------------------------
 def getAbsPath(def file) {
     def tempFile = null;
@@ -32,4 +34,8 @@ def daticalDBServer = props['daticalDBServer'];
 
 def cmdArgs = [daticalDBcmd, '-drivers', daticalDBDriversDir, daticalDBAction, daticalDBServer];
 println "cmdArgs: " + cmdArgs;
-cmdHelper.runCommand("Executing Datical DB", cmdArgs);
+
+int exitCode = cmdHelper.runCommand("Executing Datical DB", cmdArgs);
+println "exitCode: " + exitCode;
+
+System.exit(exitCode);
