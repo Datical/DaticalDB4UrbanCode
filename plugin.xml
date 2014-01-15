@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin xmlns="http://www.&company;.com/PluginXMLSchema_v1"
+<plugin xmlns="http://www.urbancode.com/PluginXMLSchema_v1"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<header>
-		<identifier id="com.datical.integration.DaticalDB4UDeploy"
-			version="1.0" name="Datical DB" />
-		<description />
-		<tag>Datical/Datical DB</tag>
+		<identifier version="1.0" id="com.urbancode.air.plugin.DaticalDB4UDeploy" name="Datical DB" />
+		<description>Datical DB makes it incredibly easy to automate and
+			manage database schema changes for high volume, complex releases,
+			across any environment, for any database. No agents required.
+		</description>
+		<tag>Database/Datical DB</tag>
 	</header>
 	<step-type name="Execute Datical DB">
 		<description>Executes Datical DB</description>
@@ -13,51 +15,117 @@
 			<property name="daticalDBInstallDir" required="true">
 				<property-ui type="textBox" label="Datical DB Installation Directory"
 					description="The full path where Datical DB is installed."
-					default-value="${p:daticalDBInstallDir}" />
+					default-value="${p:resource/daticalDBInstallDir}" />
 			</property>
 			<property name="daticalDBDriversDir" required="true">
 				<property-ui type="textBox" label="Datical DB Driver Directory"
 					description="The full path where Datical DB drivers are located."
-					default-value="${p:daticalDBDriversDir}" />
+					default-value="${p:resource/daticalDBDriversDir}" />
 			</property>
-			<property name="daticalDBProjectDir" required="true">
+			<property name="daticalDBProjectDir" required="trresource/ue">
 				<property-ui type="textBox" label="Datical DB Project Directory"
-					description="The full path where the Datical DB project is located."
-					default-value="${p:daticalDBProjectDir}" />
+					description="The full path where the Datical DB project is located." />
 			</property>
 			<property name="daticalDBServer" required="false">
 				<property-ui type="textBox" label="Datical DB Server"
-					description="The Datical DB Server Name is the name of the server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan. Based on your Action selection below, you may enter none, one, or two Server Names."
-					default-value="default value?" />
+					description="The Datical DB Server Name is the name of the server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan. Based on your Action selection below, you may enter none, one, or two Server Names." />
 			</property>
 			<property name="daticalDBAction" required="true">
 				<property-ui type="select" label="Datical DB Action"
 					description="The Datical DB Server Name is the name of the server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan. Based on your Action selection below, you may enter none, one, or two Server Names." />
-					<value label="Forecast">forecast</value>
-			  		<value label="Snapshot">snapshot</value> 
-			  		<value label="Deploy">deploy</value>
-			  		<value label="Status">status</value>
-			  		<value label="Check Drivers">checkdrivers</value> 
-			  		<value label="Diff ChangeLog">diffChangelog</value>
-			  		<value label="Diff Report">diff</value>
-			  		<value label="History">history</value>
+				<value label="Forecast">forecast</value>
+				<value label="Snapshot">snapshot</value>
+				<value label="Deploy">deploy</value>
+				<value label="Status">status</value>
+				<value label="Check Drivers">checkdrivers</value>
+				<value label="Diff ChangeLog">diffChangelog</value>
+				<value label="Diff Report">diff</value>
+				<value label="History">history</value>
 			</property>
 		</properties>
-    <post-processing>
+		<post-processing>
       <![CDATA[
-        if (properties.get("exitCode") != 0) {
-            properties.put("Status", "Failure");
-        }
-        else {
-            properties.put("Status", "Success");
-        }
+        
+	properties.put("Status", "Success");
+
+     //
+     // Evaluate the built-in exitCode property, which indicates the exit code
+     // of the script called by the plug-in step. Typically, if the value of
+     // the exitCode property is non-zero, the plug-in step failed.
+     //
+     if (properties.get("exitCode") != 0) {
+     
+          properties.put("Status", "Failure");
+          
+     } else {
+
+          //
+          // Register a scanner to search for the text "error at line" in the log.
+          // The first argument is a regular expression.
+          //
+          // The second argument, an inline function, is invoked once for
+          // every line in the log output that matches the pattern. The "lineNumber"
+          // variable contains the line number where the match occurred, and the
+          // "line" variable is the full text of the line.
+          //
+          scanner.register("(?i)ERROR at line",  function(lineNumber, line) {
+
+              //
+              // In this case, we build up an "Error" property which
+              // contains the text of all errors that are found. We find every
+              // line starting with "error at line" and add it to this list.
+              //
+              var errors = properties.get("Error");
+              if (errors == null) {
+                  errors = new java.util.ArrayList();
+              }
+              errors.add(line);
+
+
+              //
+              // If a line starting with "error at line" is found, the step has
+              // failed, so we set the special "Status" property to "Failure",
+              // indicating to the UrbanCode Deploy server that the step should
+              // be marked as a failure.
+              //
+              properties.put("Status", "Failure");
+          });
+         
+          //
+          // Multiple searches can be registered with the scanner. We add a
+          // second search to look for some interesting text to set as an output
+          // property.
+          //
+          // For example, if there is a line "The value is BLUE", then we end up
+          // with an output property, "Value", with a value of "BLUE".
+          //
+          scanner.register("The value is", function(lineNumber, line) {
+              var value = line.replace("The value is ", "");
+              properties.put("Value", value);
+          });
+         
+          scanner.scan();
+
+
+          //
+          // Convert the collected list of error strings into a single string and
+          // set that as an output property.
+          //
+          var errors = properties.get("Error");
+          if (errors == null) {
+              errors = new java.util.ArrayList();
+          }
+          properties.put("Error", errors.toString());
+     }        
      ]]&gt;
     </post-processing>
 
-    <command program="cd ${daticalDBProjectDir} & ${daticalDBInstallDir}\repl\hammer.bat">
-      <arg drivers="${daticalDBDriversDir}"/>
-      <arg file="${daticalDBActionr}"/>
-      <arg file="${daticalDBServer}"/>
+    <command program='${agent:env/GROOVY_HOME}/bin/groovy'>
+      <arg value='-cp' />
+      <arg path='classes' />
+      <arg file='daticaldb.groovy' />
+      <arg file='${PLUGIN_INPUT_PROPS}' />
+      <arg file='${PLUGIN_OUTPUT_PROPS}' />
     </command>
   </step-type>
 </plugin>

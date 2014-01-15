@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pluginInfo>
+
+	<author name="Datical">
+		<organization>Datical</organization>
+		<email>support@datical.com</email>
+		<website>http://datical.com</website>
+		<bio />
+	</author>
+
+	<integration type="Deploy" />
+
+	<source url="http://www.github.com/Datical/DaticalDB4UDeploy" />
+
+	<licenses>
+		<license type="Apache 2.0" />
+	</licenses>
+
+	<tool-description>
+		Datical DB makes it incredibly easy to automate and manage database schema
+		changes for high volume, complex releases, across any environment, for
+		any database. No agents required.
+	</tool-description>
+
+	<!-- **related-info is NOT required** The releated-info section is used 
+		to define links which may be useful to users of the plugin but don't fall 
+		into the release-notes or tool-description section. For example: releated-info 
+		can be links to pdf documentation, help videos related to plugin setup or 
+		the product's website. excepted values for type include: PDF, WEBSITE, VIDEO -->
+	<!-- <related-info> <link title=" type="" description="" url =""/> </related-info> -->
+
+	<meta-html>
+		<meta
+			content="Datical DB makes it incredibly easy to automate and manage database schema changes for high volume, complex releases, across any environment, for any database. No agents required."
+			name="description" />
+		<meta content="Database,DevOps,Liquibase,YOLO" name="keywords" />
+	</meta-html>
+
+	<release-version>1.0</release-version>
+
+	<release-notes>
+		<release-note plugin-version="1.0">
+			Initial Release
+		</release-note>
+
+	</release-notes>
+
+</pluginInfo>
