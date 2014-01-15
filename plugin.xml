@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.&company;.com/PluginXMLSchema_v1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<header>
+		<identifier id="com.datical.integration.DaticalDB4UDeploy"
+			version="1.0" name="Datical DB" />
+		<description />
+		<tag>Datical/Datical DB</tag>
+	</header>
+	<step-type name="Execute Datical DB">
+		<description>Executes Datical DB</description>
+		<properties>
+			<property name="daticalDBInstallDir" required="true">
+				<property-ui type="textBox" label="Datical DB Installation Directory"
+					description="The full path where Datical DB is installed."
+					default-value="${p:daticalDBInstallDir}" />
+			</property>
+			<property name="daticalDBDriversDir" required="true">
+				<property-ui type="textBox" label="Datical DB Driver Directory"
+					description="The full path where Datical DB drivers are located."
+					default-value="${p:daticalDBDriversDir}" />
+			</property>
+			<property name="daticalDBProjectDir" required="true">
+				<property-ui type="textBox" label="Datical DB Project Directory"
+					description="The full path where the Datical DB project is located."
+					default-value="${p:daticalDBProjectDir}" />
+			</property>
+			<property name="daticalDBServer" required="false">
+				<property-ui type="textBox" label="Datical DB Server"
+					description="The Datical DB Server Name is the name of the server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan. Based on your Action selection below, you may enter none, one, or two Server Names."
+					default-value="default value?" />
+			</property>
+			<property name="daticalDBAction" required="true">
+				<property-ui type="select" label="Datical DB Action"
+					description="The Datical DB Server Name is the name of the server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan. Based on your Action selection below, you may enter none, one, or two Server Names." />
+					<value label="Forecast">forecast</value>
+			  		<value label="Snapshot">snapshot</value> 
+			  		<value label="Deploy">deploy</value>
+			  		<value label="Status">status</value>
+			  		<value label="Check Drivers">checkdrivers</value> 
+			  		<value label="Diff ChangeLog">diffChangelog</value>
+			  		<value label="Diff Report">diff</value>
+			  		<value label="History">history</value>
+			</property>
+		</properties>
+    <post-processing>
+      <![CDATA[
+        if (properties.get("exitCode") != 0) {
+            properties.put("Status", "Failure");
+        }
+        else {
+            properties.put("Status", "Success");
+        }
+     ]]&gt;
+    </post-processing>
+
+    <command program="cd ${daticalDBProjectDir} & ${daticalDBInstallDir}\repl\hammer.bat">
+      <arg drivers="${daticalDBDriversDir}"/>
+      <arg file="${daticalDBActionr}"/>
+      <arg file="${daticalDBServer}"/>
+    </command>
+  </step-type>
+</plugin>
