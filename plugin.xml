@@ -11,8 +11,8 @@
   <step-type name="Execute Datical DB">
     <description>Executes Datical DB</description>
     <properties>
-      <property name="daticalDBInstallDir" required="true">
-        <property-ui type="textBox" label="Datical DB Installation Directory" description="The full path where Datical DB is installed." default-value="${p:resource/daticalDBInstallDir}" />
+      <property name="daticalDBcmd" required="true">
+        <property-ui type="textBox" label="Datical DB Command" description="The full path to the Datical DB command (e.g., C:\DaticalDB\repl\hammer.bat or /opt/DaticalDB/repl/hammer)" default-value="${p:resource/daticalDBcmd}" />
       </property>
       <property name="daticalDBDriversDir" required="true">
         <property-ui type="textBox" label="Datical DB Driver Directory" description="The full path where Datical DB drivers are located." default-value="${p:resource/daticalDBDriversDir}" />
@@ -35,7 +35,7 @@
         <value label="History">history</value>
       </property>
     </properties>
-    <post-processing><![CDATA[	properties.put("Status", "Success");
+    <post-processing><![CDATA[	
 
 	properties.put("Status", "Success");
 
@@ -110,7 +110,7 @@
      }        
           
      }]]></post-processing>
-    <command program="${agent:env/GROOVY_HOME}/bin/groovy">
+    <command program="${agent:GROOVY_HOME}/bin/groovy">
       <arg value="-cp" />
       <arg path="classes" />
       <arg file="daticaldb.groovy" />

@@ -14,8 +14,6 @@ catch (IOException e) {
 final def cwd = new File('.');
 final def cmdHelper = new CommandHelper(cwd);
 
-def exePath = props['exePath'];
-
 //--------------------------------------------------------------------------------------------------
 def getAbsPath(def file) {
     def tempFile = null;
@@ -26,9 +24,12 @@ def getAbsPath(def file) {
     return tempFile;
 }
 //path properties
+def daticalDBcmd = getAbsPath(props['daticalDBcmd']);
 def daticalDBDriversDir = getAbsPath(props['daticalDBDriversDir']);
-def profile = getAbsPath(props['profile']);
-def output = getAbsPath(props['output']);
+def daticalDBAction = props['daticalDBAction'];
+def daticalDBServer = props['daticalDBServer'];
 
-def cmdArgs = [daticalDBInstallDir, '-drivers', daticalDBDriversDir, daticalDBAction, daticalDBServer];
+
+def cmdArgs = [daticalDBcmd, '-drivers', daticalDBDriversDir, daticalDBAction, daticalDBServer];
+println "cmdArgs: " + cmdArgs;
 cmdHelper.runCommand("Executing Datical DB", cmdArgs);
