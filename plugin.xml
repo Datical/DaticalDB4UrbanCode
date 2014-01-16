@@ -6,9 +6,9 @@
 			manage database schema changes for high volume, complex releases,
 			across any environment, for any database. No agents required.
 		</description>
-    <tag>Database/Datical DB</tag>
+    <tag>Database</tag>
   </header>
-  <step-type name="Execute Datical DB">
+  <step-type name="Datical DB">
     <description>Executes Datical DB</description>
     <properties>
       <property name="daticalDBcmd" required="true">
@@ -20,20 +20,28 @@
       <property name="daticalDBProjectDir" required="true">
         <property-ui type="textBox" label="Datical DB Project Directory" description="The full path where the Datical DB project is located." />
       </property>
-      <property name="daticalDBServer" required="false">
-        <property-ui type="textBox" label="Datical DB Server" description="The Datical DB Server Name is the name of the server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan. Based on your Action selection below, you may enter none, one, or two Server Names." />
-      </property>
       <property name="daticalDBAction" required="true">
         <property-ui type="selectBox" label="Datical DB Action" description="The Datical DB Server Name is the name of the server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan. Based on your Action selection below, you may enter none, one, or two Server Names." />
-        <value label="Forecast">forecast</value>
-        <value label="Snapshot">snapshot</value>
-        <value label="Deploy">deploy</value>
-        <value label="Status">status</value>
-        <value label="Check Drivers">checkdrivers</value>
+        <!-- --><value label="Forecast">forecast</value>
+        <!-- --><value label="Snapshot">snapshot</value>
+        <!-- --><value label="Deploy">deploy</value>
+        <!-- --><value label="Deploy (with Auto-Rollback)">deploy-autoRollback</value>
+        <!-- --><value label="Rollback">rollback</value>
+
+        <!-- --><value label="Status">status</value>
+        <!-- --><value label="Check Drivers">checkdrivers</value>
+
         <value label="Diff ChangeLog">diffChangelog</value>
         <value label="Diff Report">diff</value>
-        <value label="History">history</value>
+        <!-- --><value label="History">history</value>
+		        
+		<value label="Change Log Sync">changeLogSync</value>
+		<value label="Clear Checksums">clearCheckSums</value>
       </property>
+      <property name="daticalDBServer" required="false">
+        <property-ui type="textBox" label="Datical DB Action Argument" description="The Datical DB Action Argument will typically be the name of the server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan. Based on your Action selection below, you may enter none, one, or two Server Names. For the Rollback Action, the argument will take the form of 'SERVERNAME changeid:id=CHANGESETID'." />
+      </property>
+
     </properties>
     <post-processing><![CDATA[
         if (properties.get("exitCode") != 0) {
@@ -47,10 +55,24 @@
         scanner.register("(?i)The DaticalDB log file",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
         });
+        scanner.register("(?i)cannot be found in the current project",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+        });
+        scanner.register("(?i)Please specify a database as an argument or using the dbdef property",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+        });
+        scanner.register("(?i)No database specified.",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+        });
+        scanner.register("(?i)Report ready at file",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+        });
+        
         //checkdrivers
         scanner.register("(?i)Found ",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
         });
+        
         //status
         scanner.register("(?i) is up-to-date ",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
@@ -58,8 +80,43 @@
         scanner.register("(?i) is at ",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
         });
+        
+        //history
+        scanner.register("(?i)Changelog",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+        });
  
- 
+		//forecast
+        scanner.register("(?i)Forecast detected the following problems:",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+        });
+        
+        //snapshot
+        scanner.register("(?i)Snapshot of database",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+        });
+        
+        //deploy
+        scanner.register("(?i)Successfully deployed changes to",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+        });
+        scanner.register("(?i)Update Failed",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+        });
+        scanner.register("(?iSuccessful)Update Failed.",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+        });
+        
+        //rollback
+        scanner.register("(?i)Rolled ",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+        });
+        
+        //clearCheckSums
+        scanner.register("(?i)Successfully cleared checksums in database",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+        });
+		 
         scanner.scan();
         
 

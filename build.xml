@@ -19,6 +19,7 @@
 	    <xmltask source="info.xml" dest="info.xml" report="true" failwithoutmatch="true">
 	        <replace path="/pluginInfo/release-version/text()" withText="1.${build.number}"/>
 	    </xmltask>
+		
 
 		<mkdir dir="${dist}" />
 		<jar jarfile="${dist}/DaticalDB4UDeploy.zip" basedir="." />
