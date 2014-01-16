@@ -42,6 +42,18 @@
         else {
             properties.put("Status", "Success");
         }
+        
+        //LOI
+        // The DaticalDB log file is located at C:\dev\UrbanCode\ibm-ucd\agent\var\work\helloWorld\daticaldb.log
+        
+        scanner.register("(?i)The DaticalDB log file",  function(lineNumber, line) {
+        
+        	addLOI(lineNumber);
+        
+        });
+        scanner.scan();
+        
+
      ]]></post-processing>
     <command program="${agent:GROOVY_HOME}/bin/groovy">
       <arg value="-cp" />
