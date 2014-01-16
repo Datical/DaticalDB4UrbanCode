@@ -43,14 +43,23 @@
             properties.put("Status", "Success");
         }
         
-        //LOI
-        // The DaticalDB log file is located at C:\dev\UrbanCode\ibm-ucd\agent\var\work\helloWorld\daticaldb.log
-        
+        //all
         scanner.register("(?i)The DaticalDB log file",  function(lineNumber, line) {
-        
-        	addLOI(lineNumber);
-        
+        	scanner.addLOI(lineNumber);
         });
+        //checkdrivers
+        scanner.register("(?i)Found ",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+        });
+        //status
+        scanner.register("(?i) is up-to-date ",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+        });
+        scanner.register("(?i) is at ",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+        });
+ 
+ 
         scanner.scan();
         
 
