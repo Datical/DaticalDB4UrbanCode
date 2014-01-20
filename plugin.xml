@@ -35,7 +35,7 @@
         <!-- --><value label="Diff Report">diff</value>
         <value label="History">history</value>
 		        
-		<!-- --><value label="Change Log Sync">changeLogSync</value>
+		<!-- --><value label="Change Log Sync">changelogSync</value>
 		<!-- --><value label="Clear Checksums">clearCheckSums</value>
       </property>
       <property name="daticalDBArg" required="false">
