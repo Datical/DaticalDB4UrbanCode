@@ -11,11 +11,11 @@
   <step-type name="Datical DB">
     <description>Executes Datical DB</description>
     <properties>
-      <property name="daticalDBcmd" required="true">
-        <property-ui type="textBox" label="Datical DB Command" description="The full path to the Datical DB command (e.g., C:\DaticalDB\repl\hammer.bat or /opt/DaticalDB/repl/hammer)" default-value="${agent:daticalDBcmd}" />
+      <property name="daticalDBCmd" required="true">
+        <property-ui type="textBox" label="Datical DB Command" description="The full path to the Datical DB command (e.g., C:\DaticalDB\repl\hammer.bat or /opt/DaticalDB/repl/hammer)" default-value="${p:daticalDBCmd}" />
       </property>
       <property name="daticalDBDriversDir" required="true">
-        <property-ui type="textBox" label="Datical DB Driver Directory" description="The full path where Datical DB drivers are located." default-value="${agent:daticalDBDriversDir}" />
+        <property-ui type="textBox" label="Datical DB Driver Directory" description="The full path where Datical DB drivers are located." default-value="${p:daticalDBDriversDir}" />
       </property>
       <property name="daticalDBProjectDir" required="true">
         <property-ui type="textBox" label="Datical DB Project Directory" description="The full path where the Datical DB project is located." default-value="."/>
@@ -101,9 +101,6 @@
         	scanner.addLOI(lineNumber);
         });
         scanner.register("(?i)Update Failed",  function(lineNumber, line) {
-        	scanner.addLOI(lineNumber);
-        });
-        scanner.register("(?iSuccessful)Update Failed.",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
         });
         
