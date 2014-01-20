@@ -38,7 +38,7 @@
 		<!-- --><value label="Change Log Sync">changeLogSync</value>
 		<!-- --><value label="Clear Checksums">clearCheckSums</value>
       </property>
-      <property name="daticalDBServer" required="false">
+      <property name="daticalDBArg" required="false">
         <property-ui type="textBox" label="Datical DB Action Argument" description="The Datical DB Action Argument will typically be the name of the server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan. Based on your Action selection below, you may enter none, one, or two Server Names. For the Rollback Action, the argument will take the form of 'SERVERNAME changeid:id=CHANGESETID'." />
       </property>
 
