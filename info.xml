@@ -34,10 +34,10 @@
 		<meta content="Database,DevOps,Liquibase,YOLO" name="keywords"/>
 	</meta-html>
 
-	<release-version>1.96</release-version>
+	<release-version>1.97</release-version>
 
 	<release-notes>
-		<release-note plugin-version="1.0">
+		<release-note plugin-version="1.97">
 			Initial Release
 		</release-note>
 

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://www.urbancode.com/PluginXMLSchema_v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <header>
-    <identifier version="1" id="com.urbancode.air.plugin.DaticalDB4UDeploy" name="Datical DB" />
+    <identifier version="1" id="com.datical.integration.udeploy.DaticalDB4UDeploy" name="Datical DB" />
     <description>Datical DB makes it incredibly easy to automate and
 			manage database schema changes for high volume, complex releases,
 			across any environment, for any database. No agents required.
@@ -13,10 +13,10 @@
     <description>Deploys a Datical DB project to a Server.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
-        <property-ui type="textBox" label="Datical DB Command" description="The full path to the Datical DB command (e.g., C:\DaticalDB\repl\hammer.bat or /opt/DaticalDB/repl/hammer)" default-value="${p:daticalDBCmd}" />
+        <property-ui type="textBox" label="Datical DB Command" description="The full path to the Datical DB command (e.g., C:\DaticalDB\repl\hammer.bat or /opt/DaticalDB/repl/hammer). Ideally, create a property named daticalDBCmd with the appropriate value." default-value="${p:daticalDBCmd}" />
       </property>
       <property name="daticalDBDriversDir" required="true">
-        <property-ui type="textBox" label="Datical DB Driver Directory" description="The full path where Datical DB drivers are located." default-value="${p:daticalDBDriversDir}" />
+        <property-ui type="textBox" label="Datical DB Driver Directory" description="The full path where Datical DB drivers are located. Ideally, create a property named daticalDBDriversDir with the appropriate value." default-value="${p:daticalDBDriversDir}" />
       </property>
       <property name="daticalDBProjectDir" required="true">
         <property-ui type="textBox" label="Datical DB Project Directory" description="The full path where the Datical DB project is located." default-value="."/>
