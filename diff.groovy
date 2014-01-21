@@ -35,9 +35,7 @@ def daticalDBServerComparison = props['daticalDBServerComparison'];
 
 
 def cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, daticalDBAction, daticalDBServerReference, daticalDBServerComparison];
-//println "cmdArgs: " + cmdArgs;
 
 int exitCode = cmdHelper.runCommand("Executing Datical DB", cmdArgs);
-//println "exitCode: " + exitCode;
 
 System.exit(exitCode);

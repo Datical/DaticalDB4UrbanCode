@@ -32,11 +32,8 @@ def daticalDBAction = "rollback";
 def daticalDBServer = props['daticalDBServer'];
 def daticalDBVersion = props['daticalDBVersion'];
 
-
 def cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, daticalDBAction, daticalDBServer, daticalDBVersion];
-//println "cmdArgs: " + cmdArgs;
 
 int exitCode = cmdHelper.runCommand("Executing Datical DB", cmdArgs);
-//println "exitCode: " + exitCode;
 
 System.exit(exitCode);

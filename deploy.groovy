@@ -32,20 +32,16 @@ def daticalDBAction = "deploy";
 def daticalDBServer = props['daticalDBServer'];
 def daticalDBRollback = props['daticalDBRollback']
 
-println "daticalDBAction: " + daticalDBAction;
-println "daticalDBRollback: " + daticalDBRollback;
 if (daticalDBRollback == "false") {
     daticalDBAction = "deploy";
 } else {
 	daticalDBAction = "deploy-autoRollback";
 }
-println "daticalDBAction: " + daticalDBAction;
-
 
 def cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, daticalDBAction, daticalDBServer];
-//println "cmdArgs: " + cmdArgs;
+
 
 int exitCode = cmdHelper.runCommand("Executing Datical DB", cmdArgs);
-//println "exitCode: " + exitCode;
+
 
 System.exit(exitCode);

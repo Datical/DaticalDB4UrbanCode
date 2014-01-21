@@ -31,11 +31,8 @@ def daticalDBDriversDir = getAbsPath(props['daticalDBDriversDir']);
 def daticalDBAction = "snapshot";
 def daticalDBServer = props['daticalDBServer'];
 
-
 def cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, daticalDBAction, daticalDBServer];
-//println "cmdArgs: " + cmdArgs;
 
 int exitCode = cmdHelper.runCommand("Executing Datical DB", cmdArgs);
-//println "exitCode: " + exitCode;
 
 System.exit(exitCode);
