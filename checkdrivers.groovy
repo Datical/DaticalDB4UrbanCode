@@ -28,7 +28,7 @@ def getAbsPath(def file) {
 //path properties
 def daticalDBCmd = getAbsPath(props['daticalDBCmd']);
 def daticalDBDriversDir = getAbsPath(props['daticalDBDriversDir']);
-def daticalDBAction = "status";
+def daticalDBAction = "checkdrivers";
 
 def cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, daticalDBAction];
 //println "cmdArgs: " + cmdArgs;

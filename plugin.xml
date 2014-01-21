@@ -6,10 +6,10 @@
 			manage database schema changes for high volume, complex releases,
 			across any environment, for any database. No agents required.
 		</description>
-    <tag>Database/Datical DB</tag>
+    <tag>Datical DB</tag>
   </header>
-<!-- ---------------------------------------------------------------------- -->
-  <step-type name="Deploy">
+
+  <step-type name="DB Deploy">
     <description>Deploys a Datical DB project to a Server.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -27,7 +27,6 @@
       <property name="daticalDBRollback" required="false">
         <property-ui type="checkBox" label="Automatic Rollback" description="If the Datical DB deploy fails, selecting this box will automatically rollback the server to the initial state using the rollback instructions specified in the Datical DB project and/or the Datical DB defaults." />
       </property>
-
     </properties>
     <post-processing><![CDATA[
         if (properties.get("exitCode") != 0) {
@@ -88,8 +87,7 @@
     </command>
   </step-type>
 
-<!-- ---------------------------------------------------------------------- -->
-  <step-type name="Forecast">
+  <step-type name="DB Forecast">
     <description>Forecasts a Datical DB project against a Server.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -160,8 +158,8 @@
       <arg file="${PLUGIN_OUTPUT_PROPS}" />
     </command>
   </step-type>
-<!-- ---------------------------------------------------------------------- -->
-  <step-type name="Snapshot">
+
+  <step-type name="DB Snapshot">
     <description>Creates a Datical DB Snapshot of a Server.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -233,7 +231,7 @@
       <arg file="${PLUGIN_OUTPUT_PROPS}" />
     </command>
   </step-type>
-<!-- ---------------------------------------------------------------------- -->
+
   <step-type name="History">
     <description>Details the Datical DB deployment history of a Server.</description>
     <properties>
@@ -293,8 +291,6 @@
         });
 		 
         scanner.scan();
-        
-        
 
      ]]></post-processing>
     <command program="${agent:GROOVY_HOME}/bin/groovy">
@@ -305,8 +301,8 @@
       <arg file="${PLUGIN_OUTPUT_PROPS}" />
     </command>
   </step-type>
-<!-- ---------------------------------------------------------------------- -->
-  <step-type name="Change Log Sync">
+
+  <step-type name="Sync Change Log">
     <description>Marks a Server as deployed based on a Datical DB Project without executing changes.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -373,8 +369,8 @@
       <arg file="${PLUGIN_OUTPUT_PROPS}" />
     </command>
   </step-type>
-<!-- ---------------------------------------------------------------------- -->
-  <step-type name="Clear Check Sums">
+
+  <step-type name="Remove Check Sums">
     <description>Removes Change Set Check Sums from a Server.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -446,7 +442,7 @@
       <arg file="${PLUGIN_OUTPUT_PROPS}" />
     </command>
   </step-type>
-<!-- ---------------------------------------------------------------------- -->
+
   <step-type name="Status">
     <description>Reports on the current Status of a Server.</description>
     <properties>
@@ -462,7 +458,6 @@
       <property name="daticalDBServer" required="false">
         <property-ui type="textBox" label="Datical DB Server" description="The Datical DB Server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan." />
       </property>
-    </properties>
     </properties>
     <post-processing><![CDATA[
         if (properties.get("exitCode") != 0) {
@@ -523,8 +518,8 @@
       <arg file="${PLUGIN_OUTPUT_PROPS}" />
     </command>
   </step-type>
-<!-- ---------------------------------------------------------------------- -->
-  <step-type name="Check Drivers">
+
+  <step-type name="Driver Check">
     <description>Returns the current database drivers settings used by Datical DB.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -593,8 +588,8 @@
       <arg file="${PLUGIN_OUTPUT_PROPS}" />
     </command>
   </step-type>
-<!-- ---------------------------------------------------------------------- -->
-  <step-type name="Rollback">
+
+  <step-type name="DB Rollback">
     <description>Performs a Rollback on a Server given a specific version.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -610,7 +605,7 @@
         <property-ui type="textBox" label="Datical DB Server" description="The Datical DB Server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan." />
       </property>
       <property name="daticalDBVersion" required="true">
-        <property-ui type="textBox" label="Valid Versions include the following: 'changeid:id=CHANGESETID', 'count:n=COUNT', 'date:yyyy-MM-dd=YYYY-MM-DD', or 'tag:dbtag=DBTAG'." />
+        <property-ui type="textBox" label="Datical DB Rollback Version" description="Valid Versions include the following: 'changeid:id=CHANGESETID', 'count:n=COUNT', 'date:yyyy-MM-dd=YYYY-MM-DD', or 'tag:dbtag=DBTAG'." />
       </property>
     </properties>
     <post-processing><![CDATA[
@@ -667,7 +662,7 @@
       <arg file="${PLUGIN_OUTPUT_PROPS}" />
     </command>
   </step-type>
-<!-- ---------------------------------------------------------------------- -->
+
   <step-type name="Diff Change Log">
     <description>Creates a Change Log based on the differences between two servers. Can append to an existing Change Log.</description>
     <properties>
@@ -751,9 +746,6 @@
     </command>
   </step-type>
 
-
-
-<!-- ---------------------------------------------------------------------- -->
   <step-type name="Diff Report">
     <description>Generates a Report on the differences between two servers.</description>
     <properties>
@@ -772,8 +764,6 @@
       <property name="daticalDBServerComparison" required="true">
         <property-ui type="textBox" label="Datical DB Comparison Server" description="The Datical DB Server used as the Comparison for the differences. This one will be less 'up to date'." />
       </property>
-
-
     </properties>
     <post-processing><![CDATA[
         if (properties.get("exitCode") != 0) {

@@ -34,7 +34,7 @@ def daticalDBRollback = props['daticalDBRollback']
 
 println "daticalDBAction: " + daticalDBAction;
 println "daticalDBRollback: " + daticalDBRollback;
-if (!daticalDBRollback) {
+if (daticalDBRollback == "false") {
     daticalDBAction = "deploy";
 } else {
 	daticalDBAction = "deploy-autoRollback";
