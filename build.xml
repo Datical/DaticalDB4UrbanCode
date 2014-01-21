@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="MyProject" default="dist" basedir=".">
+<project name="DaticalDB4UDeploy" default="dist" basedir=".">
 	<description>
         simple example build file
     </description>
@@ -20,10 +20,7 @@
 	        <replace path="/pluginInfo/release-version/text()" withText="1.${build.number}"/>
 	    </xmltask>
 		
-
 		<mkdir dir="${dist}" />
-		<jar jarfile="${dist}/DaticalDB4UDeploy.zip" basedir="." />
-
 
 		<zip destfile="${dist}/DaticalDB4UDeploy-1.${build.number}.zip" basedir="." excludes=".git/*,**/dist,dist/*" />
 	</target>
