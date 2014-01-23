@@ -195,10 +195,8 @@
         //snapshot
         scanner.register("(?i)Snapshot of database",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
-        });
-        scanner.register("(?i)Snapshot of database ",  function(lineNumber, line) {
-              var snapshot = line.split(" at ");
-              properties.put("DaticalSnapshot", snapshot[1]);
+            var snapshot = line.split(" at ");
+            properties.put("DaticalSnapshot", snapshot[1]);
         });
 
         scanner.scan();
@@ -615,7 +613,7 @@
         <property-ui type="textBox" label="Datical DB Comparison Server" description="The Datical DB Server used as the Comparison for the differences. This one will be less 'up to date'." />
       </property>
       <property name="daticalDBChangeLog" required="false">
-        <property-ui type="textBox" label="Change Log to create or append to. Optional." />
+        <property-ui type="textBox" label="Datical DB Output File" description="Change Log to create or append to. Optional." />
       </property>
 
 
@@ -657,8 +655,8 @@
         });
         scanner.register("(?i)Diff of databases",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
-              var diffreport = line.split(" at ");
-              properties.put("DaticalDiff", diffreport[1]);
+            var diffreport = line.split(" at ");
+            properties.put("DaticalDiff", diffreport[1]);
         });
         
         scanner.scan();
