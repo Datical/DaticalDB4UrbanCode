@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://www.urbancode.com/PluginXMLSchema_v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <header>
-    <identifier version="1" id="com.datical.integration.udeploy.DaticalDB4UDeploy" name="Datical DB" />
+    <identifier version="2" id="com.datical.integration.udeploy.DaticalDB4UDeploy" name="Datical DB" />
     <description>Datical DB makes it incredibly easy to automate and
 			manage database schema changes for high volume, complex releases,
 			across any environment, for any database. No agents required.
@@ -9,7 +9,7 @@
     <tag>Datical DB</tag>
   </header>
 
-  <step-type name="DB Deploy">
+  <step-type name="Datical DB Deploy">
     <description>Deploys a Datical DB project to a Server.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -79,7 +79,7 @@
     </command>
   </step-type>
 
-  <step-type name="DB Forecast">
+  <step-type name="Datical DB Forecast">
     <description>Forecasts a Datical DB project against a Server.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -145,7 +145,7 @@
     </command>
   </step-type>
 
-  <step-type name="DB Snapshot">
+  <step-type name="Datical DB Snapshot">
     <description>Creates a Datical DB Snapshot of a Server.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -211,7 +211,7 @@
     </command>
   </step-type>
 
-  <step-type name="History">
+  <step-type name="Datical DB History">
     <description>Details the Datical DB deployment history of a Server.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -275,7 +275,7 @@
     </command>
   </step-type>
 
-  <step-type name="Sync Change Log">
+  <step-type name="Datical DB Change Log Sync">
     <description>Marks a Server as deployed based on a Datical DB Project without executing changes.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -335,7 +335,7 @@
     </command>
   </step-type>
 
-  <step-type name="Remove Check Sums">
+  <step-type name="Datical DB Clear Check Sums">
     <description>Removes Change Set Check Sums from a Server.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -399,7 +399,7 @@
     </command>
   </step-type>
 
-  <step-type name="Status">
+  <step-type name="Datical DB Status">
     <description>Reports on the current Status of a Server.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -466,7 +466,7 @@
     </command>
   </step-type>
 
-  <step-type name="Driver Check">
+  <step-type name="Datical DB Check Drivers">
     <description>Returns the current database drivers settings used by Datical DB.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -527,7 +527,7 @@
     </command>
   </step-type>
 
-  <step-type name="DB Rollback">
+  <step-type name="Datical DB Rollback">
     <description>Performs a Rollback on a Server given a specific version.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -594,7 +594,7 @@
     </command>
   </step-type>
 
-  <step-type name="Diff Change Log">
+  <step-type name="Datical DB Diff Change Log">
     <description>Creates a Change Log based on the differences between two servers. Can append to an existing Change Log.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -671,7 +671,7 @@
     </command>
   </step-type>
 
-  <step-type name="Diff Report">
+  <step-type name="Datical DB Diff Report">
     <description>Generates a Report on the differences between two servers.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
