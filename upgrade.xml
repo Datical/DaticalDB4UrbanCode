@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin-upgrade xmlns="http://www.&company;.com/UpgradeXMLSchema_v1"
+<plugin-upgrade xmlns="http://www.urbancode.com/UpgradeXMLSchema_v1"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<migrate to-version="2">
-		<migrate-command name="Datical DB Deploy" name="Datical DB Deploy" old="DB Deploy" />
+		<migrate-command name="Datical DB Deploy" old="DB Deploy" />
 		<migrate-command name="Datical DB Forecast" old="DB Forecast" />
 		<migrate-command name="Datical DB Snapshot" old="DB Snapshot" />
 		<migrate-command name="Datical DB History" old="History" />
