@@ -466,6 +466,74 @@
     </command>
   </step-type>
 
+  <step-type name="Datical DB Status Details">
+    <description>Reports on the detailed current Status of a Server.</description>
+    <properties>
+      <property name="daticalDBCmd" required="true">
+        <property-ui type="textBox" label="Datical DB Command" description="The full path to the Datical DB command (e.g., C:\DaticalDB\repl\hammer.bat or /opt/DaticalDB/repl/hammer)" default-value="${p:daticalDBCmd}" />
+      </property>
+      <property name="daticalDBDriversDir" required="true">
+        <property-ui type="textBox" label="Datical DB Driver Directory" description="The full path where Datical DB drivers are located." default-value="${p:daticalDBDriversDir}" />
+      </property>
+      <property name="daticalDBProjectDir" required="true">
+        <property-ui type="textBox" label="Datical DB Project Directory" description="The full path where the Datical DB project is located." default-value="."/>
+      </property>
+      <property name="daticalDBServer" required="false">
+        <property-ui type="textBox" label="Datical DB Server" description="The Datical DB Server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan." />
+      </property>
+    </properties>
+    <post-processing><![CDATA[
+        if (properties.get("exitCode") != 0) {
+            properties.put(new java.lang.String("Status"), new java.lang.String("Failure"));
+        }
+        else {
+            properties.put("Status", "Success");
+        }
+        
+        //all
+        scanner.register("(?i)The DaticalDB log file",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+            var log = line.replace("The DaticalDB log file is located at ", "");
+            properties.put("DaticalLog", log);
+        });
+        scanner.register("(?i)cannot be found in the current project",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+        });
+        scanner.register("(?i)Please specify a database as an argument or using the dbdef property",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+        });
+        scanner.register("(?i)No database specified.",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+        });
+        scanner.register("(?i)Report ready at file",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+        });
+        scanner.register("(?i)Report will be written to ",  function(lineNumber, line) {
+              var report = line.replace("Report will be written to ", "");
+              properties.put("DaticalReport", report);
+        });
+        
+        //status
+        scanner.register("(?i) is up-to-date ",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+        });
+        scanner.register("(?i) is at ",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+        });
+        
+        scanner.scan();
+
+     ]]></post-processing>
+    <command program="${agent:GROOVY_HOME}/bin/groovy">
+      <arg value="-cp" />
+      <arg path="classes" />
+      <arg file="statusdetails.groovy" />
+      <arg file="${PLUGIN_INPUT_PROPS}" />
+      <arg file="${PLUGIN_OUTPUT_PROPS}" />
+    </command>
+  </step-type>
+
+
   <step-type name="Datical DB Check Drivers">
     <description>Returns the current database drivers settings used by Datical DB.</description>
     <properties>
