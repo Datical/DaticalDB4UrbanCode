@@ -810,4 +810,172 @@
       <arg file="${PLUGIN_OUTPUT_PROPS}" />
     </command>
   </step-type>
+  
+  <step-type name="Datical DB Create New Project">
+    <description>Creates a new Datical DB Project in the project directory. Useful for when you are only supplied a changelog.xml and wish to create the project dynamically.</description>
+    <properties>
+      <property name="daticalDBCmd" required="true">
+        <property-ui type="textBox" label="Datical DB Command" description="The full path to the Datical DB command (e.g., C:\DaticalDB\repl\hammer.bat or /opt/DaticalDB/repl/hammer)" default-value="${p:daticalDBCmd}" />
+      </property>
+      <property name="daticalDBDriversDir" required="true">
+        <property-ui type="textBox" label="Datical DB Driver Directory" description="The full path where Datical DB drivers are located." default-value="${p:daticalDBDriversDir}" />
+      </property>
+      <property name="daticalDBProjectDir" required="true">
+        <property-ui type="textBox" label="Datical DB Project Directory" description="The full path where the Datical DB project is to be located." default-value="."/>
+      </property>
+    </properties>
+    <post-processing><![CDATA[
+        if (properties.get("exitCode") != 0) {
+            properties.put(new java.lang.String("Status"), new java.lang.String("Failure"));
+        }
+        else {
+            properties.put("Status", "Success");
+        }
+        
+        //all
+        scanner.register("(?i)The DaticalDB log file",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+            var log = line.replace("The DaticalDB log file is located at ", "");
+            properties.put("DaticalLog", log);
+        });
+        scanner.register("(?i)cannot be found in the current project",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+        });
+        scanner.register("(?i)Please specify a database as an argument or using the dbdef property",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+        });
+        scanner.register("(?i)No database specified.",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+        });
+        scanner.register("(?i)Report ready at file",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+        });
+        scanner.register("(?i)Report will be written to ",  function(lineNumber, line) {
+              var report = line.replace("Report will be written to ", "");
+              properties.put("DaticalReport", report);
+        });
+        
+        scanner.scan();
+
+     ]]></post-processing>
+    <command program="${agent:GROOVY_HOME}/bin/groovy">
+      <arg value="-cp" />
+      <arg path="classes" />
+      <arg file="createnewproject.groovy" />
+      <arg file="${PLUGIN_INPUT_PROPS}" />
+      <arg file="${PLUGIN_OUTPUT_PROPS}" />
+    </command>
+  </step-type>  
+  
+  <step-type name="Datical DB Create New Database Definition">
+    <description>Creates a new Datical DB Project in the project directory. Useful for when you are only supplied a changelog.xml and wish to create the project dynamically.</description>
+    <properties>
+      <property name="daticalDBCmd" required="true">
+        <property-ui type="textBox" label="Datical DB Command" description="The full path to the Datical DB command (e.g., C:\DaticalDB\repl\hammer.bat or /opt/DaticalDB/repl/hammer)" default-value="${p:daticalDBCmd}" />
+      </property>
+      <property name="daticalDBDriversDir" required="true">
+        <property-ui type="textBox" label="Datical DB Driver Directory" description="The full path where Datical DB drivers are located." default-value="${p:daticalDBDriversDir}" />
+      </property>
+      <property name="daticalDBProjectDir" required="true">
+        <property-ui type="textBox" label="Datical DB Project Directory" description="The full path where the Datical DB project is to be located." default-value="."/>
+      </property>
+      <property name="daticalDBVendor" required="true">
+      	<!-- TODO: select list -->
+        <property-ui type="textBox" label="Datical DB Database Vendor" description = "The target database vendor. Valid values are Oracle, DB2, MSSQL, MySQL, PostgreSQL." default-value="DB2"/>
+      </property>
+      <property name="daticalDBStepName" required="true">
+      	<property-ui type="textBox" label="Datical DB Step Name" description = "This is an Internal user friendly name for your database." default-value="MyDB"/>
+      </property>
+      <property name="daticalDBHost" required="true">
+      	<property-ui type="textBox" label="Datical DB Database Hostname" description = "The hostname or IP address of the Database Server." default-value="192.168.0.1"/>
+      </property>
+      <property name="daticalDBPort" required="true">
+      	<property-ui type="textBox" label="Datical DB Database Port" description = "The port of the Database Server." default-value="50000"/>
+      </property>
+      <property name="daticalDBUsername" required="true">
+      	<property-ui type="textBox" label="Datical DB Database Username" description = "The username of the Database Server." default-value="db2inst1"/>
+      </property>
+      <property name="daticalDBPassword" required="true">
+      <!-- TODO: mask this password -->
+      	<property-ui type="textBox" label="Datical DB Database Password" description = "The password of the Database Server." default-value="p455w0rd"/>
+      </property>
+		<!-- OPTIONAL -->
+      <property name="daticalDBContext" required="false">
+      	<property-ui type="textBox" label="Datical DB Context" description = "The Context used by Datical DB. Optional."/>
+      </property>
+      <property name="daticalDBDefaultSchemaName" required="false">
+      	<property-ui type="textBox" label="Datical DB Default Schema Name" description = "The Default Schema Name used by Datical DB. Optional."/>
+      </property>
+      <property name="daticalDBDefaultCatalogName" required="false">
+      	<property-ui type="textBox" label=""Datical DB Default Catalog Name"" description = "The Default Catalog Name used by Datical DB. Optional."/>
+      </property>
+		<!-- platform specific -->
+		<!-- DB2, MySQL, PostgreSQL -->
+      <property name="daticalDBDatabaseName" required="false">
+      	<property-ui type="textBox" label="Datical DB Database Name (DB2, MSSQL, MySQL, PostgreSQL)" description = "The Database Name. Required for DB2, MySQL, PostgreSQL."/>
+      </property>
+      <property name="daticalDBSID" required="false">
+      	<property-ui type="textBox" label="Datical DB SID (Oracle)" description = "The Database SID. Either SID or Service Name is required for Oracle."/>
+      </property>
+      <property name="daticalDBServiceName" required="false">
+      	<property-ui type="textBox" "Datical DB Service Name (Oracle)" description = "The Database Service Name. Either SID or Service Name is required for Oracle."/>
+      </property>
+		<!-- MSSQL -->
+      <property name="daticalDBIsIntegratedSecurity" required="false">
+      <!-- TODO: true, false select list -->
+      	<property-ui type="textBox" label="Integrated Security? (MSSQL)" description = "Determines if the database uses Integrated Security. Optional for MSSQL."/>
+      </property>
+      <property name="daticalDBApplicationName" required="false">
+      	<property-ui type="textBox" "Datical DB Application Name (MSSQL)" description = "The Datical DB Application Name. Optional for MSSQL."/>
+      </property>
+      <property name="daticalDBInstanceName" required="false">
+      	<property-ui type="textBox" "Datical DB Instance Name (MSSQL)" description = "The Datical DB Instance Name. Optional for MSSQL."/>
+      </property>
+    </properties>
+    <post-processing><![CDATA[
+        if (properties.get("exitCode") != 0) {
+            properties.put(new java.lang.String("Status"), new java.lang.String("Failure"));
+        }
+        else {
+            properties.put("Status", "Success");
+        }
+        
+        //all
+        scanner.register("(?i)The DaticalDB log file",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+            var log = line.replace("The DaticalDB log file is located at ", "");
+            properties.put("DaticalLog", log);
+        });
+        scanner.register("(?i)cannot be found in the current project",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+        });
+        scanner.register("(?i)Please specify a database as an argument or using the dbdef property",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+        });
+        scanner.register("(?i)No database specified.",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+        });
+        scanner.register("(?i)Report ready at file",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+        });
+        scanner.register("(?i)Report will be written to ",  function(lineNumber, line) {
+              var report = line.replace("Report will be written to ", "");
+              properties.put("DaticalReport", report);
+        });
+        
+        scanner.scan();
+
+     ]]></post-processing>
+    <command program="${agent:GROOVY_HOME}/bin/groovy">
+      <arg value="-cp" />
+      <arg path="classes" />
+      <arg file="createnewdbdef.groovy" />
+      <arg file="${PLUGIN_INPUT_PROPS}" />
+      <arg file="${PLUGIN_OUTPUT_PROPS}" />
+    </command>
+  </step-type>    
+
+
+
+  
 </plugin>
