@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://www.urbancode.com/PluginXMLSchema_v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <header>
     <identifier version="2" id="com.datical.integration.udeploy.DaticalDB4UDeploy" name="Datical DB" />
@@ -907,7 +907,7 @@
       	<property-ui type="textBox" label="Datical DB Default Schema Name" description = "The Default Schema Name used by Datical DB. Optional."/>
       </property>
       <property name="daticalDBDefaultCatalogName" required="false">
-      	<property-ui type="textBox" label=""Datical DB Default Catalog Name"" description = "The Default Catalog Name used by Datical DB. Optional."/>
+      	<property-ui type="textBox" label="Datical DB Default Catalog Name" description = "The Default Catalog Name used by Datical DB. Optional."/>
       </property>
 		<!-- platform specific -->
 		<!-- DB2, MySQL, PostgreSQL -->
@@ -918,7 +918,7 @@
       	<property-ui type="textBox" label="Datical DB SID (Oracle)" description = "The Database SID. Either SID or Service Name is required for Oracle."/>
       </property>
       <property name="daticalDBServiceName" required="false">
-      	<property-ui type="textBox" "Datical DB Service Name (Oracle)" description = "The Database Service Name. Either SID or Service Name is required for Oracle."/>
+      	<property-ui type="textBox" label="Datical DB Service Name (Oracle)" description = "The Database Service Name. Either SID or Service Name is required for Oracle."/>
       </property>
 		<!-- MSSQL -->
       <property name="daticalDBIsIntegratedSecurity" required="false">
@@ -926,10 +926,10 @@
       	<property-ui type="textBox" label="Integrated Security? (MSSQL)" description = "Determines if the database uses Integrated Security. Optional for MSSQL."/>
       </property>
       <property name="daticalDBApplicationName" required="false">
-      	<property-ui type="textBox" "Datical DB Application Name (MSSQL)" description = "The Datical DB Application Name. Optional for MSSQL."/>
+      	<property-ui type="textBox" label="Datical DB Application Name (MSSQL)" description = "The Datical DB Application Name. Optional for MSSQL."/>
       </property>
       <property name="daticalDBInstanceName" required="false">
-      	<property-ui type="textBox" "Datical DB Instance Name (MSSQL)" description = "The Datical DB Instance Name. Optional for MSSQL."/>
+      	<property-ui type="textBox" label="Datical DB Instance Name (MSSQL)" description = "The Datical DB Instance Name. Optional for MSSQL."/>
       </property>
     </properties>
     <post-processing><![CDATA[
