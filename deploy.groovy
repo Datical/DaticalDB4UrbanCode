@@ -28,6 +28,7 @@ def getAbsPath(def file) {
 //path properties
 def daticalDBCmd = getAbsPath(props['daticalDBCmd']);
 def daticalDBDriversDir = getAbsPath(props['daticalDBDriversDir']);
+def daticalDBProjectDir = getAbsPath(props['daticalDBProjectDir']);
 def daticalDBAction = "deploy";
 def daticalDBServer = props['daticalDBServer'];
 def daticalDBRollback = props['daticalDBRollback']
