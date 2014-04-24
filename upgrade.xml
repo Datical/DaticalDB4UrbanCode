@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin-upgrade xmlns="http://www.urbancode.com/UpgradeXMLSchema_v1"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<plugin-upgrade xmlns="http://www.urbancode.com/UpgradeXMLSchema_v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<migrate to-version="3">
+		<migrate-command name="Datical DB Deploy" />
+		<migrate-command name="Datical DB Forecast" />
+		<migrate-command name="Datical DB Snapshot" />
+		<migrate-command name="Datical DB History" />
+		<migrate-command name="Datical DB Change Log Sync" />
+		<migrate-command name="Datical DB Clear Check Sums" />
+		<migrate-command name="Datical DB Status" />
+		<migrate-command name="Datical DB Status Details" />
+		<migrate-command name="Datical DB Check Drivers" />
+		<migrate-command name="Datical DB Rollback" />
+		<migrate-command name="Datical DB Diff Change Log" />
+		<migrate-command name="Datical DB Diff Report" />
+		<migrate-command name="Datical DB Create New Project" />
+		<migrate-command name="Datical DB Create New Database Definition" />
+	</migrate>
 	<migrate to-version="2">
 		<migrate-command name="Datical DB Deploy" old="DB Deploy" />
 		<migrate-command name="Datical DB Forecast" old="DB Forecast" />
@@ -27,5 +42,4 @@
 		<migrate-command name="Diff Change Log" />
 		<migrate-command name="Diff Report" />
 	</migrate>
-
 </plugin-upgrade>

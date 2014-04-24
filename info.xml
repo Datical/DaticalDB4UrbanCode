@@ -34,13 +34,15 @@
 		<meta content="Database,DevOps,Liquibase,YOLO" name="keywords"/>
 	</meta-html>
 
-	<release-version>1.100</release-version>
+	<release-version>1.112</release-version>
 
 	<release-notes>
 		<release-note plugin-version="1.97">
 			Initial Release
+		</release-note>		
+		<release-note plugin-version="1.101">
+			Added support for new Datical DB actions
 		</release-note>
-
 	</release-notes>
 
 </pluginInfo>
