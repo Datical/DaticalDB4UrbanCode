@@ -28,10 +28,11 @@ def getAbsPath(def file) {
 //path properties
 def daticalDBCmd = getAbsPath(props['daticalDBCmd']);
 def daticalDBDriversDir = getAbsPath(props['daticalDBDriversDir']);
+def daticalDBProjectDir = getAbsPath(props['daticalDBProjectDir']);
 def daticalDBAction = "clearCheckSums";
 def daticalDBServer = props['daticalDBServer'];
 
-def cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, daticalDBAction, daticalDBServer];
+def cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, '--project', daticalDBProjectDir, daticalDBAction, daticalDBServer];
 
 int exitCode = cmdHelper.runCommand("Executing Datical DB", cmdArgs);
 

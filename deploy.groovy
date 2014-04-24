@@ -38,7 +38,7 @@ if (daticalDBRollback == "false") {
 	daticalDBAction = "deploy-autoRollback";
 }
 
-def cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, daticalDBAction, daticalDBServer];
+def cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, '--project', daticalDBProjectDir, daticalDBAction, daticalDBServer];
 
 
 int exitCode = cmdHelper.runCommand("Executing Datical DB", cmdArgs);

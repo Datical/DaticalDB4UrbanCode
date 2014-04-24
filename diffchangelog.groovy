@@ -27,32 +27,10 @@ def getAbsPath(def file) {
 }
 //path properties
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def daticalDBCmd = getAbsPath(props['daticalDBCmd']);
 def daticalDBDriversDir = getAbsPath(props['daticalDBDriversDir']);
+def daticalDBProjectDir = getAbsPath(props['daticalDBProjectDir']);
 def daticalDBAction = "diffChangelog";
-
-
-
-
-
-
 
 def daticalDBServerReference = props['daticalDBServerReference'];
 def daticalDBServerComparison = props['daticalDBServerComparison'];
@@ -60,9 +38,9 @@ def daticalDBChangeLog = getAbsPath(props['daticalDBChangeLog']);
 
 def cmdArgs = ""
 if (daticalDBChangeLog) {
-	cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, daticalDBAction, daticalDBServerReference, daticalDBServerComparison, daticalDBChangeLog];
+	cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir,  '--project', daticalDBProjectDir,daticalDBAction, daticalDBServerReference, daticalDBServerComparison, daticalDBChangeLog];
 } else {
-	cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, daticalDBAction, daticalDBServerReference, daticalDBServerComparison];
+	cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir,  '--project', daticalDBProjectDir,daticalDBAction, daticalDBServerReference, daticalDBServerComparison];
 }	
 
 int exitCode = cmdHelper.runCommand("Executing Datical DB", cmdArgs);

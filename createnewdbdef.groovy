@@ -28,6 +28,7 @@ def getAbsPath(def file) {
 //path properties
 def daticalDBCmd = getAbsPath(props['daticalDBCmd']);
 def daticalDBDriversDir = getAbsPath(props['daticalDBDriversDir']);
+def daticalDBProjectDir = getAbsPath(props['daticalDBProjectDir']);
 def daticalDBAction = "newDBDef";
 
 def daticalDBVendor = props['daticalDBVendor'];
@@ -71,7 +72,7 @@ def cmdArgs = [];
 
 cmdArgs << daticalDBCmd;
 cmdArgs << "--project";
-cmdArgs << props['daticalDBProjectDir'];
+cmdArgs << daticalDBProjectDir;
 cmdArgs << "newDbDef";
 cmdArgs << "DbDefClass";
 cmdArgs << daticalDBRef;

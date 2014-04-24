@@ -31,7 +31,7 @@ def daticalDBDriversDir = getAbsPath(props['daticalDBDriversDir']);
 def daticalDBProjectDir = getAbsPath(props['daticalDBProjectDir']);
 def daticalDBAction = "newProject";
 
-def cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, "--project", daticalDBProjectDir, daticalDBAction];
+def cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, '--project', daticalDBProjectDir, daticalDBAction];
 
 int exitCode = cmdHelper.runCommand("Executing Datical DB", cmdArgs);
 
