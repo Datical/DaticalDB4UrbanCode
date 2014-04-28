@@ -51,12 +51,15 @@
         scanner.register("(?i)No database specified.",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
         });
-        scanner.register("(?i)Report ready at file",  function(lineNumber, line) {
+        scanner.register("(?i)Report ready at ",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
         });
-        scanner.register("(?i)Report will be written to ",  function(lineNumber, line) {
-              var report = line.replace("Report will be written to ", "");
+        scanner.register("(?i)Report ready at ",  function(lineNumber, line) {
+              var report = line.replace("Report ready at ", "");
               properties.put("DaticalReport", report);
+              var reportDir = report.replace("deployReport.html", "");
+              properties.put("DaticalReportDir", reportDir);
+              
         });
         
         //deploy
@@ -118,12 +121,12 @@
         scanner.register("(?i)No database specified.",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
         });
-        scanner.register("(?i)Report ready at file",  function(lineNumber, line) {
+        scanner.register("(?i)Report ready at ",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
-        });
-        scanner.register("(?i)Report will be written to ",  function(lineNumber, line) {
-              var report = line.replace("Report will be written to ", "");
-              properties.put("DaticalReport", report);
+			var report = line.replace("Report ready at ", "");
+            properties.put("DaticalReport", report);
+            var reportDir = report.replace("forecastReport.html", "");
+            properties.put("DaticalReportDir", reportDir);
         });
         
 		//forecast
@@ -184,12 +187,10 @@
         scanner.register("(?i)No database specified.",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
         });
-        scanner.register("(?i)Report ready at file",  function(lineNumber, line) {
+        scanner.register("(?i)Report ready at ",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
-        });
-        scanner.register("(?i)Report will be written to ",  function(lineNumber, line) {
-              var report = line.replace("Report will be written to ", "");
-              properties.put("DaticalReport", report);
+            var report = line.replace("Report ready at ", "");
+            properties.put("DaticalReport", report);
         });
         
         //snapshot
@@ -250,12 +251,10 @@
         scanner.register("(?i)No database specified.",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
         });
-        scanner.register("(?i)Report ready at file",  function(lineNumber, line) {
+        scanner.register("(?i)Report ready at ",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
-        });
-        scanner.register("(?i)Report will be written to ",  function(lineNumber, line) {
-              var report = line.replace("Report will be written to ", "");
-              properties.put("DaticalReport", report);
+            var report = line.replace("Report ready at ", "");
+            properties.put("DaticalReport", report);
         });
         
         //history
@@ -314,12 +313,10 @@
         scanner.register("(?i)No database specified.",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
         });
-        scanner.register("(?i)Report ready at file",  function(lineNumber, line) {
+        scanner.register("(?i)Report ready at ",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
-        });
-        scanner.register("(?i)Report will be written to ",  function(lineNumber, line) {
-              var report = line.replace("Report will be written to ", "");
-              properties.put("DaticalReport", report);
+            var report = line.replace("Report ready at ", "");
+            properties.put("DaticalReport", report);
         });
         
         scanner.scan();
@@ -374,12 +371,10 @@
         scanner.register("(?i)No database specified.",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
         });
-        scanner.register("(?i)Report ready at file",  function(lineNumber, line) {
+        scanner.register("(?i)Report ready at ",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
-        });
-        scanner.register("(?i)Report will be written to ",  function(lineNumber, line) {
-              var report = line.replace("Report will be written to ", "");
-              properties.put("DaticalReport", report);
+            var report = line.replace("Report ready at ", "");
+            properties.put("DaticalReport", report);
         });
         
         //clearCheckSums
@@ -438,12 +433,10 @@
         scanner.register("(?i)No database specified.",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
         });
-        scanner.register("(?i)Report ready at file",  function(lineNumber, line) {
+        scanner.register("(?i)Report ready at ",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
-        });
-        scanner.register("(?i)Report will be written to ",  function(lineNumber, line) {
-              var report = line.replace("Report will be written to ", "");
-              properties.put("DaticalReport", report);
+            var report = line.replace("Report ready at ", "");
+            properties.put("DaticalReport", report);
         });
         
         //status
@@ -505,12 +498,10 @@
         scanner.register("(?i)No database specified.",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
         });
-        scanner.register("(?i)Report ready at file",  function(lineNumber, line) {
+        scanner.register("(?i)Report ready at ",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
-        });
-        scanner.register("(?i)Report will be written to ",  function(lineNumber, line) {
-              var report = line.replace("Report will be written to ", "");
-              properties.put("DaticalReport", report);
+            var report = line.replace("Report ready at ", "");
+            properties.put("DaticalReport", report);
         });
         
         //status
@@ -570,12 +561,10 @@
         scanner.register("(?i)No database specified.",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
         });
-        scanner.register("(?i)Report ready at file",  function(lineNumber, line) {
+        scanner.register("(?i)Report ready at ",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
-        });
-        scanner.register("(?i)Report will be written to ",  function(lineNumber, line) {
-              var report = line.replace("Report will be written to ", "");
-              properties.put("DaticalReport", report);
+            var report = line.replace("Report ready at ", "");
+            properties.put("DaticalReport", report);
         });
         
         //checkdrivers
@@ -637,12 +626,10 @@
         scanner.register("(?i)No database specified.",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
         });
-        scanner.register("(?i)Report ready at file",  function(lineNumber, line) {
+        scanner.register("(?i)Report ready at ",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
-        });
-        scanner.register("(?i)Report will be written to ",  function(lineNumber, line) {
-              var report = line.replace("Report will be written to ", "");
-              properties.put("DaticalReport", report);
+            var report = line.replace("Report ready at ", "");
+            properties.put("DaticalReport", report);
         });
         
         //rollback
@@ -709,12 +696,10 @@
         scanner.register("(?i)No database specified.",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
         });
-        scanner.register("(?i)Report ready at file",  function(lineNumber, line) {
+        scanner.register("(?i)Report ready at ",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
-        });
-        scanner.register("(?i)Report will be written to ",  function(lineNumber, line) {
-              var report = line.replace("Report will be written to ", "");
-              properties.put("DaticalReport", report);
+            var report = line.replace("Report ready at ", "");
+            properties.put("DaticalReport", report);
         });
         
         //diff*
@@ -781,12 +766,10 @@
         scanner.register("(?i)No database specified.",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
         });
-        scanner.register("(?i)Report ready at file",  function(lineNumber, line) {
+        scanner.register("(?i)Report ready at ",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
-        });
-        scanner.register("(?i)Report will be written to ",  function(lineNumber, line) {
-              var report = line.replace("Report will be written to ", "");
-              properties.put("DaticalReport", report);
+            var report = line.replace("Report ready at ", "");
+            properties.put("DaticalReport", report);
         });
         
         //diff*
@@ -847,12 +830,10 @@
         scanner.register("(?i)No database specified.",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
         });
-        scanner.register("(?i)Report ready at file",  function(lineNumber, line) {
+        scanner.register("(?i)Report ready at ",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
-        });
-        scanner.register("(?i)Report will be written to ",  function(lineNumber, line) {
-              var report = line.replace("Report will be written to ", "");
-              properties.put("DaticalReport", report);
+            var report = line.replace("Report ready at ", "");
+            properties.put("DaticalReport", report);
         });
         
         scanner.scan();
@@ -955,12 +936,10 @@
         scanner.register("(?i)No database specified.",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
         });
-        scanner.register("(?i)Report ready at file",  function(lineNumber, line) {
+        scanner.register("(?i)Report ready at ",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
-        });
-        scanner.register("(?i)Report will be written to ",  function(lineNumber, line) {
-              var report = line.replace("Report will be written to ", "");
-              properties.put("DaticalReport", report);
+            var report = line.replace("Report ready at ", "");
+            properties.put("DaticalReport", report);
         });
         
         scanner.scan();
@@ -1012,12 +991,10 @@
         scanner.register("(?i)No database specified.",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
         });
-        scanner.register("(?i)Report ready at file",  function(lineNumber, line) {
+        scanner.register("(?i)Report ready at ",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
-        });
-        scanner.register("(?i)Report will be written to ",  function(lineNumber, line) {
-              var report = line.replace("Report will be written to ", "");
-              properties.put("DaticalReport", report);
+            var report = line.replace("Report ready at ", "");
+            properties.put("DaticalReport", report);
         });
         
         scanner.scan();
@@ -1032,7 +1009,7 @@
     </command>
   </step-type>    
 
-  <step-type name="Datical DB Deploy">
+  <step-type name="Datical DB Install License">
     <description>Deploys a Datical DB project to a Server.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -1071,12 +1048,10 @@
         scanner.register("(?i)No database specified.",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
         });
-        scanner.register("(?i)Report ready at file",  function(lineNumber, line) {
+        scanner.register("(?i)Report ready at ",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
-        });
-        scanner.register("(?i)Report will be written to ",  function(lineNumber, line) {
-              var report = line.replace("Report will be written to ", "");
-              properties.put("DaticalReport", report);
+            var report = line.replace("Report ready at ", "");
+            properties.put("DaticalReport", report);
         });
         
         //installLicense
