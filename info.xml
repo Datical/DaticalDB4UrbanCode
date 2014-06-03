@@ -34,7 +34,7 @@
 		<meta content="Database,DevOps,Liquibase,YOLO" name="keywords"/>
 	</meta-html>
 
-	<release-version>1.130</release-version>
+	<release-version>1.132</release-version>
 
 	<release-notes>
 		<release-note plugin-version="1.97">
@@ -46,7 +46,9 @@
 		<release-note plugin-version="1.116">
 			Added support for new Email Report
 		</release-note>
-		
+		<release-note plugin-version="1.132">
+			Removed Email Report. Should rely on other plugins for that.
+		</release-note>		
 	</release-notes>
 
 </pluginInfo>

@@ -967,7 +967,7 @@
         <property-ui type="textBox" label="Datical DB Project Directory" description="The full path where the Datical DB project is located." default-value="."/>
       </property>
       <property name="daticalDBLicensePath" required="true">
-        <property-ui type="textBox" label="Datical DB License PathServer" description="The full path where the License File is located." />
+        <property-ui type="textBox" label="Datical DB License Path" description="The full path where the License File is located." />
       </property>
     </properties>
     <post-processing><![CDATA[
