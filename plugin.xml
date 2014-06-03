@@ -861,8 +861,11 @@
         <property-ui type="textBox" label="Datical DB Project Directory" description="The full path where the Datical DB project is to be located." default-value="."/>
       </property>
       <property name="daticalDBVendor" required="true">
-      	<!-- TODO: select list -->
-        <property-ui type="textBox" label="Datical DB Database Vendor" description = "The target database vendor. Valid values are Oracle, DB2, MSSQL, MySQL, PostgreSQL." default-value="DB2"/>
+        <property-ui type="selectBox" label="Datical DB Database Vendor" description = "The target database vendor. Valid values are Oracle, DB2, MSSQL, MySQL, PostgreSQL." default-value="DB2"/>
+		<value label="Abort">DB2</value>
+ 		<value label="Continue">MSSQL</value>
+  		<value label="Stop">MySQL</value>
+  		<value label="Stop">PostgreSQL</value>
       </property>
       <property name="daticalDBStepName" required="true">
       	<property-ui type="textBox" label="Datical DB Step Name" description = "This is an Internal user friendly name for your database." default-value="MyDB"/>
@@ -877,8 +880,7 @@
       	<property-ui type="textBox" label="Datical DB Database Username" description = "The username of the Database Server." default-value="db2inst1"/>
       </property>
       <property name="daticalDBPassword" required="true">
-      <!-- TODO: mask this password -->
-      	<property-ui type="textBox" label="Datical DB Database Password" description = "The password of the Database Server." default-value="p455w0rd"/>
+      	<property-ui type="secureBox" label="Datical DB Database Password" description = "The password of the Database Server." default-value="p455w0rd"/>
       </property>
 		<!-- OPTIONAL -->
       <property name="daticalDBContext" required="false">
