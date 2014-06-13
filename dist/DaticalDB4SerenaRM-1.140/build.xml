@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="DaticalDB4UDeploy" default="dist" basedir=".">
+	<description>
+        simple example build file
+    </description>
+	
+	<taskdef name="xmltask" classname="com.oopsconsultancy.xmltask.ant.XmlTask"/>
+	<!-- set global properties for this build -->
+	<property name="src" location="src" />
+	<property name="build" location="build" />
+	<property name="dist" location="dist" />
+	
+	<target name="dist" depends="clean" description="generate the distribution">
+		<buildnumber />
+		
+		<property file="build.number"/>
+		<echo>build.number=${build.number}</echo>
+		
+	    <xmltask source="info.xml" dest="info.xml" report="true" failwithoutmatch="true">
+	        <replace path="/pluginInfo/release-version/text()" withText="1.${build.number}"/>
+	    </xmltask>
+		
+		<mkdir dir="${dist}" />
+
+		<zip destfile="${dist}/DaticalDB4UDeploy-1.${build.number}.zip" basedir="." excludes=".git/*,**/dist,dist/*" />
+	</target>
+
+	<target name="clean" description="clean up">
+		<delete dir="${dist}" />
+	</target>
+</project>
