@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://www.urbancode.com/PluginXMLSchema_v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <header>
-    <identifier version="1" id="com.datical.integration.udeploy.DaticalDB4UDeploy" name="Datical DB" />
+    <identifier version="2" id="com.datical.integration.udeploy.DaticalDB4UDeploy" name="Datical DB" />
     <description>Datical DB makes it incredibly easy to automate and
 			manage database schema changes for high volume, complex releases,
 			across any environment, for any database. No agents required.
@@ -27,6 +27,12 @@
       <property name="daticalDBRollback" required="false">
         <property-ui type="checkBox" label="Automatic Rollback" description="If the Datical DB deploy fails, selecting this box will automatically rollback the server to the initial state using the rollback instructions specified in the Datical DB project and/or the Datical DB defaults." />
       </property>
+      <property name="daticalDBExportSQL" required="false">
+        <property-ui type="checkBox" label="Export SQL" description="If checked, Datical DB will export SQL to be run against the server." />
+      </property>
+      <property name="daticalDBExportRollbackSQL" required="false">
+        <property-ui type="checkBox" label="Export Rollback SQL" description="If checked, Datical DB will export Rollback SQL to be run against the server." />
+      </property>
     </properties>
     <post-processing><![CDATA[
         if (properties.get("exitCode") != 0) {
@@ -51,16 +57,26 @@
         scanner.register("(?i)No database specified.",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
         });
+
         scanner.register("(?i)Report ready at ",  function(lineNumber, line) {
-        	scanner.addLOI(lineNumber);
-        });
-        scanner.register("(?i)Report ready at ",  function(lineNumber, line) {
+              scanner.addLOI(lineNumber);        	
               var report = line.replace("Report ready at ", "");
               properties.put("DaticalReport", report);
               var reportDir = report.replace("deployReport.html", "");
               properties.put("DaticalReportDir", reportDir);
-              
         });
+
+        scanner.register("(?i)Generated SQL ready at ",  function(lineNumber, line) {
+			  scanner.addLOI(lineNumber);
+              var genSQL = line.replace("Generated SQL ready at ", "");
+              properties.put("DaticalSQL", genSQL);
+        });
+        scanner.register("(?i)Generated rollback SQL ready at ",  function(lineNumber, line) {
+              scanner.addLOI(lineNumber);
+              var genExportSQL = line.replace("Generated rollback SQL ready at ", "");
+              properties.put("DaticalRollbackSQL", genExportSQL);
+        });
+
         
         //deploy
         scanner.register("(?i)Successfully deployed changes to",  function(lineNumber, line) {
@@ -97,6 +113,12 @@
       <property name="daticalDBServer" required="true">
         <property-ui type="textBox" label="Datical DB Server" description="The Datical DB Server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan." />
       </property>
+      <property name="daticalDBExportSQL" required="false">
+        <property-ui type="checkBox" label="Export SQL" description="If checked, Datical DB will export SQL to be run against the server." />
+      </property>
+      <property name="daticalDBExportRollbackSQL" required="false">
+        <property-ui type="checkBox" label="Export Rollback SQL" description="If checked, Datical DB will export Rollback SQL to be run against the server." />
+      </property>
     </properties>
     <post-processing><![CDATA[
         if (properties.get("exitCode") != 0) {
@@ -121,14 +143,23 @@
         scanner.register("(?i)No database specified.",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
         });
-        scanner.register("(?i)Report ready at ",  function(lineNumber, line) {
+        scanner.register("(?i)Generated SQL ready at ",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
-			var report = line.replace("Report ready at ", "");
-            properties.put("DaticalReport", report);
-            var reportDir = report.replace("forecastReport.html", "");
-            properties.put("DaticalReportDir", reportDir);
+              var genSQL = line.replace("Generated SQL ready at ", "");
+              properties.put("DaticalSQL", genSQL);
         });
-        
+        scanner.register("(?i)Generated rollback SQL ready at ",  function(lineNumber, line) {
+        	scanner.addLOI(lineNumber);
+              var genExportSQL = line.replace("Generated rollback SQL ready at ", "");
+              properties.put("DaticalRollbackSQL", genExportSQL);
+        });
+        scanner.register("(?i)Report ready at ",  function(lineNumber, line) {
+              var report = line.replace("Report ready at ", "");
+              properties.put("DaticalReport", report);
+              var reportDir = report.replace("forecastReport.html", "");
+              properties.put("DaticalReportDir", reportDir);
+        });
+
 		//forecast
         scanner.register("(?i)Forecast detected the following problems:",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);

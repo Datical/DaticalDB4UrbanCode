@@ -32,6 +32,17 @@ def daticalDBProjectDir = getAbsPath(props['daticalDBProjectDir']);
 def daticalDBAction = "deploy";
 def daticalDBServer = props['daticalDBServer'];
 def daticalDBRollback = props['daticalDBRollback']
+def daticalDBExportSQL = props['daticalDBExportSQL'];
+def daticalDBExportRollbackSQL = props['daticalDBExportRollbackSQL'];
+
+def genSQL = "";
+if (daticalDBExportSQL == "true") {
+	genSQL = "--genSQL";
+}
+def genRollbackSQL = ""
+if (daticalDBExportRollbackSQL == "true") {
+	genRollbackSQL = "--genRollbackSQL";
+}
 
 if (daticalDBRollback == "false") {
     daticalDBAction = "deploy";
@@ -39,10 +50,8 @@ if (daticalDBRollback == "false") {
 	daticalDBAction = "deploy-autoRollback";
 }
 
-def cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, '--project', daticalDBProjectDir, daticalDBAction, daticalDBServer];
-
+def cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, '--project', daticalDBProjectDir, genSQL, genRollbackSQL, daticalDBAction, daticalDBServer];
 
 int exitCode = cmdHelper.runCommand("Executing Datical DB", cmdArgs);
-
 
 System.exit(exitCode);
