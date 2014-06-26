@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://www.urbancode.com/PluginXMLSchema_v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <header>
-    <identifier version="2" id="com.datical.integration.udeploy.DaticalDB4UDeploy" name="Datical DB" />
+    <identifier version="3" id="com.datical.integration.udeploy.DaticalDB4UDeploy" name="Datical DB" />
     <description>Datical DB makes it incredibly easy to automate and
 			manage database schema changes for high volume, complex releases,
 			across any environment, for any database. No agents required.
@@ -632,6 +632,12 @@
       </property>
       <property name="daticalDBVersion" required="true">
         <property-ui type="textBox" label="Datical DB Rollback Version" description="Valid Versions include the following: 'changeid:id=CHANGESETID', 'count:n=COUNT', 'date:yyyy-MM-dd=YYYY-MM-DD', or 'tag:dbtag=DBTAG'." />
+      </property>
+      <property name="daticalDBExportSQL" required="false">
+        <property-ui type="checkBox" label="Export SQL" description="If checked, Datical DB will export SQL used to rollback the server." />
+      </property>
+      <property name="daticalDBOnlyExportSQL" required="false">
+        <property-ui type="checkBox" label="ONLY Export SQL" description="If checked, Datical DB will ONLY export SQL. No rollback will be performed." />
       </property>
     </properties>
     <post-processing><![CDATA[
