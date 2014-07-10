@@ -900,6 +900,7 @@
       <property name="daticalDBVendor" required="true">
         <property-ui type="selectBox" label="Datical DB Database Vendor" description = "The target database vendor. Valid values are Oracle, DB2, MSSQL, MySQL, PostgreSQL."/>
 		<value label="DB2">DB2</value>
+		<value label="Oracle">Oracle</value>
  		<value label="MSSQL">MSSQL</value>
   		<value label="MySQL">MySQL</value>
   		<value label="PostgreSQL">PostgreSQL</value>
