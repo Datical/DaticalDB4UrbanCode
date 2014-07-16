@@ -34,16 +34,30 @@ def daticalDBServer = props['daticalDBServer'];
 def daticalDBExportSQL = props['daticalDBExportSQL'];
 def daticalDBExportRollbackSQL = props['daticalDBExportRollbackSQL'];
 
-def genSQL = "";
-if (daticalDBExportSQL == "true") {
-	genSQL = "--genSQL";
-}
-def genRollbackSQL = ""
-if (daticalDBExportRollbackSQL == "true") {
-	genRollbackSQL = "--genRollbackSQL";
-}
 
-def cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, '--project', daticalDBProjectDir, genSQL, genRollbackSQL, daticalDBAction, daticalDBServer];
+def cmdArgs = ""; 
+
+if (daticalDBExportSQL == "true") {
+	
+	if (daticalDBExportRollbackSQL == "true") {
+		
+		cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, '--project', daticalDBProjectDir, "--genSQL", "--genRollbackSQL", daticalDBAction, daticalDBServer];
+		
+	} else {
+	
+		cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, '--project', daticalDBProjectDir, "--genSQL", daticalDBAction, daticalDBServer];
+
+	}
+	
+} else if (daticalDBExportRollbackSQL == "true") {
+
+	cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, '--project', daticalDBProjectDir, "--genRollbackSQL", daticalDBAction, daticalDBServer];
+
+} else {
+
+	cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, '--project', daticalDBProjectDir, daticalDBAction, daticalDBServer];
+
+}
 
 int exitCode = cmdHelper.runCommand("Executing Datical DB", cmdArgs);
 
