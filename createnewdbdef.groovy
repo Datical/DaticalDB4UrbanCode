@@ -57,6 +57,7 @@ if (daticalDBVendor == ("MySQL") || daticalDBVendor == "PostgreSQL" || daticalDB
 	}
 }
 
+def daticalDBSID = props['daticalDBSID'];
 def daticalDBServiceName = props['daticalDBServiceName'];
 if (daticalDBVendor.equals("Oracle")) {
 	if (daticalDBSID == "" || daticalDBSID == null) {
@@ -96,7 +97,7 @@ if (daticalDBDatabaseName != "" || daticalDBDatabaseName != null) {
 	cmdArgs << daticalDBDatabaseName;
 }
 
-def daticalDBSID = props['daticalDBSID'];
+
 if (daticalDBSID) {
 	cmdArgs << "sid";
 	cmdArgs << daticalDBSID;
