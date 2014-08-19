@@ -57,8 +57,8 @@ if (daticalDBVendor == ("MySQL") || daticalDBVendor == "PostgreSQL" || daticalDB
 	}
 }
 
-def daticalDBSID = props['daticalDBSID'];
 def daticalDBServiceName = props['daticalDBServiceName'];
+def daticalDBSID = props['daticalDBSID'];
 if (daticalDBVendor.equals("Oracle")) {
 	if (daticalDBSID == "" || daticalDBSID == null) {
 		if (daticalDBServiceName == "" || daticalDBServiceName == null) {
@@ -88,7 +88,7 @@ cmdArgs << props['daticalDBHost'];
 cmdArgs << "port";
 cmdArgs << props['daticalDBPort'];
 
-if (daticalDBDatabaseName != "" || daticalDBDatabaseName != null) {
+if (daticalDBDatabaseName) {
 	if (daticalDBVendor == "MSSQL") {
 		cmdArgs << "databaseName";
 	} else {
@@ -97,10 +97,14 @@ if (daticalDBDatabaseName != "" || daticalDBDatabaseName != null) {
 	cmdArgs << daticalDBDatabaseName;
 }
 
-
 if (daticalDBSID) {
 	cmdArgs << "sid";
 	cmdArgs << daticalDBSID;
+}
+
+if (daticalDBServiceName) {
+	cmdArgs << "serviceName";
+	cmdArgs << daticalDBServiceName;
 }
 
 def daticalDBIsIntegratedSecurity = props['daticalDBIsIntegratedSecurity'];
@@ -139,11 +143,6 @@ def daticalDBInstanceName = props['daticalDBInstanceName'];
 if (daticalDBInstanceName) {
 	cmdArgs << "instancename";
 	cmdArgs << daticalDBInstanceName;
-}
-
-if (daticalDBServiceName) {
-	cmdArgs << "serviceName";
-	cmdArgs << daticalDBServiceName;
 }
 
 int exitCode = cmdHelper.runCommand("Executing Datical DB", cmdArgs);
