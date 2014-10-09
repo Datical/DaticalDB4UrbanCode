@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://www.urbancode.com/PluginXMLSchema_v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <header>
-    <identifier version="4" id="com.datical.integration.udeploy.DaticalDB4UDeploy" name="Datical DB" />
+    <identifier version="5" id="com.datical.integration.udeploy.DaticalDB4UDeploy" name="Datical DB" />
     <description>Datical DB makes it incredibly easy to automate and
 			manage database schema changes for high volume, complex releases,
 			across any environment, for any database. No agents required.
@@ -23,6 +23,9 @@
       </property>
       <property name="daticalDBServer" required="true">
         <property-ui type="textBox" label="Datical DB Server" description="The Datical DB Server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan." />
+      </property>
+      <property name="daticalDBContext" required="false">
+        <property-ui type="textBox" label="Datical DB Context" description="The Datical DB Context of your DB Server." />
       </property>
       <property name="daticalDBRollback" required="false">
         <property-ui type="checkBox" label="Automatic Rollback" description="If the Datical DB deploy fails, selecting this box will automatically rollback the server to the initial state using the rollback instructions specified in the Datical DB project and/or the Datical DB defaults." />
@@ -112,6 +115,9 @@
       </property>
       <property name="daticalDBServer" required="true">
         <property-ui type="textBox" label="Datical DB Server" description="The Datical DB Server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan." />
+      </property>
+      <property name="daticalDBContext" required="false">
+        <property-ui type="textBox" label="Datical DB Context" description="The Datical DB Context of your DB Server." />
       </property>
       <property name="daticalDBExportSQL" required="false">
         <property-ui type="checkBox" label="Export SQL" description="If checked, Datical DB will export SQL to be run against the server." />
