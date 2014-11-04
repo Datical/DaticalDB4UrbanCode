@@ -36,6 +36,11 @@ def daticalDBRollback = props['daticalDBRollback']
 def daticalDBExportSQL = props['daticalDBExportSQL'];
 def daticalDBExportRollbackSQL = props['daticalDBExportRollbackSQL'];
 
+if (daticalDBRollback == "false") {
+    daticalDBAction = "deploy";
+} else {
+	daticalDBAction = "deploy-autoRollback";
+}
 
 def cmdArgs = ""; 
 
@@ -64,6 +69,11 @@ if (daticalDBExportSQL == "true") {
 if (daticalDBContext) {
 	cmdArgs << "--context";
 	cmdArgs << daticalDBContext;
+}
+
+if (daticalDBDeployThreshold) {
+	cmdArgs << "--deployThreshold";
+	cmdArgs << daticalDBDeployThreshold;
 }
 
 cmdArgs << daticalDBAction;

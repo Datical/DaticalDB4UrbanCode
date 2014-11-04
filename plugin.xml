@@ -36,6 +36,12 @@
       <property name="daticalDBExportRollbackSQL" required="false">
         <property-ui type="checkBox" label="Export Rollback SQL" description="If checked, Datical DB will export Rollback SQL to be run against the server." />
       </property>
+      <property name="daticalDBDeployThreshold" required="false">
+      	<property-ui type="selectBox"" label="Deploy Threshold"  description="Sets the deployment threshold for rules." />
+		<value label="stopOnError">Stop on Error</value>
+  		<value label="stopOnWarn">Stop on Warn</value>
+		<value label="deployAlways">Deploy Always</value>
+      </property>
     </properties>
     <post-processing><![CDATA[
         if (properties.get("exitCode") != 0) {
