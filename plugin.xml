@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://www.urbancode.com/PluginXMLSchema_v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <header>
-    <identifier version="6" id="com.datical.integration.udeploy.DaticalDB4UDeploy" name="Datical DB" />
+    <identifier version="7" id="com.datical.integration.udeploy.DaticalDB4UDeploy" name="Datical DB" />
     <description>Datical DB makes it incredibly easy to automate and
 			manage database schema changes for high volume, complex releases,
 			across any environment, for any database. No agents required.
@@ -35,6 +35,12 @@
       </property>
       <property name="daticalDBExportRollbackSQL" required="false">
         <property-ui type="checkBox" label="Export Rollback SQL" description="If checked, Datical DB will export Rollback SQL to be run against the server." />
+      </property>
+      <property name="daticalDBvm" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM" description="The Java Virtual Machine to use with Datical DB. (e.g.,  /usr/lib/jvm/java-7-openjdk-amd64)" />
+      </property>
+      <property name="daticalDBvmargs" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM Arguments" description="The Java Virtual Machine Arguments to use with Datical DB. (e.g., -Xms512M -Xmx1024M)" />
       </property>
       <property name="daticalDBDeployThreshold" required="false">
       	<property-ui type="selectBox" label="Deploy Threshold"  description="Sets the deployment threshold for rules." />
@@ -131,6 +137,12 @@
       <property name="daticalDBExportRollbackSQL" required="false">
         <property-ui type="checkBox" label="Export Rollback SQL" description="If checked, Datical DB will export Rollback SQL to be run against the server." />
       </property>
+      <property name="daticalDBvm" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM" description="The Java Virtual Machine to use with Datical DB. (e.g.,  /usr/lib/jvm/java-7-openjdk-amd64)" />
+      </property>
+      <property name="daticalDBvmargs" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM Arguments" description="The Java Virtual Machine Arguments to use with Datical DB. (e.g., -Xms512M -Xmx1024M)" />
+      </property>
     </properties>
     <post-processing><![CDATA[
         if (properties.get("exitCode") != 0) {
@@ -206,6 +218,12 @@
       <property name="daticalDBServer" required="true">
         <property-ui type="textBox" label="Datical DB Server" description="The Datical DB Server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan." />
       </property>
+      <property name="daticalDBvm" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM" description="The Java Virtual Machine to use with Datical DB. (e.g.,  /usr/lib/jvm/java-7-openjdk-amd64)" />
+      </property>
+      <property name="daticalDBvmargs" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM Arguments" description="The Java Virtual Machine Arguments to use with Datical DB. (e.g., -Xms512M -Xmx1024M)" />
+      </property>
     </properties>
     <post-processing><![CDATA[
         if (properties.get("exitCode") != 0) {
@@ -270,6 +288,12 @@
       <property name="daticalDBServer" required="true">
         <property-ui type="textBox" label="Datical DB Server" description="The Datical DB Server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan." />
       </property>
+      <property name="daticalDBvm" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM" description="The Java Virtual Machine to use with Datical DB. (e.g.,  /usr/lib/jvm/java-7-openjdk-amd64)" />
+      </property>
+      <property name="daticalDBvmargs" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM Arguments" description="The Java Virtual Machine Arguments to use with Datical DB. (e.g., -Xms512M -Xmx1024M)" />
+      </property>
     </properties>
     <post-processing><![CDATA[
         if (properties.get("exitCode") != 0) {
@@ -332,6 +356,12 @@
       <property name="daticalDBServer" required="true">
         <property-ui type="textBox" label="Datical DB Server" description="The Datical DB Server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan." />
       </property>
+      <property name="daticalDBvm" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM" description="The Java Virtual Machine to use with Datical DB. (e.g.,  /usr/lib/jvm/java-7-openjdk-amd64)" />
+      </property>
+      <property name="daticalDBvmargs" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM Arguments" description="The Java Virtual Machine Arguments to use with Datical DB. (e.g., -Xms512M -Xmx1024M)" />
+      </property>
     </properties>
     <post-processing><![CDATA[
         if (properties.get("exitCode") != 0) {
@@ -389,6 +419,12 @@
       </property>
       <property name="daticalDBServer" required="true">
         <property-ui type="textBox" label="Datical DB Server" description="The Datical DB Server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan." />
+      </property>
+      <property name="daticalDBvm" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM" description="The Java Virtual Machine to use with Datical DB. (e.g.,  /usr/lib/jvm/java-7-openjdk-amd64)" />
+      </property>
+      <property name="daticalDBvmargs" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM Arguments" description="The Java Virtual Machine Arguments to use with Datical DB. (e.g., -Xms512M -Xmx1024M)" />
       </property>
     </properties>
     <post-processing><![CDATA[
@@ -451,6 +487,12 @@
       </property>
       <property name="daticalDBServer" required="false">
         <property-ui type="textBox" label="Datical DB Server" description="The Datical DB Server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan." />
+      </property>
+      <property name="daticalDBvm" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM" description="The Java Virtual Machine to use with Datical DB. (e.g.,  /usr/lib/jvm/java-7-openjdk-amd64)" />
+      </property>
+      <property name="daticalDBvmargs" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM Arguments" description="The Java Virtual Machine Arguments to use with Datical DB. (e.g., -Xms512M -Xmx1024M)" />
       </property>
     </properties>
     <post-processing><![CDATA[
@@ -517,6 +559,12 @@
       <property name="daticalDBServer" required="false">
         <property-ui type="textBox" label="Datical DB Server" description="The Datical DB Server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan." />
       </property>
+      <property name="daticalDBvm" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM" description="The Java Virtual Machine to use with Datical DB. (e.g.,  /usr/lib/jvm/java-7-openjdk-amd64)" />
+      </property>
+      <property name="daticalDBvmargs" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM Arguments" description="The Java Virtual Machine Arguments to use with Datical DB. (e.g., -Xms512M -Xmx1024M)" />
+      </property>
     </properties>
     <post-processing><![CDATA[
         if (properties.get("exitCode") != 0) {
@@ -580,6 +628,12 @@
       <property name="daticalDBProjectDir" required="true">
         <property-ui type="textBox" label="Datical DB Project Directory" description="The full path where the Datical DB project is located." default-value="."/>
       </property>
+      <property name="daticalDBvm" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM" description="The Java Virtual Machine to use with Datical DB. (e.g.,  /usr/lib/jvm/java-7-openjdk-amd64)" />
+      </property>
+      <property name="daticalDBvmargs" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM Arguments" description="The Java Virtual Machine Arguments to use with Datical DB. (e.g., -Xms512M -Xmx1024M)" />
+      </property>
     </properties>
     <post-processing><![CDATA[
         if (properties.get("exitCode") != 0) {
@@ -638,6 +692,12 @@
       </property>
       <property name="daticalDBProjectDir" required="true">
         <property-ui type="textBox" label="Datical DB Project Directory" description="The full path where the Datical DB project is located." default-value="."/>
+      </property>
+      <property name="daticalDBvm" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM" description="The Java Virtual Machine to use with Datical DB. (e.g.,  /usr/lib/jvm/java-7-openjdk-amd64)" />
+      </property>
+      <property name="daticalDBvmargs" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM Arguments" description="The Java Virtual Machine Arguments to use with Datical DB. (e.g., -Xms512M -Xmx1024M)" />
       </property>
     </properties>
     <post-processing><![CDATA[
@@ -704,6 +764,12 @@
       </property>
       <property name="daticalDBOnlyExportSQL" required="false">
         <property-ui type="checkBox" label="ONLY Export SQL" description="If checked, Datical DB will ONLY export SQL. No rollback will be performed." />
+      </property>
+      <property name="daticalDBvm" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM" description="The Java Virtual Machine to use with Datical DB. (e.g.,  /usr/lib/jvm/java-7-openjdk-amd64)" />
+      </property>
+      <property name="daticalDBvmargs" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM Arguments" description="The Java Virtual Machine Arguments to use with Datical DB. (e.g., -Xms512M -Xmx1024M)" />
       </property>
     </properties>
     <post-processing><![CDATA[
@@ -773,8 +839,12 @@
       <property name="daticalDBChangeLog" required="false">
         <property-ui type="textBox" label="Datical DB Output File" description="Change Log to create or append to. Optional." />
       </property>
-
-
+      <property name="daticalDBvm" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM" description="The Java Virtual Machine to use with Datical DB. (e.g.,  /usr/lib/jvm/java-7-openjdk-amd64)" />
+      </property>
+      <property name="daticalDBvmargs" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM Arguments" description="The Java Virtual Machine Arguments to use with Datical DB. (e.g., -Xms512M -Xmx1024M)" />
+      </property>
     </properties>
     <post-processing><![CDATA[
         if (properties.get("exitCode") != 0) {
@@ -845,6 +915,12 @@
       <property name="daticalDBServerComparison" required="true">
         <property-ui type="textBox" label="Datical DB Comparison Server" description="The Datical DB Server used as the Comparison for the differences. This one will be less 'up to date'." />
       </property>
+      <property name="daticalDBvm" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM" description="The Java Virtual Machine to use with Datical DB. (e.g.,  /usr/lib/jvm/java-7-openjdk-amd64)" />
+      </property>
+      <property name="daticalDBvmargs" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM Arguments" description="The Java Virtual Machine Arguments to use with Datical DB. (e.g., -Xms512M -Xmx1024M)" />
+      </property>
     </properties>
     <post-processing><![CDATA[
         if (properties.get("exitCode") != 0) {
@@ -908,6 +984,12 @@
       </property>
       <property name="daticalDBProjectDir" required="true">
         <property-ui type="textBox" label="Datical DB Project Directory" description="The full path where the Datical DB project is to be located." default-value="."/>
+      </property>
+      <property name="daticalDBvm" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM" description="The Java Virtual Machine to use with Datical DB. (e.g.,  /usr/lib/jvm/java-7-openjdk-amd64)" />
+      </property>
+      <property name="daticalDBvmargs" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM Arguments" description="The Java Virtual Machine Arguments to use with Datical DB. (e.g., -Xms512M -Xmx1024M)" />
       </property>
     </properties>
     <post-processing><![CDATA[
@@ -1018,6 +1100,12 @@
       <property name="daticalDBInstanceName" required="false">
       	<property-ui type="textBox" label="Datical DB Instance Name (MSSQL)" description = "The Datical DB Instance Name. Optional for MSSQL."/>
       </property>
+      <property name="daticalDBvm" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM" description="The Java Virtual Machine to use with Datical DB. (e.g.,  /usr/lib/jvm/java-7-openjdk-amd64)" />
+      </property>
+      <property name="daticalDBvmargs" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM Arguments" description="The Java Virtual Machine Arguments to use with Datical DB. (e.g., -Xms512M -Xmx1024M)" />
+      </property>
     </properties>
     <post-processing><![CDATA[
         if (properties.get("exitCode") != 0) {
@@ -1075,6 +1163,12 @@
       <property name="daticalDBLicensePath" required="true">
         <property-ui type="textBox" label="Datical DB License Path" description="The full path where the License File is located." />
       </property>
+      <property name="daticalDBvm" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM" description="The Java Virtual Machine to use with Datical DB. (e.g.,  /usr/lib/jvm/java-7-openjdk-amd64)" />
+      </property>
+      <property name="daticalDBvmargs" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM Arguments" description="The Java Virtual Machine Arguments to use with Datical DB. (e.g., -Xms512M -Xmx1024M)" />
+      </property>
     </properties>
     <post-processing><![CDATA[
         if (properties.get("exitCode") != 0) {
@@ -1118,8 +1212,4 @@
       <arg file="${PLUGIN_OUTPUT_PROPS}" />
     </command>
   </step-type>
-
-
-
-  
 </plugin>

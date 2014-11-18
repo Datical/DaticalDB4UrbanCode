@@ -33,6 +33,17 @@ def daticalDBAction = "checkRules";
 
 def cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, '--project', daticalDBProjectDir, daticalDBAction];
 
+def daticalDBvm = props['daticalDBvm'];
+if (daticalDBvm) {
+	cmdArgs << "--vm";
+	cmdArgs << daticalDBvm;
+}
+def daticalDBvmargs = props['daticalDBvmargs'];
+if (daticalDBvmargs) {
+	cmdArgs << "--vmargs";
+	cmdArgs << daticalDBvmargs;
+}
+
 int exitCode = cmdHelper.runCommand("Executing Datical DB", cmdArgs);
 
 System.exit(exitCode);

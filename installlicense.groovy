@@ -32,8 +32,18 @@ def daticalDBProjectDir = getAbsPath(props['daticalDBProjectDir']);
 def daticalDBAction = "installLicense";
 def daticalDBLicensePath = getAbsPath(props['daticalDBLicensePath']);
 
-
 def cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, '--project', daticalDBProjectDir, daticalDBAction, daticalDBLicensePath];
+
+def daticalDBvm = props['daticalDBvm'];
+if (daticalDBvm) {
+	cmdArgs << "--vm";
+	cmdArgs << daticalDBvm;
+}
+def daticalDBvmargs = props['daticalDBvmargs'];
+if (daticalDBvmargs) {
+	cmdArgs << "--vmargs";
+	cmdArgs << daticalDBvmargs;
+}
 
 int exitCode = cmdHelper.runCommand("Executing Datical DB", cmdArgs);
 

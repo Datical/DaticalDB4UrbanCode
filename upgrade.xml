@@ -143,5 +143,104 @@
 		<migrate-command name="Datical DB Create New Database Definition" />
 		<migrate-command name="Datical DB Install License" />
 	</migrate>
+
+	<migrate to-version="7">
+		<migrate-command name="Datical DB Deploy">
+			<migrate-properties>
+				<migrate-property name="daticalDBvm"/>
+				<migrate-property name="daticalDBvmargs"/>
+			</migrate-properties>
+		</migrate-command>
+		<migrate-command name="Datical DB Forecast">
+			<migrate-properties>
+				<migrate-property name="daticalDBvm"/>
+				<migrate-property name="daticalDBvmargs"/>
+			</migrate-properties>
+		</migrate-command>
+		<migrate-command name="Datical DB Snapshot">
+			<migrate-properties>
+				<migrate-property name="daticalDBvm"/>
+				<migrate-property name="daticalDBvmargs"/>
+			</migrate-properties>
+		</migrate-command>
+		<migrate-command name="Datical DB History">
+			<migrate-properties>
+				<migrate-property name="daticalDBvm"/>
+				<migrate-property name="daticalDBvmargs"/>
+			</migrate-properties>
+		</migrate-command>
+		<migrate-command name="Datical DB Change Log Sync">
+			<migrate-properties>
+				<migrate-property name="daticalDBvm"/>
+				<migrate-property name="daticalDBvmargs"/>
+			</migrate-properties>
+		</migrate-command>
+		<migrate-command name="Datical DB Clear Check Sums">
+			<migrate-properties>
+				<migrate-property name="daticalDBvm"/>
+				<migrate-property name="daticalDBvmargs"/>
+			</migrate-properties>
+		</migrate-command>
+		<migrate-command name="Datical DB Status">
+			<migrate-properties>
+				<migrate-property name="daticalDBvm"/>
+				<migrate-property name="daticalDBvmargs"/>
+			</migrate-properties>
+		</migrate-command>
+		<migrate-command name="Datical DB Status Details">
+			<migrate-properties>
+				<migrate-property name="daticalDBvm"/>
+				<migrate-property name="daticalDBvmargs"/>
+			</migrate-properties>
+		</migrate-command>
+		<migrate-command name="Datical DB Check Drivers">
+			<migrate-properties>
+				<migrate-property name="daticalDBvm"/>
+				<migrate-property name="daticalDBvmargs"/>
+			</migrate-properties>
+		</migrate-command>
+		<migrate-command name="Datical DB Check Rules">
+			<migrate-properties>
+				<migrate-property name="daticalDBvm"/>
+				<migrate-property name="daticalDBvmargs"/>
+			</migrate-properties>
+		</migrate-command>
+		<migrate-command name="Datical DB Rollback">
+			<migrate-properties>
+				<migrate-property name="daticalDBvm"/>
+				<migrate-property name="daticalDBvmargs"/>
+			</migrate-properties>
+		</migrate-command>
+		<migrate-command name="Datical DB Diff Change Log">
+			<migrate-properties>
+				<migrate-property name="daticalDBvm"/>
+				<migrate-property name="daticalDBvmargs"/>
+			</migrate-properties>
+		</migrate-command>
+		<migrate-command name="Datical DB Diff Report">
+			<migrate-properties>
+				<migrate-property name="daticalDBvm"/>
+				<migrate-property name="daticalDBvmargs"/>
+			</migrate-properties>
+		</migrate-command>
+		<migrate-command name="Datical DB Create New Project">
+			<migrate-properties>
+				<migrate-property name="daticalDBvm"/>
+				<migrate-property name="daticalDBvmargs"/>
+			</migrate-properties>
+		</migrate-command>
+		<migrate-command name="Datical DB Create New Database Definition">
+			<migrate-properties>
+				<migrate-property name="daticalDBvm"/>
+				<migrate-property name="daticalDBvmargs"/>
+			</migrate-properties>
+		</migrate-command>
+		<migrate-command name="Datical DB Install License">
+			<migrate-properties>
+				<migrate-property name="daticalDBvm"/>
+				<migrate-property name="daticalDBvmargs"/>
+			</migrate-properties>
+		</migrate-command>
+	</migrate>
 	
 </plugin-upgrade>
