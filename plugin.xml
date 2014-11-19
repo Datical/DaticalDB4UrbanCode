@@ -42,6 +42,12 @@
       <property name="daticalDBvmargs" required="false">
       	<property-ui type="textBox" label="Datical DB JVM Arguments" description="The Java Virtual Machine Arguments to use with Datical DB. (e.g., -Xms512M -Xmx1024M)" />
       </property>
+      <property name="daticalDBDeployThreshold" required="false">
+      	<property-ui type="selectBox" label="Deploy Threshold"  description="Sets the deployment threshold for rules." />
+		<value label="Stop on Error">stopOnError</value>
+  		<value label="Stop on Warn">stopOnWarn</value>
+		<value label="Deploy Always">deployAlways</value>
+      </property>
     </properties>
     <post-processing><![CDATA[
         if (properties.get("exitCode") != 0) {
@@ -130,6 +136,12 @@
       </property>
       <property name="daticalDBExportRollbackSQL" required="false">
         <property-ui type="checkBox" label="Export Rollback SQL" description="If checked, Datical DB will export Rollback SQL to be run against the server." />
+      </property>
+      <property name="daticalDBDeployThreshold" required="false">
+      	<property-ui type="selectBox" label="Deploy Threshold"  description="Sets the deployment threshold for rules." />
+		<value label="Stop on Error">stopOnError</value>
+  		<value label="Stop on Warn">stopOnWarn</value>
+		<value label="Deploy Always">deployAlways</value>
       </property>
       <property name="daticalDBvm" required="false">
       	<property-ui type="textBox" label="Datical DB JVM" description="The Java Virtual Machine to use with Datical DB. (e.g.,  /usr/lib/jvm/java-7-openjdk-amd64)" />

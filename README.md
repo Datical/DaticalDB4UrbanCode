@@ -7,13 +7,10 @@ Two properties in the plugin step, Datical DB Install Directory and Datical DB D
 
 Release Notes:
 
-### Version 1.171 - November 19, 2014
+### Version 1.175 - November 19, 2014
 
-Fixed bug with Deploy Threshold in plugin.xml.
-
-### Version 1.170 - November 19, 2014
-
-Fixed bug in deploy.groovy script that prevented the Deploy step from working.
+- Fixed bug with Deploy Threshold values in plugin.xml.
+- Fixed bug in deploy.groovy script that prevented the Deploy step from working.
 
 ### Version 1.169 - November 18, 2014
 
