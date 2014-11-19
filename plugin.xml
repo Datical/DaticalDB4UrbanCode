@@ -44,9 +44,9 @@
       </property>
       <property name="daticalDBDeployThreshold" required="false">
       	<property-ui type="selectBox" label="Deploy Threshold"  description="Sets the deployment threshold for rules." />
-		<value label="stopOnError">Stop on Error</value>
-  		<value label="stopOnWarn">Stop on Warn</value>
-		<value label="deployAlways">Deploy Always</value>
+		<value label="Stop on Error">stopOnError</value>
+  		<value label="Stop on Warn">stopOnWarn</value>
+		<value label="Deploy Always">deployAlways</value>
       </property>
     </properties>
     <post-processing><![CDATA[
