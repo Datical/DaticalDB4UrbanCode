@@ -7,6 +7,10 @@ Two properties in the plugin step, Datical DB Install Directory and Datical DB D
 
 Release Notes:
 
+### Version 1.170 - November 19, 2014
+
+Fixed bug in deploy.groovy script that prevented the Deploy step from working.
+
 ### Version 1.169 - November 18, 2014
 
 To support customers that wish to dynamically choose the JVM when Datical DB is executed, the command line now supports two new arguments:

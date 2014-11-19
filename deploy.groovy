@@ -71,6 +71,7 @@ if (daticalDBContext) {
 	cmdArgs << daticalDBContext;
 }
 
+def daticalDBDeployThreshold = props['daticalDBDeployThreshold'];
 if (daticalDBDeployThreshold) {
 	cmdArgs << "--deployThreshold";
 	cmdArgs << daticalDBDeployThreshold;
