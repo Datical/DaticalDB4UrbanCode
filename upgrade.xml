@@ -242,5 +242,24 @@
 			</migrate-properties>
 		</migrate-command>
 	</migrate>
+
+	<migrate to-version="8">
+		<migrate-command name="Datical DB Deploy" />
+		<migrate-command name="Datical DB Forecast" />
+		<migrate-command name="Datical DB Snapshot" />
+		<migrate-command name="Datical DB History" />
+		<migrate-command name="Datical DB Change Log Sync" />
+		<migrate-command name="Datical DB Clear Check Sums" />
+		<migrate-command name="Datical DB Status" />
+		<migrate-command name="Datical DB Status Details" />
+		<migrate-command name="Datical DB Check Drivers" />
+		<migrate-command name="Datical DB Check Rules" />
+		<migrate-command name="Datical DB Rollback"/>
+		<migrate-command name="Datical DB Diff Change Log" />
+		<migrate-command name="Datical DB Diff Report" />
+		<migrate-command name="Datical DB Create New Project" />
+		<migrate-command name="Datical DB Create New Database Definition" />
+		<migrate-command name="Datical DB Install License" />
+	</migrate>
 	
 </plugin-upgrade>

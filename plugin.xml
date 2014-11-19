@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://www.urbancode.com/PluginXMLSchema_v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <header>
-    <identifier version="7" id="com.datical.integration.udeploy.DaticalDB4UDeploy" name="Datical DB" />
+    <identifier version="8" id="com.datical.integration.udeploy.DaticalDB4UDeploy" name="Datical DB" />
     <description>Datical DB makes it incredibly easy to automate and
 			manage database schema changes for high volume, complex releases,
 			across any environment, for any database. No agents required.
@@ -41,12 +41,6 @@
       </property>
       <property name="daticalDBvmargs" required="false">
       	<property-ui type="textBox" label="Datical DB JVM Arguments" description="The Java Virtual Machine Arguments to use with Datical DB. (e.g., -Xms512M -Xmx1024M)" />
-      </property>
-      <property name="daticalDBDeployThreshold" required="false">
-      	<property-ui type="selectBox" label="Deploy Threshold"  description="Sets the deployment threshold for rules." />
-		<value label="Stop on Error">stopOnError</value>
-  		<value label="Stop on Warn">stopOnWarn</value>
-		<value label="Deploy Always">deployAlways</value>
       </property>
     </properties>
     <post-processing><![CDATA[
