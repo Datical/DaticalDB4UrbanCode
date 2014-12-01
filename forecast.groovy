@@ -82,7 +82,11 @@ if (daticalDBvm) {
 def daticalDBvmargs = props['daticalDBvmargs'];
 if (daticalDBvmargs) {
 	cmdArgs << "--vmargs";
-	cmdArgs << daticalDBvmargs;
+	String[] myArray = daticalDBvmargs.split();
+	for ( x in myArray ) {
+		cmdArgs << x;
+	}
+	//cmdArgs << daticalDBvmargs;
 }
 
 int exitCode = cmdHelper.runCommand("Executing Datical DB", cmdArgs);
