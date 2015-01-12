@@ -43,6 +43,12 @@ if (daticalDBChangeLog) {
 	cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir,  '--project', daticalDBProjectDir,daticalDBAction, daticalDBServerReference, daticalDBServerComparison];
 }	
 
+def daticalDBLabels = props['daticalDBLabels'];
+if (daticalDBLabels) {
+	cmdArgs << "--assignLabels";
+	cmdArgs << daticalDBLabels;
+}
+
 def daticalDBvm = props['daticalDBvm'];
 if (daticalDBvm) {
 	cmdArgs << "--vm";

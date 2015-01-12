@@ -35,6 +35,7 @@ def daticalDBContext = props['daticalDBContext'];
 def daticalDBRollback = props['daticalDBRollback']
 def daticalDBExportSQL = props['daticalDBExportSQL'];
 def daticalDBExportRollbackSQL = props['daticalDBExportRollbackSQL'];
+def daticalDBLabels = props['daticalDBLabels'];
 
 if (daticalDBRollback == "false") {
     daticalDBAction = "deploy";
@@ -75,6 +76,11 @@ def daticalDBDeployThreshold = props['daticalDBDeployThreshold'];
 if (daticalDBDeployThreshold) {
 	cmdArgs << "--deployThreshold";
 	cmdArgs << daticalDBDeployThreshold;
+}
+
+if (daticalDBLabels) {
+	cmdArgs << "--labels";
+	cmdArgs << daticalDBLabels;
 }
 
 cmdArgs << daticalDBAction;
