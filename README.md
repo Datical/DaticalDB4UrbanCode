@@ -7,6 +7,10 @@ Two properties in the plugin step, Datical DB Install Directory and Datical DB D
 
 Release Notes:
 
+### Version 1.183 - January 27, 2014
+
+ - Added support for Labels in Forecast.
+
 ### Version 1.180 - January 12, 2014
 
  - Added support for Labels in Deploy and Diff Change Log.
