@@ -1,75 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin-upgrade xmlns="http://www.urbancode.com/UpgradeXMLSchema_v1"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	
-	<migrate to-version="1">
-		<migrate-command name="Datical DB Deploy" />
-		<migrate-command name="Datical DB Forecast" />
-		<migrate-command name="Datical DB Snapshot" />
-		<migrate-command name="Datical DB History" />
-		<migrate-command name="Datical DB Change Log Sync" />
-		<migrate-command name="Datical DB Clear Check Sums" />
-		<migrate-command name="Datical DB Status" />
-		<migrate-command name="Datical DB Status Details" />
-		<migrate-command name="Datical DB Check Drivers" />
-		<migrate-command name="Datical DB Rollback" />
-		<migrate-command name="Datical DB Diff Change Log" />
-		<migrate-command name="Datical DB Diff Report" />
-		<migrate-command name="Datical DB Create New Project" />
-		<migrate-command name="Datical DB Create New Database Definition" />
-		<migrate-command name="Datical DB Install License" />
-	</migrate>
 
-	<migrate to-version="2">
-		<migrate-command name="Datical DB Deploy">
-			<migrate-properties>
-        		<migrate-property name="daticalDBExportSQL"/>
-        	</migrate-properties>
-        </migrate-command>
-		<migrate-command name="Datical DB Forecast">
-			<migrate-properties>
-        		<migrate-property name="daticalDBExportSQL"/>
-        	</migrate-properties>
-		</migrate-command>
-		<migrate-command name="Datical DB Snapshot" />
-		<migrate-command name="Datical DB History" />
-		<migrate-command name="Datical DB Change Log Sync" />
-		<migrate-command name="Datical DB Clear Check Sums" />
-		<migrate-command name="Datical DB Status" />
-		<migrate-command name="Datical DB Status Details" />
-		<migrate-command name="Datical DB Check Drivers" />
-		<migrate-command name="Datical DB Rollback" />
-		<migrate-command name="Datical DB Diff Change Log" />
-		<migrate-command name="Datical DB Diff Report" />
-		<migrate-command name="Datical DB Create New Project" />
-		<migrate-command name="Datical DB Create New Database Definition" />
-		<migrate-command name="Datical DB Install License" />
-	</migrate>
-	
-	<migrate to-version="3">
-		<migrate-command name="Datical DB Deploy" />
-		<migrate-command name="Datical DB Forecast" />
-		<migrate-command name="Datical DB Snapshot" />
-		<migrate-command name="Datical DB History" />
-		<migrate-command name="Datical DB Change Log Sync" />
-		<migrate-command name="Datical DB Clear Check Sums" />
-		<migrate-command name="Datical DB Status" />
-		<migrate-command name="Datical DB Status Details" />
-		<migrate-command name="Datical DB Check Drivers" />
-		<migrate-command name="Datical DB Rollback">
-			<migrate-properties>
-				<migrate-property name="daticalDBExportSQL"></migrate-property>
-				<migrate-property name="daticalDBOnlyExportSQL"></migrate-property>
-			</migrate-properties>
-		</migrate-command>
-		<migrate-command name="Datical DB Diff Change Log" />
-		<migrate-command name="Datical DB Diff Report" />
-		<migrate-command name="Datical DB Create New Project" />
-		<migrate-command name="Datical DB Create New Database Definition" />
-		<migrate-command name="Datical DB Install License" />
-	</migrate>
-
-	<migrate to-version="4">
+	<migrate to-version="12">
+		<migrate-command name="Datical DB Version" />
 		<migrate-command name="Datical DB Deploy" />
 		<migrate-command name="Datical DB Forecast" />
 		<migrate-command name="Datical DB Snapshot" />
@@ -88,17 +22,28 @@
 		<migrate-command name="Datical DB Install License" />
 	</migrate>
 
-	<migrate to-version="5">
-		<migrate-command name="Datical DB Deploy" >
-			<migrate-properties>
-				<migrate-property name="daticalDBConext"></migrate-property>
-			</migrate-properties>
-		</migrate-command>
-		<migrate-command name="Datical DB Forecast" >
-			<migrate-properties>
-				<migrate-property name="daticalDBConext"></migrate-property>
-			</migrate-properties>
-		</migrate-command>
+	<migrate to-version="11">
+		<migrate-command name="Datical DB Deploy" />
+		<migrate-command name="Datical DB Forecast" />
+		<migrate-command name="Datical DB Snapshot" />
+		<migrate-command name="Datical DB History" />
+		<migrate-command name="Datical DB Change Log Sync" />
+		<migrate-command name="Datical DB Clear Check Sums" />
+		<migrate-command name="Datical DB Status" />
+		<migrate-command name="Datical DB Status Details" />
+		<migrate-command name="Datical DB Check Drivers" />
+		<migrate-command name="Datical DB Check Rules" />
+		<migrate-command name="Datical DB Rollback"/>
+		<migrate-command name="Datical DB Diff Change Log" />
+		<migrate-command name="Datical DB Diff Report" />
+		<migrate-command name="Datical DB Create New Project" />
+		<migrate-command name="Datical DB Create New Database Definition" />
+		<migrate-command name="Datical DB Install License" />
+	</migrate>
+
+	<migrate to-version="10">
+		<migrate-command name="Datical DB Deploy" />
+		<migrate-command name="Datical DB Forecast" />
 		<migrate-command name="Datical DB Snapshot" />
 		<migrate-command name="Datical DB History" />
 		<migrate-command name="Datical DB Change Log Sync" />
@@ -115,19 +60,28 @@
 		<migrate-command name="Datical DB Install License" />
 	</migrate>
 	
-	<migrate to-version="6">
-		<migrate-command name="Datical DB Deploy" >
-			<migrate-properties>
-				<migrate-property name="daticalDBDeployThreshold"/>
-				<migrate-property name="daticalDBContext" old="daticalDBConext"/>
-			</migrate-properties>
-		</migrate-command>
-		<migrate-command name="Datical DB Forecast" >
-			<migrate-properties>
-				<migrate-property name="daticalDBDeployThreshold"/>
-				<migrate-property name="daticalDBContext" old="daticalDBConext"/>
-			</migrate-properties>
-		</migrate-command>
+	<migrate to-version="9">
+		<migrate-command name="Datical DB Deploy" />
+		<migrate-command name="Datical DB Forecast" />
+		<migrate-command name="Datical DB Snapshot" />
+		<migrate-command name="Datical DB History" />
+		<migrate-command name="Datical DB Change Log Sync" />
+		<migrate-command name="Datical DB Clear Check Sums" />
+		<migrate-command name="Datical DB Status" />
+		<migrate-command name="Datical DB Status Details" />
+		<migrate-command name="Datical DB Check Drivers" />
+		<migrate-command name="Datical DB Check Rules" />
+		<migrate-command name="Datical DB Rollback"/>
+		<migrate-command name="Datical DB Diff Change Log" />
+		<migrate-command name="Datical DB Diff Report" />
+		<migrate-command name="Datical DB Create New Project" />
+		<migrate-command name="Datical DB Create New Database Definition" />
+		<migrate-command name="Datical DB Install License" />
+	</migrate>
+	
+	<migrate to-version="8">
+		<migrate-command name="Datical DB Deploy" />
+		<migrate-command name="Datical DB Forecast" />
 		<migrate-command name="Datical DB Snapshot" />
 		<migrate-command name="Datical DB History" />
 		<migrate-command name="Datical DB Change Log Sync" />
@@ -243,7 +197,64 @@
 		</migrate-command>
 	</migrate>
 
-	<migrate to-version="8">
+	<migrate to-version="6">
+		<migrate-command name="Datical DB Deploy" >
+			<migrate-properties>
+				<migrate-property name="daticalDBDeployThreshold"/>
+				<migrate-property name="daticalDBContext" old="daticalDBConext"/>
+			</migrate-properties>
+		</migrate-command>
+		<migrate-command name="Datical DB Forecast" >
+			<migrate-properties>
+				<migrate-property name="daticalDBDeployThreshold"/>
+				<migrate-property name="daticalDBContext" old="daticalDBConext"/>
+			</migrate-properties>
+		</migrate-command>
+		<migrate-command name="Datical DB Snapshot" />
+		<migrate-command name="Datical DB History" />
+		<migrate-command name="Datical DB Change Log Sync" />
+		<migrate-command name="Datical DB Clear Check Sums" />
+		<migrate-command name="Datical DB Status" />
+		<migrate-command name="Datical DB Status Details" />
+		<migrate-command name="Datical DB Check Drivers" />
+		<migrate-command name="Datical DB Check Rules" />
+		<migrate-command name="Datical DB Rollback"/>
+		<migrate-command name="Datical DB Diff Change Log" />
+		<migrate-command name="Datical DB Diff Report" />
+		<migrate-command name="Datical DB Create New Project" />
+		<migrate-command name="Datical DB Create New Database Definition" />
+		<migrate-command name="Datical DB Install License" />
+	</migrate>
+
+
+	<migrate to-version="5">
+		<migrate-command name="Datical DB Deploy" >
+			<migrate-properties>
+				<migrate-property name="daticalDBConext"></migrate-property>
+			</migrate-properties>
+		</migrate-command>
+		<migrate-command name="Datical DB Forecast" >
+			<migrate-properties>
+				<migrate-property name="daticalDBConext"></migrate-property>
+			</migrate-properties>
+		</migrate-command>
+		<migrate-command name="Datical DB Snapshot" />
+		<migrate-command name="Datical DB History" />
+		<migrate-command name="Datical DB Change Log Sync" />
+		<migrate-command name="Datical DB Clear Check Sums" />
+		<migrate-command name="Datical DB Status" />
+		<migrate-command name="Datical DB Status Details" />
+		<migrate-command name="Datical DB Check Drivers" />
+		<migrate-command name="Datical DB Check Rules" />
+		<migrate-command name="Datical DB Rollback"/>
+		<migrate-command name="Datical DB Diff Change Log" />
+		<migrate-command name="Datical DB Diff Report" />
+		<migrate-command name="Datical DB Create New Project" />
+		<migrate-command name="Datical DB Create New Database Definition" />
+		<migrate-command name="Datical DB Install License" />
+	</migrate>
+
+	<migrate to-version="4">
 		<migrate-command name="Datical DB Deploy" />
 		<migrate-command name="Datical DB Forecast" />
 		<migrate-command name="Datical DB Snapshot" />
@@ -261,8 +272,8 @@
 		<migrate-command name="Datical DB Create New Database Definition" />
 		<migrate-command name="Datical DB Install License" />
 	</migrate>
-	
-	<migrate to-version="9">
+
+	<migrate to-version="3">
 		<migrate-command name="Datical DB Deploy" />
 		<migrate-command name="Datical DB Forecast" />
 		<migrate-command name="Datical DB Snapshot" />
@@ -272,8 +283,12 @@
 		<migrate-command name="Datical DB Status" />
 		<migrate-command name="Datical DB Status Details" />
 		<migrate-command name="Datical DB Check Drivers" />
-		<migrate-command name="Datical DB Check Rules" />
-		<migrate-command name="Datical DB Rollback"/>
+		<migrate-command name="Datical DB Rollback">
+			<migrate-properties>
+				<migrate-property name="daticalDBExportSQL"></migrate-property>
+				<migrate-property name="daticalDBOnlyExportSQL"></migrate-property>
+			</migrate-properties>
+		</migrate-command>
 		<migrate-command name="Datical DB Diff Change Log" />
 		<migrate-command name="Datical DB Diff Report" />
 		<migrate-command name="Datical DB Create New Project" />
@@ -281,7 +296,33 @@
 		<migrate-command name="Datical DB Install License" />
 	</migrate>
 	
-	<migrate to-version="10">
+	<migrate to-version="2">
+		<migrate-command name="Datical DB Deploy">
+			<migrate-properties>
+        		<migrate-property name="daticalDBExportSQL"/>
+        	</migrate-properties>
+        </migrate-command>
+		<migrate-command name="Datical DB Forecast">
+			<migrate-properties>
+        		<migrate-property name="daticalDBExportSQL"/>
+        	</migrate-properties>
+		</migrate-command>
+		<migrate-command name="Datical DB Snapshot" />
+		<migrate-command name="Datical DB History" />
+		<migrate-command name="Datical DB Change Log Sync" />
+		<migrate-command name="Datical DB Clear Check Sums" />
+		<migrate-command name="Datical DB Status" />
+		<migrate-command name="Datical DB Status Details" />
+		<migrate-command name="Datical DB Check Drivers" />
+		<migrate-command name="Datical DB Rollback" />
+		<migrate-command name="Datical DB Diff Change Log" />
+		<migrate-command name="Datical DB Diff Report" />
+		<migrate-command name="Datical DB Create New Project" />
+		<migrate-command name="Datical DB Create New Database Definition" />
+		<migrate-command name="Datical DB Install License" />
+	</migrate>
+
+	<migrate to-version="1">
 		<migrate-command name="Datical DB Deploy" />
 		<migrate-command name="Datical DB Forecast" />
 		<migrate-command name="Datical DB Snapshot" />
@@ -291,8 +332,7 @@
 		<migrate-command name="Datical DB Status" />
 		<migrate-command name="Datical DB Status Details" />
 		<migrate-command name="Datical DB Check Drivers" />
-		<migrate-command name="Datical DB Check Rules" />
-		<migrate-command name="Datical DB Rollback"/>
+		<migrate-command name="Datical DB Rollback" />
 		<migrate-command name="Datical DB Diff Change Log" />
 		<migrate-command name="Datical DB Diff Report" />
 		<migrate-command name="Datical DB Create New Project" />
