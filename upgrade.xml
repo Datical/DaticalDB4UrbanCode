@@ -1,6 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin-upgrade xmlns="http://www.urbancode.com/UpgradeXMLSchema_v1"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	
+	<migrate to-version="15">
+	
+		<migrate-command name="Get Datical DB Version"/>
+		<migrate-command name="Deploy with Datical DB"/>
+		<migrate-command name="Validate and Forecast with Datical DB" old="Forecast with Datical DB"/>
+		<migrate-command name="Export Database Schema (Snapshot)"/>
+		<migrate-command name="Read Datical DB History"/>
+		<migrate-command name="Sync Datical DB Change Log"/>
+		<migrate-command name="Delete Datical DB Check Sums"/>
+		<migrate-command name="View Datical DB Status"/>
+		<migrate-command name="View Datical DB Status Details"/>
+		<migrate-command name="Check Datical DB Drivers" old="Verify Datical DB Drivers"/>
+		<migrate-command name="Validate Datical DB Rules"/>
+		<migrate-command name="Datical DB Rollback"/>
+		<migrate-command name="Get Database Differences (Change Log)"/>
+		<migrate-command name="Get Database Differences (Report)"/>
+		<migrate-command name="Add Datical DB Project"/>
+		<migrate-command name="Add Datical DB Database Definition"/>
+		<migrate-command name="Datical DB Install License"/>
+	
+	</migrate>
+	
+	<migrate to-version="14">
+	
+		<migrate-command name="Get Datical DB Version" old="Datical DB Version"/>
+		<migrate-command name="Deploy with Datical DB" old="Datical DB Deploy"/>
+		<migrate-command name="Forecast with Datical DB" old="Datical DB Forecast"/>
+		<migrate-command name="Export Database Schema (Snapshot)" old="Datical DB Snapshot"/>
+		<migrate-command name="Read Datical DB History" old="Datical DB History"/>
+		<migrate-command name="Sync Datical DB Change Log" old="Datical DB Change Log Sync"/>
+		<migrate-command name="Delete Datical DB Check Sums" old="Datical DB Clear Check Sums"/>
+		<migrate-command name="View Datical DB Status" old="Datical DB Status"/>
+		<migrate-command name="View Datical DB Status Details" old="Datical DB Status Details"/>
+		<migrate-command name="Verify Datical DB Drivers" old="Datical DB Check Drivers"/>
+		<migrate-command name="Validate Datical DB Rules" old="Datical DB Check Rules"/>
+		<migrate-command name="Datical DB Rollback"/>
+		<migrate-command name="Get Database Differences (Change Log)" old="Datical DB Diff Change Log"/>
+		<migrate-command name="Get Database Differences (Report)" old="Datical DB Diff Report"/>
+		<migrate-command name="Add Datical DB Project" old="Datical DB Create New Project"/>
+		<migrate-command name="Add Datical DB Database Definition" old="Datical DB Create New Database Definition"/>
+		<migrate-command name="Datical DB Install License"/>
+	
+	</migrate>
+	
+	<migrate to-version="13">
+	  
+	  
+	  <migrate-command name="Add add"/>
+	  <migrate-command name="Allocate allocate"/>
+	  <migrate-command name="AppCmd shellArgs"/>
+	  <migrate-command name="Approval setStatus"/>
+	  <migrate-command name="Assign set"/>
+	  <migrate-command name="Associate link"/>
+	  <migrate-command name="Cancel stop"/>
+	  <migrate-command name="Change modifty"/>
+	  <migrate-command name="Check check"/>
+	  <migrate-command name="Configure configure"/>
+	  <migrate-command name="Copy copy"/>
+	  <migrate-command name="Delete delete"/>
+	  <migrate-command name="Deploy deploy"/>
+	  <migrate-command name="Define modify"/>
+	  <migrate-command name="Deregister cancel"/>
+	  <migrate-command name="DesiredInventoryActivity process"/>
+	  <migrate-command name="Disable stop"/>
+	  <migrate-command name="Download download"/>
+	  <migrate-command name="Each runProcess"/>
+	  <migrate-command name="Enable start"/>
+	  <migrate-command name="Execute start"/>
+	  <migrate-command name="Export export"/>
+	  <migrate-command name="Flip flip"/>
+	  <migrate-command name="FTP ftp"/>
+	  <migrate-command name="Get read"/>
+	  <migrate-command name="Import/ Batch Import import"/>
+	  <migrate-command name="Install install"/>
+	  <migrate-command name="Launch deploy"/>
+	  <migrate-command name="Link link"/>
+	  <migrate-command name="Modify modify"/>
+	  <migrate-command name="Monitor monitor"/>
+	  <migrate-command name="Move move"/>
+	  <migrate-command name="Manual Task manualTask"/>
+	  <migrate-command name="Process runProcess"/>
+	  <migrate-command name="Publish publish"/>
+	  <migrate-command name="Read read"/>
+	  <migrate-command name="Recycle recycle"/>
+	  <migrate-command name="Register create"/>
+	  <migrate-command name="Receive receive"/>
+	  <migrate-command name="Retrieve receive"/>
+	  <migrate-command name="Restart/Reboot restart"/>
+	  <migrate-command name="Revert/Rollback revert"/>
+	  <migrate-command name="Run runProcess"/>
+	  <migrate-command name="Run Groovy Script runScript"/>
+	  <migrate-command name="Send send"/>
+	  <migrate-command name="Shell shell"/>
+	  <migrate-command name="Sheel (with xargs) shellArgs"/>
+	  <migrate-command name="Start/Activate start"/>
+	  <migrate-command name="Stop/Terminate stop"/>
+	  <migrate-command name="Set set"/>
+	  <migrate-command name="Submit setStatus"/>
+	  <migrate-command name="Sync sync"/>
+	  <migrate-command name="Unzip unzip"/>
+	  <migrate-command name="Untar Tarball unzip"/>
+	  <migrate-command name="Update sync"/>
+	  <migrate-command name="Upload upload"/>
+	  <migrate-command name="Upgrade upgrade"/>
+	  <migrate-command name="Undeploy undeploy"/>
+	  <migrate-command name="Uninstall uninstall"/>
+	  <migrate-command name="Untar unzip"/>
+	  <migrate-command name="Validate setStatus"/>
+	  <migrate-command name="Verify check"/>
+	  <migrate-command name="View monitor"/>
+	  <migrate-command name="Wait wait"/>
+	  <migrate-command name="WebSphere webphere"/>
+	</migrate>
 
 	<migrate to-version="12">
 		<migrate-command name="Datical DB Version" />

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://www.urbancode.com/PluginXMLSchema_v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <header>
-    <identifier version="12" id="com.datical.integration.udeploy.DaticalDB4UDeploy" name="Datical DB" />
+    <identifier version="14" id="com.datical.integration.udeploy.DaticalDB4UDeploy" name="Datical DB" />
     <description>Datical DB makes it incredibly easy to automate and
 			manage database schema changes for high volume, complex releases,
 			across any environment, for any database. No agents required.
@@ -9,7 +9,7 @@
     <tag>Datical DB</tag>
   </header>
 
-  <step-type name="Datical DB Version">
+  <step-type name="Get Datical DB Version">
     <description>Deploys a Datical DB project to a Server.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -43,7 +43,7 @@
     </command>
   </step-type>
 
-  <step-type name="Datical DB Deploy">
+  <step-type name="Deploy with Datical DB">
     <description>Deploys a Datical DB project to a Server.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -150,7 +150,7 @@
     </command>
   </step-type>
 
-  <step-type name="Datical DB Forecast">
+  <step-type name="Validate and Forecast with Datical DB">
     <description>Forecasts a Datical DB project against a Server.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -249,7 +249,7 @@
     </command>
   </step-type>
 
-  <step-type name="Datical DB Snapshot">
+  <step-type name="Export Database Schema (Snapshot)">
     <description>Creates a Datical DB Snapshot of a Server.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -319,7 +319,7 @@
     </command>
   </step-type>
 
-  <step-type name="Datical DB History">
+  <step-type name="Read Datical DB History">
     <description>Details the Datical DB deployment history of a Server.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -387,7 +387,7 @@
     </command>
   </step-type>
 
-  <step-type name="Datical DB Change Log Sync">
+  <step-type name="Sync Datical DB Change Log">
     <description>Marks a Server as deployed based on a Datical DB Project without executing changes.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -451,7 +451,7 @@
     </command>
   </step-type>
 
-  <step-type name="Datical DB Clear Check Sums">
+  <step-type name="Delete Datical DB Check Sums">
     <description>Removes Change Set Check Sums from a Server.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -519,7 +519,7 @@
     </command>
   </step-type>
 
-  <step-type name="Datical DB Status">
+  <step-type name="View Datical DB Status">
     <description>Reports on the current Status of a Server.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -590,7 +590,7 @@
     </command>
   </step-type>
 
-  <step-type name="Datical DB Status Details">
+  <step-type name="View Datical DB Status Details">
     <description>Reports on the detailed current Status of a Server.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -662,7 +662,7 @@
   </step-type>
 
 
-  <step-type name="Datical DB Check Drivers">
+  <step-type name="Check Datical DB Drivers">
     <description>Returns the current database drivers settings used by Datical DB.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -727,7 +727,7 @@
     </command>
   </step-type>
 
-  <step-type name="Datical DB Check Rules">
+  <step-type name="Validate Datical DB Rules">
     <description>Validates the current Datical DB Rules located within the Project.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -864,7 +864,7 @@
     </command>
   </step-type>
 
-  <step-type name="Datical DB Diff Change Log">
+  <step-type name="Get Database Differences (Change Log)">
     <description>Creates a Change Log based on the differences between two servers. Can append to an existing Change Log.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -946,7 +946,7 @@
     </command>
   </step-type>
 
-  <step-type name="Datical DB Diff Report">
+  <step-type name="Get Database Differences (Report)">
     <description>Generates a Report on the differences between two servers.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -1022,7 +1022,7 @@
     </command>
   </step-type>
   
-  <step-type name="Datical DB Create New Project">
+  <step-type name="Add Datical DB Project">
     <description>Creates a new Datical DB Project in the project directory. Useful for when you are only supplied a changelog.xml and wish to create the project dynamically.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -1082,7 +1082,7 @@
     </command>
   </step-type>  
   
-  <step-type name="Datical DB Create New Database Definition">
+  <step-type name="Add Datical DB Database Definition">
     <description>Creates a new Datical DB Project in the project directory. Useful for when you are only supplied a changelog.xml and wish to create the project dynamically.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
@@ -1261,4 +1261,5 @@
       <arg file="${PLUGIN_OUTPUT_PROPS}" />
     </command>
   </step-type>
+	
 </plugin>
