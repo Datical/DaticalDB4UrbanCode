@@ -1,13 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://www.urbancode.com/PluginXMLSchema_v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <header>
-    <identifier version="14" id="com.datical.integration.udeploy.DaticalDB4UDeploy" name="Datical DB" />
+    <identifier version="19" id="com.datical.integration.udeploy.DaticalDB4UDeploy" name="Datical DB" />
     <description>Datical DB makes it incredibly easy to automate and
 			manage database schema changes for high volume, complex releases,
 			across any environment, for any database. No agents required.
 		</description>
     <tag>Datical DB</tag>
   </header>
+
+  <step-type name="Register and Baseline Datical DB Project">
+    <description>Deploys a Datical DB project to a Server.</description>
+    <properties>
+      <property name="daticalDBCmd" required="true">
+        <property-ui type="textBox" label="Datical DB Command" description="The full path to the Datical DB command (e.g., C:\DaticalDB\repl\hammer.bat or /opt/DaticalDB/repl/hammer). Ideally, create a property named daticalDBCmd with the appropriate value." default-value="${p:daticalDBCmd}" />
+      </property>
+      <property name="daticalDBDriversDir" required="true">
+        <property-ui type="textBox" label="Datical DB Driver Directory" description="The full path where Datical DB drivers are located. Ideally, create a property named daticalDBDriversDir with the appropriate value." default-value="${p:daticalDBDriversDir}" />
+      </property>
+      <property name="daticalDBSkipForce" required="false">
+      	<property-ui type="selectBox" label="Datical DB Skip Tables or Force Meta Table Deletion"  description="Flag to skip any table that has already been baselined Deploy Threshold or Flag to remove any pre-existing DATABASECHANGELOG and DATABASECHANGELOGLOCK tables (use with caution)" />
+		<value label="Unselected">unselected</value>
+		<value label="Skip">skip</value>
+  		<value label="Force">force</value>
+      </property>
+      <property name="daticalDBSync" required="false">
+        <property-ui type="checkBox" label="Datical DB Change Log Sync" description="Flag to optionally run changelogSync on the Reference DB" />
+      </property>
+      <property name="daticalDBZipProject" required="false">
+        <property-ui type="checkBox" label="Zip Project Directory" description="If checked, Datical DB will zip the newly created project directory" />
+      </property>
+      <property name="daticalDBvm" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM" description="The Java Virtual Machine to use with Datical DB. (e.g.,  /usr/lib/jvm/java-7-openjdk-amd64)" />
+      </property>
+      <property name="daticalDBvmargs" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM Arguments" description="The Java Virtual Machine Arguments to use with Datical DB. (e.g., -Xms512M -Xmx1024M)" />
+      </property>
+    </properties>
+    <post-processing><![CDATA[
+        if (properties.get("exitCode") != 0) {
+            properties.put("Status", "Failure");
+        }
+        else {
+            properties.put("Status", "Success");
+        }
+        
+     ]]></post-processing>
+    <command program="${agent:GROOVY_HOME}/bin/groovy">
+      <arg value="-cp" />
+      <arg path="classes" />
+      <arg file="groovybaselineproject.groovy" />
+      <arg file="${PLUGIN_INPUT_PROPS}" />
+      <arg file="${PLUGIN_OUTPUT_PROPS}" />
+    </command>
+  </step-type>
+
+  <step-type name="Create Datical DB Project">
+    <description>Deploys a Datical DB project to a Server.</description>
+    <properties>
+      <property name="daticalDBCmd" required="true">
+        <property-ui type="textBox" label="Datical DB Command" description="The full path to the Datical DB command (e.g., C:\DaticalDB\repl\hammer.bat or /opt/DaticalDB/repl/hammer). Ideally, create a property named daticalDBCmd with the appropriate value." default-value="${p:daticalDBCmd}" />
+      </property>
+      <property name="daticalDBDriversDir" required="true">
+        <property-ui type="textBox" label="Datical DB Driver Directory" description="The full path where Datical DB drivers are located. Ideally, create a property named daticalDBDriversDir with the appropriate value." default-value="${p:daticalDBDriversDir}" />
+      </property>
+      <property name="daticalDBProjectName" required="true">
+        <property-ui type="textBox" label="Datical DB Project Name" description="The new Datical DB project." default-value="."/>
+      </property>
+      <property name="daticalDBProjectDir" required="true">
+        <property-ui type="textBox" label="Datical DB Project Directory" description="The full path where the Datical DB project is located." default-value="."/>
+      </property>
+      <property name="daticalDBProvisioningDir" required="true">
+        <property-ui type="textBox" label="Datical DB Provisioning Directory" description="The full path that contains the data files: &lt;project_name&gt;;.project.tsv.txt, &lt;project_name&gt;;.dbdefs.tsv.txt and &lt;project_name&gt;;.pipelines.tsv.txt where the Datical DB project is located." default-value="."/>
+      </property>
+      <property name="daticalDBZipProject" required="false">
+        <property-ui type="checkBox" label="Zip Project Directory" description="If checked, Datical DB will zip the newly created project directory" />
+      </property>
+      <property name="daticalDBTestConnections" required="false">
+        <property-ui type="checkBox" label="Test Connections" description="If checked, Datical DB test newly created database connections in the project." />
+      </property>
+      <property name="daticalDBvm" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM" description="The Java Virtual Machine to use with Datical DB. (e.g.,  /usr/lib/jvm/java-7-openjdk-amd64)" />
+      </property>
+      <property name="daticalDBvmargs" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM Arguments" description="The Java Virtual Machine Arguments to use with Datical DB. (e.g., -Xms512M -Xmx1024M)" />
+      </property>
+    </properties>
+    <post-processing><![CDATA[
+        if (properties.get("exitCode") != 0) {
+            properties.put("Status", "Failure");
+        }
+        else {
+            properties.put("Status", "Success");
+        }
+        
+     ]]></post-processing>
+    <command program="${agent:GROOVY_HOME}/bin/groovy">
+      <arg value="-cp" />
+      <arg path="classes" />
+      <arg file="groovycreatenewproject.groovy" />
+      <arg file="${PLUGIN_INPUT_PROPS}" />
+      <arg file="${PLUGIN_OUTPUT_PROPS}" />
+    </command>
+  </step-type>
+
 
   <step-type name="Get Datical DB Version">
     <description>Deploys a Datical DB project to a Server.</description>
