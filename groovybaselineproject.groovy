@@ -49,7 +49,7 @@ if (daticalDBZipProject == "true") {
 }
 
 if (daticalDBSync == "true") {
-	cmdArgs << "sync";
+	cmdArgs << "noSync";
 }
 
 

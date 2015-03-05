@@ -7,6 +7,10 @@ Two properties in the plugin step, Datical DB Install Directory and Datical DB D
 
 Release Notes:
 
+### Version 1.X - March 4, 2015
+
+	- Added Datical DB Component Template
+
 ### Version 1.210 - March 4, 2015
 
 	- Added support for creating new projects using our project_creator.groovy script. New Step Name is "Create Datical DB Project".
