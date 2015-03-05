@@ -7,7 +7,7 @@ Two properties in the plugin step, Datical DB Install Directory and Datical DB D
 
 Release Notes:
 
-### Version 1.210 - March 4, 2015
+### Version 1.213 - March 4, 2015
 
 	- Added support for creating new projects using our project_creator.groovy script. New Step Name is "Create Datical DB Project".
 	- Added support for baselining existing projects using our project_baseline.groovy script. New Step Name is "Register and Baseline Datical DB Project"

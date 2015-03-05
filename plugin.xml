@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://www.urbancode.com/PluginXMLSchema_v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <header>
-    <identifier version="19" id="com.datical.integration.udeploy.DaticalDB4UDeploy" name="Datical DB" />
+    <identifier version="20" id="com.datical.integration.udeploy.DaticalDB4UDeploy" name="Datical DB" />
     <description>Datical DB makes it incredibly easy to automate and
 			manage database schema changes for high volume, complex releases,
 			across any environment, for any database. No agents required.
@@ -21,11 +21,11 @@
       <property name="daticalDBSkipForce" required="false">
       	<property-ui type="selectBox" label="Datical DB Skip Tables or Force Meta Table Deletion"  description="Flag to skip any table that has already been baselined Deploy Threshold or Flag to remove any pre-existing DATABASECHANGELOG and DATABASECHANGELOGLOCK tables (use with caution)" />
 		<value label="Unselected">unselected</value>
-		<value label="Skip">skip</value>
-  		<value label="Force">force</value>
+		<value label="Skip Baselined Tables">skip</value>
+  		<value label="Force Meta Table Deletion">force</value>
       </property>
       <property name="daticalDBSync" required="false">
-        <property-ui type="checkBox" label="Datical DB Change Log Sync" description="Flag to optionally run changelogSync on the Reference DB" />
+        <property-ui type="checkBox" label="Datical DB Change Log Sync" description="Flag to optionally NOT run changelogSync on the Reference DB" />
       </property>
       <property name="daticalDBZipProject" required="false">
         <property-ui type="checkBox" label="Zip Project Directory" description="If checked, Datical DB will zip the newly created project directory" />

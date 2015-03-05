@@ -22,7 +22,7 @@
 		
 		<mkdir dir="${dist}" />
 
-		<zip destfile="${dist}/DaticalDB4UDeploy-1.${build.number}.zip" basedir="." excludes=".git/*,**/dist,dist/*" />
+		<zip destfile="${dist}/DaticalDB4UDeploy-1.${build.number}.zip" basedir="." excludes=".git/*,**/dist,dist/*,**/doc" />
 	</target>
 
 	<target name="clean" description="clean up">
