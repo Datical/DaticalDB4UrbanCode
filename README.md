@@ -7,6 +7,11 @@ Two properties in the plugin step, Datical DB Install Directory and Datical DB D
 
 Release Notes:
 
+### Version 1.218 - March 10, 2015
+
+	- Added support for arbitrary Groovy Script execution.
+	- NOTE: need to create target directory prior to running "Create Datical DB Project"
+
 ### Version 1.213 - March 4, 2015
 
 	- Added support for creating new projects using our project_creator.groovy script. New Step Name is "Create Datical DB Project".

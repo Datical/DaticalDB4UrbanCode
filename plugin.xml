@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://www.urbancode.com/PluginXMLSchema_v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <header>
-    <identifier version="20" id="com.datical.integration.udeploy.DaticalDB4UDeploy" name="Datical DB" />
+    <identifier version="22" id="com.datical.integration.udeploy.DaticalDB4UDeploy" name="Datical DB" />
     <description>Datical DB makes it incredibly easy to automate and
 			manage database schema changes for high volume, complex releases,
 			across any environment, for any database. No agents required.
@@ -9,8 +9,52 @@
     <tag>Datical DB</tag>
   </header>
 
+  <step-type name="Run Groovy Script">
+    <description>Runs a Groovy Script using Datical DB REPL.</description>
+    <properties>
+      <property name="daticalDBCmd" required="true">
+        <property-ui type="textBox" label="Datical DB Command" description="The full path to the Datical DB command (e.g., C:\DaticalDB\repl\hammer.bat or /opt/DaticalDB/repl/hammer). Ideally, create a property named daticalDBCmd with the appropriate value." default-value="${p:daticalDBCmd}" />
+      </property>
+      <property name="daticalDBDriversDir" required="true">
+        <property-ui type="textBox" label="Datical DB Driver Directory" description="The full path where Datical DB drivers are located. Ideally, create a property named daticalDBDriversDir with the appropriate value." default-value="${p:daticalDBDriversDir}" />
+      </property>
+      <property name="daticalDBScript" required="true">
+      	<property-ui type="textBox" label="Datical DB Groovy Script"  description="Complete path to Groovy Script to run." />
+		<value label="Unselected">unselected</value>
+		<value label="Skip Baselined Tables">skip</value>
+  		<value label="Force Meta Table Deletion">force</value>
+      </property>
+      <property name="daticalDBScriptArgs" required="false">
+        <property-ui type="textAreaBox" label="Datical DB Groovy Script Arguments" description="Arguments to pass to Datical DB Groovy Script." />
+      </property>
+      <property name="daticalDBvm" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM" description="The Java Virtual Machine to use with Datical DB. (e.g.,  /usr/lib/jvm/java-7-openjdk-amd64)" />
+      </property>
+      <property name="daticalDBvmargs" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM Arguments" description="The Java Virtual Machine Arguments to use with Datical DB. (e.g., -Xms512M -Xmx1024M)" />
+      </property>
+    </properties>
+    <post-processing><![CDATA[
+        if (properties.get("exitCode") != 0) {
+            properties.put("Status", "Failure");
+        }
+        else {
+            properties.put("Status", "Success");
+        }
+        
+     ]]></post-processing>
+    <command program="${agent:GROOVY_HOME}/bin/groovy">
+      <arg value="-cp" />
+      <arg path="classes" />
+      <arg file="groovyrun.groovy" />
+      <arg file="${PLUGIN_INPUT_PROPS}" />
+      <arg file="${PLUGIN_OUTPUT_PROPS}" />
+    </command>
+  </step-type>
+
+
   <step-type name="Register and Baseline Datical DB Project">
-    <description>Deploys a Datical DB project to a Server.</description>
+    <description>Baselines a Datical DB Project using project_baseline.groovy.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
         <property-ui type="textBox" label="Datical DB Command" description="The full path to the Datical DB command (e.g., C:\DaticalDB\repl\hammer.bat or /opt/DaticalDB/repl/hammer). Ideally, create a property named daticalDBCmd with the appropriate value." default-value="${p:daticalDBCmd}" />
@@ -56,7 +100,7 @@
   </step-type>
 
   <step-type name="Create Datical DB Project">
-    <description>Deploys a Datical DB project to a Server.</description>
+    <description>Creates a Datical DB Project using project_creator.groovy.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
         <property-ui type="textBox" label="Datical DB Command" description="The full path to the Datical DB command (e.g., C:\DaticalDB\repl\hammer.bat or /opt/DaticalDB/repl/hammer). Ideally, create a property named daticalDBCmd with the appropriate value." default-value="${p:daticalDBCmd}" />
@@ -72,6 +116,9 @@
       </property>
       <property name="daticalDBProvisioningDir" required="true">
         <property-ui type="textBox" label="Datical DB Provisioning Directory" description="The full path that contains the data files: &lt;project_name&gt;;.project.tsv.txt, &lt;project_name&gt;;.dbdefs.tsv.txt and &lt;project_name&gt;;.pipelines.tsv.txt where the Datical DB project is located." default-value="."/>
+      </property>
+      <property name="daticalDBReplace" required="false">
+        <property-ui type="checkBox" label="Replace Existing Project" description="If checked, Datical DB will replace existing project directory" />
       </property>
       <property name="daticalDBZipProject" required="false">
         <property-ui type="checkBox" label="Zip Project Directory" description="If checked, Datical DB will zip the newly created project directory" />
@@ -106,7 +153,7 @@
 
 
   <step-type name="Get Datical DB Version">
-    <description>Deploys a Datical DB project to a Server.</description>
+    <description>Shows the Datical DB version.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
         <property-ui type="textBox" label="Datical DB Command" description="The full path to the Datical DB command (e.g., C:\DaticalDB\repl\hammer.bat or /opt/DaticalDB/repl/hammer). Ideally, create a property named daticalDBCmd with the appropriate value." default-value="${p:daticalDBCmd}" />
@@ -247,7 +294,7 @@
   </step-type>
 
   <step-type name="Validate and Forecast with Datical DB">
-    <description>Forecasts a Datical DB project against a Server.</description>
+    <description>Validates and Forecasts a Datical DB project against a Server.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
         <property-ui type="textBox" label="Datical DB Command" description="The full path to the Datical DB command (e.g., C:\DaticalDB\repl\hammer.bat or /opt/DaticalDB/repl/hammer)" default-value="${p:daticalDBCmd}" />
