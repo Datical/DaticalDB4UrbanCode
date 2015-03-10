@@ -29,26 +29,20 @@ def getAbsPath(def file) {
 //path properties
 def daticalDBCmd = getAbsPath(props['daticalDBCmd']);
 def daticalDBDriversDir = getAbsPath(props['daticalDBDriversDir']);
-def daticalDBProjectDir = getAbsPath(props['daticalDBProjectDir']);
-def daticalDBProjectName = props['daticalDBProjectName'];
-def daticalDBProvisioningDir = getAbsPath(props['daticalDBProvisioningDir']);
-def daticalDBReplace = props['daticalDBReplace'];
-def daticalDBZipProject = props['daticalDBZipProject'];
-def daticalDBTestConnections = props['daticalDBTestConnections']
+def daticalDBScript = getAbsPath(props['daticalDBScript']);
+def daticalDBScriptArgs = props['daticalDBScriptArgs'];
 def daticalDBvm = props['daticalDBvm'];
 def daticalDBvmargs = props['daticalDBvmargs'];
 
-def daticalDBHammerPath = new File(daticalDBCmd).getParent();
-def daticalDBProjectCreatorScript = 'file:/' + daticalDBHammerPath + File.separator + "scripts" + File.separator + 'project_creator.groovy';
+daticalDBScript = 'file:/' + daticalDBScript;
 
-def cmdArgs = [daticalDBCmd, 'groovy', daticalDBProjectCreatorScript, daticalDBDriversDir, daticalDBProvisioningDir, daticalDBProjectDir, daticalDBProjectName];
+def cmdArgs = [daticalDBCmd, 'groovy', daticalDBScript];
 
-if (daticalDBReplace == "true") {
-	cmdArgs << "replace";
-}
-
-if (daticalDBTestConnections == "true") {
-	cmdArgs << "testConnections";
+if (daticalDBScriptArgs) {
+	String[] myArray = daticalDBScriptArgs.split();
+	for ( x in myArray ) {
+		cmdArgs << x;
+	}
 }
 
 if (daticalDBvm) {
