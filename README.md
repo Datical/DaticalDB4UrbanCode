@@ -7,6 +7,8 @@ Two properties in the plugin step, Datical DB Install Directory and Datical DB D
 
 Release Notes:
 
+TODO: Remove "file:/" from groovy stuff for Linux. Need update from Datical Dev.
+
 ### Version 1.219 - March 10, 2015
 
 	- Added support for arbitrary Groovy Script execution.
