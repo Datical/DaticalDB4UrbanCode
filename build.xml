@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="DaticalDB4UDeploy" default="dist" basedir=".">
+<project name="DaticalDB4UrbanCode" default="dist" basedir=".">
 	<description>
         simple example build file
     </description>
@@ -22,7 +22,7 @@
 		
 		<mkdir dir="${dist}" />
 
-		<zip destfile="${dist}/DaticalDB4UDeploy-1.${build.number}.zip" basedir="." excludes=".git/*,**/dist,dist/*,**/doc" />
+		<zip destfile="${dist}/DaticalDB4UrbanCode-1.${build.number}.zip" basedir="." excludes=".git/*,**/dist,dist/*,**/doc" />
 	</target>
 
 	<target name="clean" description="clean up">

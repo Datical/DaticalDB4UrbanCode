@@ -1,7 +1,7 @@
-DaticalDB4UDeploy
+DaticalDB4UrbanCode
 =================
 
-This plugin brings Datical DB functionality to IBM UrbanCode uDeploy.
+This plugin brings Datical DB functionality to IBM UrbanCode Deploy and Build.
 
 Two properties in the plugin step, Datical DB Install Directory and Datical DB Drivers Directory, read a default property at the resource (Agent) level. For each agent that is going to execute Datical DB, create a Resource Property called daticalDBCmd and daticalDBDriversDir.  
 
@@ -56,4 +56,9 @@ Examples:
 Thus, we've added new new text boxes to each Datical DB Step, Datical DB JVM and Datical DB JVM Arguments. Neither are required.
 
 There is a known issue with placing multiple arguments in the "Datical DB JVM Arguments" text box. IBM Rational UrbanCode Deploy passes all properties as quoted strings. Thus, *--vmargs -Xms512M -Dmx512M* becomes *--vmargs "-Xms512M -Dmx512M"*. We are working with IBM on a resolution to this issue.
+
+### Version 1.220 - December 3, 2015
+
+Rebranding for UrbanCode as plugin works for both Deploy and Build
+
 
