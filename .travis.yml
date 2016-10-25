@@ -1,0 +1,31 @@
+language: groovy
+rvm:
+- 1.8.8
+install:
+- ant install-ivy -DfailIvy=false
+before_script:
+- export BUILD_LIFE=${TRAVIS_TAG}
+- ant run-tests
+script:
+- ant -DbuildLife=${BUILD_LIFE}
+jdk:
+- oraclejdk8
+- oraclejdk7
+- openjdk7
+- openjdk6
+notifications:
+  slack:
+    secure: IHx7lyduKZq2euHqoNtARinzdNMVHPwMZ74jAf48c2a4dqu/aJfEvbJ9VNN2A+xLnNwf7wK46TNBtRIRbJZBeOFMf+aRZnHSRJFAWFXAg37uezeL6oN0KHo0CUl0Wib9hvyiM3pVzs0ZQ4qdxelwEhDn4CLulfo/haV0OFVoNeN3ldfs8VwXENU4+K1quxgDMz4XTd5mHjssaLcSLvDlbM3E+yoam/rRVl6w+LD2NkxyszZRloOMn9wcAVhadA47kv5/TmTL8ONz67efSLxN6vbPx7CQuWMV050NcUCczZNxDxom7bXp4+i19thjCUO08BR9nVprExiGNXk16msslsGpG2ietNUeMUbLq2hA5ih6OVgqOEZhHiO/7L7zYXuhNkN7fTcW/MR8On1W+jzBhVpUjdQ9LDiRA+yS9JXvgbvoAYd5b22C3BZqpzVVxOhK/Uq1ekDhIfGk7uVuSVtkqk0NLkDrmfc7AReMCQbJEAlEgI8kBZBamKDYFamzLY2NMiF2KZnVOBazmK6/y+rafqwnp5hQ77B7wa3Gb0pjIXeLwljfUQWxayZNWJhOpOYJUJ+2OIRRCMKNDuk9/7TMPZrv6mBIDkJR/2Rr/FhIZCCQjU2fO43gBGzAIL2tI7Mqnc+b3nsyvEQ5SGFLXrBhnYu9k9g4tpD2aZveeBwdF58=
+    on_success: change
+    on_failure: change
+  email: false
+deploy:
+  provider: releases
+  api_key:
+    secure: DBNiMwcQRIDD3G0xbOek4ED1+iYCqt1DddcKIC0FyH5xeGhhdq1sNYuRyN96dcqof0q+70vBfhWT5pEWGbaOQMQ313DWzUv7zDdwW64ym/ZExOuaSoQsUCoGM0JB7IUtm0mUG3MOF4sq+1abJxLEp3IhO7e7/dwCyl+3jPXyNVzqFZEh0iIgEAc3wVDTKFEvKBKy5XuoHDa399/BvE4aMk7neSFhECZvLAutrw1p3jvUm6L273WyF6NB6CY1PFeoOXPAzicgS6pyWdUSCGRKG9nNrpYtIJVxky/YQ8rMxC8J0rDJE2ak4R5XXCfqxJxCRB5bR7U695gheQqcqkXelfsUMlaLYYakIWIgQS+RsTAeF1Qf163oB02bGSrmjti50zzndyGQ6cOa+2zSBm9aPLclCeXU5syBYYikmRByyNNYNaPPwnCqQ9FWFW+lW4cWnQ5EJDSaBKADy10hlBWlKQTuF5uKWM0fOMhAL8q5y9+mVXIcqmCLYRvmrq3TcI5OWIwxhhTcVKuGC1sJJkCmMa1tIfho/DWdksUISEiMuE01YWAeHKUEH0OB7OtXXQ1WtnnFNQVTn6OBFi8xkZPlBGA8t40PdjvDgq/JBVKlUsGenSt2GWe5AEtPr+72P1nEkqFBH8zpQnPu0u3GlZXhY5B7FtKtXoRYj4M4PHC9NRk=
+  file_glob: true
+  file: releases/*.zip
+  skip_cleanup: true
+  on:
+    tags: true
+    repo: IBM-UrbanCode/DaticalDB-UCD-UCB
