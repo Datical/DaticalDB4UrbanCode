@@ -83,6 +83,11 @@ if (daticalDBLabels) {
 	cmdArgs << daticalDBLabels;
 }
 
+if (daticalDBPipeline) {
+	cmdArgs << "--pipeline";
+	cmdArgs << daticalDBPipeline;
+}
+
 cmdArgs << daticalDBAction;
 cmdArgs << daticalDBServer;
 

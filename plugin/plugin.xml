@@ -198,6 +198,9 @@
       <property name="daticalDBProjectDir" required="true">
         <property-ui type="textBox" label="Datical DB Project Directory" description="The full path where the Datical DB project is located." default-value="."/>
       </property>
+	  <property name="daticalDBPipeline" required="true">
+        <property-ui type="textBox" label="Datical DB Pipeline" description="The Datical DB Pipeline in which the target server resides." />
+      </property>
       <property name="daticalDBServer" required="true">
         <property-ui type="textBox" label="Datical DB Server" description="The Datical DB Server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan." />
       </property>
