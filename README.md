@@ -1,11 +1,29 @@
-DaticalDB4UrbanCode
+IBM UrbanCode Deploy and Build DaticalDB Plugin [![Build Status](https://travis-ci.org/IBM-UrbanCode/DaticalDB-UCD-UCB.svg?branch=master)](https://travis-ci.org/IBM-UrbanCode/DaticalDB-UCD-UCB)
 =================
 
 This plugin brings Datical DB functionality to IBM UrbanCode Deploy and Build.
 
 Two properties in the plugin step, Datical DB Install Directory and Datical DB Drivers Directory, read a default property at the resource (Agent) level. For each agent that is going to execute Datical DB, create a Resource Property called daticalDBCmd and daticalDBDriversDir.  
 
+Note: This is not the plug-in distributable! The full plugin can be found under the releases tab.
+
+### License
+This plug-in is protected under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
+
+### Compatibility
+	This plug-in requires version 6.1.1 or later of IBM UrbanCode Deploy.
+    This plug-in requires version 6.1.0 or later of IBM UrbanCode Build.
+
+
 Release Notes:
+
+### Version 22.223 - October 25, 2016
+
+Community GitHub Release
+
+### Version 1.220 - December 3, 2015
+
+Rebranding for UrbanCode as plugin works for both Deploy and Build
 
 ### Version 1.219 - March 10, 2015
 
@@ -16,7 +34,7 @@ Release Notes:
 
 	- Added support for creating new projects using our project_creator.groovy script. New Step Name is "Create Datical DB Project".
 	- Added support for baselining existing projects using our project_baseline.groovy script. New Step Name is "Register and Baseline Datical DB Project"
-		
+
 ### Version 1.195 - March 3, 2015
 
 	- Added support for "show version"
@@ -56,9 +74,3 @@ Examples:
 Thus, we've added new new text boxes to each Datical DB Step, Datical DB JVM and Datical DB JVM Arguments. Neither are required.
 
 There is a known issue with placing multiple arguments in the "Datical DB JVM Arguments" text box. IBM Rational UrbanCode Deploy passes all properties as quoted strings. Thus, *--vmargs -Xms512M -Dmx512M* becomes *--vmargs "-Xms512M -Dmx512M"*. We are working with IBM on a resolution to this issue.
-
-### Version 1.220 - December 3, 2015
-
-Rebranding for UrbanCode as plugin works for both Deploy and Build
-
-
