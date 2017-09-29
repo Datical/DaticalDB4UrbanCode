@@ -4,36 +4,17 @@
 
 
 	<migrate to-version="23">
-	
-		<migrate-command name="Run Groovy Script"/>
-		<migrate-command name="Register and Baseline Datical DB Project"/>
-		<migrate-command name="Create Datical DB Project"/>
-		<migrate-command name="Get Datical DB Version"/>
+
 		<migrate-command name="Deploy with Datical DB">
 			<migrate-properties>
 				<migrate-property name="daticalDBPipeline"/>
 			</migrate-properties>
 		</migrate-command>
-		<migrate-command name="Validate and Forecast with Datical DB"/>
-		<migrate-command name="Export Database Schema (Snapshot)"/>
-		<migrate-command name="Read Datical DB History"/>
-		<migrate-command name="Sync Datical DB Change Log"/>
-		<migrate-command name="Delete Datical DB Check Sums"/>
-		<migrate-command name="View Datical DB Status"/>
-		<migrate-command name="View Datical DB Status Details"/>
-		<migrate-command name="Check Datical DB Drivers"/>
-		<migrate-command name="Validate Datical DB Rules"/>
-		<migrate-command name="Datical DB Rollback"/>
-		<migrate-command name="Get Database Differences (Change Log)"/>
-		<migrate-command name="Get Database Differences (Report)"/>
-		<migrate-command name="Add Datical DB Project"/>
-		<migrate-command name="Add Datical DB Database Definition"/>
-		<migrate-command name="Datical DB Install License"/>
-	
+
 	</migrate>
-	
+
 	<migrate to-version="22">
-	
+
 		<migrate-command name="Run Groovy Script"/>
 		<migrate-command name="Register and Baseline Datical DB Project"/>
 		<migrate-command name="Create Datical DB Project"/>
@@ -54,11 +35,11 @@
 		<migrate-command name="Add Datical DB Project"/>
 		<migrate-command name="Add Datical DB Database Definition"/>
 		<migrate-command name="Datical DB Install License"/>
-	
+
 	</migrate>
 
 	<migrate to-version="21">
-	
+
 		<migrate-command name="Run Groovy Script"/>
 		<migrate-command name="Register and Baseline Datical DB Project"/>
 		<migrate-command name="Create Datical DB Project"/>
@@ -79,12 +60,12 @@
 		<migrate-command name="Add Datical DB Project"/>
 		<migrate-command name="Add Datical DB Database Definition"/>
 		<migrate-command name="Datical DB Install License"/>
-	
+
 	</migrate>
 
 
 	<migrate to-version="20">
-	
+
 		<migrate-command name="Register and Baseline Datical DB Project"/>
 		<migrate-command name="Create Datical DB Project"/>
 		<migrate-command name="Get Datical DB Version"/>
@@ -104,11 +85,11 @@
 		<migrate-command name="Add Datical DB Project"/>
 		<migrate-command name="Add Datical DB Database Definition"/>
 		<migrate-command name="Datical DB Install License"/>
-	
+
 	</migrate>
 
 	<migrate to-version="19">
-	
+
 		<migrate-command name="Register and Baseline Datical DB Project"/>
 		<migrate-command name="Create Datical DB Project"/>
 		<migrate-command name="Get Datical DB Version"/>
@@ -128,11 +109,11 @@
 		<migrate-command name="Add Datical DB Project"/>
 		<migrate-command name="Add Datical DB Database Definition"/>
 		<migrate-command name="Datical DB Install License"/>
-	
+
 	</migrate>
-	
+
 	<migrate to-version="18">
-	
+
 		<migrate-command name="Register and Baseline Datical DB Project"/>
 		<migrate-command name="Create Datical DB Project"/>
 		<migrate-command name="Get Datical DB Version"/>
@@ -152,11 +133,11 @@
 		<migrate-command name="Add Datical DB Project"/>
 		<migrate-command name="Add Datical DB Database Definition"/>
 		<migrate-command name="Datical DB Install License"/>
-	
+
 	</migrate>
-	
+
 	<migrate to-version="17">
-	
+
 		<migrate-command name="Register and Baseline Datical DB Project"/>
 		<migrate-command name="Create Datical DB Project"/>
 		<migrate-command name="Get Datical DB Version"/>
@@ -176,11 +157,11 @@
 		<migrate-command name="Add Datical DB Project"/>
 		<migrate-command name="Add Datical DB Database Definition"/>
 		<migrate-command name="Datical DB Install License"/>
-	
+
 	</migrate>
-	
+
 	<migrate to-version="16">
-	
+
 		<migrate-command name="Create Datical DB Project"/>
 		<migrate-command name="Get Datical DB Version"/>
 		<migrate-command name="Deploy with Datical DB"/>
@@ -199,11 +180,11 @@
 		<migrate-command name="Add Datical DB Project"/>
 		<migrate-command name="Add Datical DB Database Definition"/>
 		<migrate-command name="Datical DB Install License"/>
-	
+
 	</migrate>
-	
+
 	<migrate to-version="15">
-	
+
 		<migrate-command name="Get Datical DB Version"/>
 		<migrate-command name="Deploy with Datical DB"/>
 		<migrate-command name="Validate and Forecast with Datical DB" old="Forecast with Datical DB"/>
@@ -221,11 +202,11 @@
 		<migrate-command name="Add Datical DB Project"/>
 		<migrate-command name="Add Datical DB Database Definition"/>
 		<migrate-command name="Datical DB Install License"/>
-	
+
 	</migrate>
-	
+
 	<migrate to-version="14">
-	
+
 		<migrate-command name="Get Datical DB Version" old="Datical DB Version"/>
 		<migrate-command name="Deploy with Datical DB" old="Datical DB Deploy"/>
 		<migrate-command name="Forecast with Datical DB" old="Datical DB Forecast"/>
@@ -243,12 +224,12 @@
 		<migrate-command name="Add Datical DB Project" old="Datical DB Create New Project"/>
 		<migrate-command name="Add Datical DB Database Definition" old="Datical DB Create New Database Definition"/>
 		<migrate-command name="Datical DB Install License"/>
-	
+
 	</migrate>
-	
+
 	<migrate to-version="13">
-	  
-	  
+
+
 	  <migrate-command name="Add add"/>
 	  <migrate-command name="Allocate allocate"/>
 	  <migrate-command name="AppCmd shellArgs"/>
@@ -373,7 +354,7 @@
 		<migrate-command name="Datical DB Create New Database Definition" />
 		<migrate-command name="Datical DB Install License" />
 	</migrate>
-	
+
 	<migrate to-version="9">
 		<migrate-command name="Datical DB Deploy" />
 		<migrate-command name="Datical DB Forecast" />
@@ -392,7 +373,7 @@
 		<migrate-command name="Datical DB Create New Database Definition" />
 		<migrate-command name="Datical DB Install License" />
 	</migrate>
-	
+
 	<migrate to-version="8">
 		<migrate-command name="Datical DB Deploy" />
 		<migrate-command name="Datical DB Forecast" />
@@ -609,7 +590,7 @@
 		<migrate-command name="Datical DB Create New Database Definition" />
 		<migrate-command name="Datical DB Install License" />
 	</migrate>
-	
+
 	<migrate to-version="2">
 		<migrate-command name="Datical DB Deploy">
 			<migrate-properties>
@@ -653,5 +634,5 @@
 		<migrate-command name="Datical DB Create New Database Definition" />
 		<migrate-command name="Datical DB Install License" />
 	</migrate>
-	
+
 </plugin-upgrade>
