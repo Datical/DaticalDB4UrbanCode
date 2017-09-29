@@ -1,10 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-    © Copyright IBM Corporation 2017.
-    This is licensed under the following license.
-    The Apache 2.0 License (https://www.apache.org/licenses/LICENSE-2.0)
-    U.S. Government Users Restricted Rights:  Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
--->
 <plugin xmlns="http://www.urbancode.com/PluginXMLSchema_v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <header>
     <identifier version="23" id="com.datical.integration.udeploy.DaticalDB4UrbanCode" name="Datical DB" />
