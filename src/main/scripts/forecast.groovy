@@ -1,3 +1,10 @@
+/**
+ * © Copyright IBM Corporation 2017.
+ * This is licensed under the following license.
+ * The Apache 2.0 License (https://www.apache.org/licenses/LICENSE-2.0)
+ * U.S. Government Users Restricted Rights:  Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ */
+
 import com.urbancode.air.CommandHelper;
 
 final def inputPropsFile = new File(args[0])
@@ -37,20 +44,20 @@ def daticalDBExportRollbackSQL = props['daticalDBExportRollbackSQL'];
 def daticalDBLabels = props['daticalDBLabels'];
 
 
-def cmdArgs = ""; 
+def cmdArgs = "";
 
 if (daticalDBExportSQL == "true") {
-	
+
 	if (daticalDBExportRollbackSQL == "true") {
-		
+
 		cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, '--project', daticalDBProjectDir, "--genSQL", "--genRollbackSQL"];
-		
+
 	} else {
-	
+
 		cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, '--project', daticalDBProjectDir, "--genSQL"];
 
 	}
-	
+
 } else if (daticalDBExportRollbackSQL == "true") {
 
 	cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, '--project', daticalDBProjectDir, "--genRollbackSQL"];

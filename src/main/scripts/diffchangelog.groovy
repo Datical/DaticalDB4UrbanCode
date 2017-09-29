@@ -1,3 +1,10 @@
+/**
+ * © Copyright IBM Corporation 2017.
+ * This is licensed under the following license.
+ * The Apache 2.0 License (https://www.apache.org/licenses/LICENSE-2.0)
+ * U.S. Government Users Restricted Rights:  Use, duplication or disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ */
+
 import com.urbancode.air.CommandHelper;
 
 final def inputPropsFile = new File(args[0])
@@ -41,7 +48,7 @@ if (daticalDBChangeLog) {
 	cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir,  '--project', daticalDBProjectDir,daticalDBAction, daticalDBServerReference, daticalDBServerComparison, daticalDBChangeLog];
 } else {
 	cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir,  '--project', daticalDBProjectDir,daticalDBAction, daticalDBServerReference, daticalDBServerComparison];
-}	
+}
 
 def daticalDBLabels = props['daticalDBLabels'];
 if (daticalDBLabels) {
