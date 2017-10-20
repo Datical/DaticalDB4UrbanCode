@@ -17,6 +17,10 @@ This plug-in is protected under the [Apache 2.0 License](https://www.apache.org/
 
 Release Notes:
 
+### Version 24 - October 20, 2017
+
+Added Support for Runtime Credentials in Forecast, Deploy, Status, and Status Details steps
+
 ### Version 23 - September 27, 2017
 
 Added Pipeline parameter to Deploy Command
