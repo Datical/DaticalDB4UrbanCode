@@ -5,7 +5,10 @@ This plugin brings Datical DB functionality to IBM UrbanCode Deploy and Build.
 
 Two properties in the plugin step, Datical DB Install Directory and Datical DB Drivers Directory, read a default property at the resource (Agent) level. For each agent that is going to execute Datical DB, create a Resource Property called daticalDBCmd and daticalDBDriversDir.  
 
-Note: This is not the plug-in distributable! The full plugin can be found under the releases tab.
+## NOTE - As of Oct 20, 2017, this repo is discontinued!
+Please browse here for the latest code: https://github.com/IBM-UrbanCode/DaticalDB-UCD-UCB
+
+Latest release of the plugin can be found here: https://github.com/IBM-UrbanCode/DaticalDB-UCD-UCB/releases
 
 ### License
 This plug-in is protected under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0)
