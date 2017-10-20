@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://www.urbancode.com/PluginXMLSchema_v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <header>
-    <identifier version="23" id="com.datical.integration.udeploy.DaticalDB4UrbanCode" name="Datical DB" />
+    <identifier version="24" id="com.datical.integration.udeploy.DaticalDB4UrbanCode" name="Datical DB" />
     <description>Datical DB makes it incredibly easy to automate and
 			manage database schema changes for high volume, complex releases,
 			across any environment, for any database. No agents required.
@@ -41,7 +41,7 @@
         else {
             properties.put("Status", "Success");
         }
-
+        
      ]]></post-processing>
     <command program="${agent:GROOVY_HOME}/bin/groovy">
       <arg value="-cp" />
@@ -88,7 +88,7 @@
         else {
             properties.put("Status", "Success");
         }
-
+        
      ]]></post-processing>
     <command program="${agent:GROOVY_HOME}/bin/groovy">
       <arg value="-cp" />
@@ -140,7 +140,7 @@
         else {
             properties.put("Status", "Success");
         }
-
+        
      ]]></post-processing>
     <command program="${agent:GROOVY_HOME}/bin/groovy">
       <arg value="-cp" />
@@ -192,6 +192,12 @@
       <property name="daticalDBCmd" required="true">
         <property-ui type="textBox" label="Datical DB Command" description="The full path to the Datical DB command (e.g., C:\DaticalDB\repl\hammer.bat or /opt/DaticalDB/repl/hammer). Ideally, create a property named daticalDBCmd with the appropriate value." default-value="${p:daticalDBCmd}" />
       </property>
+      <property name="daticalDBUsername" required="true">
+      	<property-ui type="textBox" label="Datical DB Database Username" description = "The username of the Database Server. This is only necessary if username has been removed for the database in Datical project." default-value="${p:daticalDBUsername}"/>
+      </property>
+      <property name="daticalDBPassword" required="true">
+      	<property-ui type="secureBox" label="Datical DB Database Password" description = "The password of the Database Server. This is only necessary if password has been removed for the database in Datical project." default-value="${p:daticalDBPassword}"/>
+      </property>
       <property name="daticalDBDriversDir" required="true">
         <property-ui type="textBox" label="Datical DB Driver Directory" description="The full path where Datical DB drivers are located. Ideally, create a property named daticalDBDriversDir with the appropriate value." default-value="${p:daticalDBDriversDir}" />
       </property>
@@ -239,7 +245,7 @@
         else {
             properties.put("Status", "Success");
         }
-
+        
         //all
         scanner.register("(?i)The DaticalDB log file",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
@@ -257,7 +263,7 @@
         });
 
         scanner.register("(?i)Report ready at ",  function(lineNumber, line) {
-              scanner.addLOI(lineNumber);
+              scanner.addLOI(lineNumber);        	
               var report = line.replace("Report ready at ", "");
               properties.put("DaticalReport", report);
               var reportDir = report.replace("deployReport.html", "");
@@ -275,7 +281,7 @@
               properties.put("DaticalRollbackSQL", genExportSQL);
         });
 
-
+        
         //deploy
         scanner.register("(?i)Successfully deployed changes to",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
@@ -283,7 +289,7 @@
         scanner.register("(?i)Update Failed",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
         });
-
+        
         scanner.scan();
 
      ]]></post-processing>
@@ -301,6 +307,12 @@
     <properties>
       <property name="daticalDBCmd" required="true">
         <property-ui type="textBox" label="Datical DB Command" description="The full path to the Datical DB command (e.g., C:\DaticalDB\repl\hammer.bat or /opt/DaticalDB/repl/hammer)" default-value="${p:daticalDBCmd}" />
+      </property>
+      <property name="daticalDBUsername" required="true">
+      	<property-ui type="textBox" label="Datical DB Database Username" description = "The username of the Database Server." default-value="${p:daticalDBUsername}"/>
+      </property>
+      <property name="daticalDBPassword" required="true">
+      	<property-ui type="secureBox" label="Datical DB Database Password" description = "The password of the Database Server." default-value="${p:daticalDBPassword}"/>
       </property>
       <property name="daticalDBDriversDir" required="true">
         <property-ui type="textBox" label="Datical DB Driver Directory" description="The full path where Datical DB drivers are located." default-value="${p:daticalDBDriversDir}" />
@@ -343,7 +355,7 @@
         else {
             properties.put("Status", "Success");
         }
-
+        
         //all
         scanner.register("(?i)The DaticalDB log file",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
@@ -380,10 +392,10 @@
         scanner.register("(?i)Forecast detected the following problems:",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
         });
-
+        
         scanner.scan();
-
-
+        
+        
 
      ]]></post-processing>
     <command program="${agent:GROOVY_HOME}/bin/groovy">
@@ -424,7 +436,7 @@
         else {
             properties.put("Status", "Success");
         }
-
+        
         //all
         scanner.register("(?i)The DaticalDB log file",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
@@ -445,7 +457,7 @@
             var report = line.replace("Report ready at ", "");
             properties.put("DaticalReport", report);
         });
-
+        
         //snapshot
         scanner.register("(?i)Snapshot of database",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
@@ -494,7 +506,7 @@
         else {
             properties.put("Status", "Success");
         }
-
+        
         //all
         scanner.register("(?i)The DaticalDB log file",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
@@ -515,7 +527,7 @@
             var report = line.replace("Report ready at ", "");
             properties.put("DaticalReport", report);
         });
-
+        
         //history
         scanner.register("(?i)Changelog",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
@@ -562,7 +574,7 @@
         else {
             properties.put("Status", "Success");
         }
-
+        
         //all
         scanner.register("(?i)The DaticalDB log file",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
@@ -583,9 +595,9 @@
             var report = line.replace("Report ready at ", "");
             properties.put("DaticalReport", report);
         });
-
+        
         scanner.scan();
-
+        
 
      ]]></post-processing>
     <command program="${agent:GROOVY_HOME}/bin/groovy">
@@ -626,7 +638,7 @@
         else {
             properties.put("Status", "Success");
         }
-
+        
         //all
         scanner.register("(?i)The DaticalDB log file",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
@@ -647,12 +659,12 @@
             var report = line.replace("Report ready at ", "");
             properties.put("DaticalReport", report);
         });
-
+        
         //clearCheckSums
         scanner.register("(?i)Successfully cleared checksums in database",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
         });
-
+        
         scanner.scan();
 
      ]]></post-processing>
@@ -694,7 +706,7 @@
         else {
             properties.put("Status", "Success");
         }
-
+        
         //all
         scanner.register("(?i)The DaticalDB log file",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
@@ -715,7 +727,7 @@
             var report = line.replace("Report ready at ", "");
             properties.put("DaticalReport", report);
         });
-
+        
         //status
         scanner.register("(?i) is up-to-date ",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
@@ -723,7 +735,7 @@
         scanner.register("(?i) is at ",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
         });
-
+        
         scanner.scan();
 
      ]]></post-processing>
@@ -741,6 +753,12 @@
     <properties>
       <property name="daticalDBCmd" required="true">
         <property-ui type="textBox" label="Datical DB Command" description="The full path to the Datical DB command (e.g., C:\DaticalDB\repl\hammer.bat or /opt/DaticalDB/repl/hammer)" default-value="${p:daticalDBCmd}" />
+      </property>
+      <property name="daticalDBUsername" required="true">
+      	<property-ui type="textBox" label="Datical DB Database Username" description = "The username of the Database Server." default-value="${p:daticalDBUsername}"/>
+      </property>
+      <property name="daticalDBPassword" required="true">
+      	<property-ui type="secureBox" label="Datical DB Database Password" description = "The password of the Database Server." default-value="${p:daticalDBPassword}"/>
       </property>
       <property name="daticalDBDriversDir" required="true">
         <property-ui type="textBox" label="Datical DB Driver Directory" description="The full path where Datical DB drivers are located." default-value="${p:daticalDBDriversDir}" />
@@ -765,7 +783,7 @@
         else {
             properties.put("Status", "Success");
         }
-
+        
         //all
         scanner.register("(?i)The DaticalDB log file",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
@@ -786,7 +804,7 @@
             var report = line.replace("Report ready at ", "");
             properties.put("DaticalReport", report);
         });
-
+        
         //status
         scanner.register("(?i) is up-to-date ",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
@@ -794,7 +812,7 @@
         scanner.register("(?i) is at ",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
         });
-
+        
         scanner.scan();
 
      ]]></post-processing>
@@ -834,7 +852,7 @@
         else {
             properties.put("Status", "Success");
         }
-
+        
         //all
         scanner.register("(?i)The DaticalDB log file",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
@@ -855,7 +873,7 @@
             var report = line.replace("Report ready at ", "");
             properties.put("DaticalReport", report);
         });
-
+        
         //checkdrivers
         scanner.register("(?i)Found ",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
@@ -899,7 +917,7 @@
         else {
             properties.put("Status", "Success");
         }
-
+        
         //all
         scanner.register("(?i)The DaticalDB log file",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
@@ -920,7 +938,7 @@
             var report = line.replace("Report ready at ", "");
             properties.put("DaticalReport", report);
         });
-
+        
         scanner.scan();
 
      ]]></post-processing>
@@ -971,7 +989,7 @@
         else {
             properties.put("Status", "Success");
         }
-
+        
         //all
         scanner.register("(?i)The DaticalDB log file",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
@@ -992,12 +1010,12 @@
             var report = line.replace("Report ready at ", "");
             properties.put("DaticalReport", report);
         });
-
+        
         //rollback
         scanner.register("(?i)Rolled ",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
         });
-
+        
         scanner.scan();
 
      ]]></post-processing>
@@ -1048,7 +1066,7 @@
         else {
             properties.put("Status", "Success");
         }
-
+        
         //all
         scanner.register("(?i)The DaticalDB log file",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
@@ -1069,7 +1087,7 @@
             var report = line.replace("Report ready at ", "");
             properties.put("DaticalReport", report);
         });
-
+        
         //diff*
         scanner.register("(?i)Target database instance",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
@@ -1079,7 +1097,7 @@
             var diffreport = line.split(" at ");
             properties.put("DaticalDiff", diffreport[1]);
         });
-
+        
         scanner.scan();
 
      ]]></post-processing>
@@ -1124,7 +1142,7 @@
         else {
             properties.put("Status", "Success");
         }
-
+        
         //all
         scanner.register("(?i)The DaticalDB log file",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
@@ -1145,7 +1163,7 @@
             var report = line.replace("Report ready at ", "");
             properties.put("DaticalReport", report);
         });
-
+        
         //diff*
         scanner.register("(?i)Target database instance",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
@@ -1167,7 +1185,7 @@
       <arg file="${PLUGIN_OUTPUT_PROPS}" />
     </command>
   </step-type>
-
+  
   <step-type name="Add Datical DB Project">
     <description>Creates a new Datical DB Project in the project directory. Useful for when you are only supplied a changelog.xml and wish to create the project dynamically.</description>
     <properties>
@@ -1194,7 +1212,7 @@
         else {
             properties.put("Status", "Success");
         }
-
+        
         //all
         scanner.register("(?i)The DaticalDB log file",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
@@ -1215,7 +1233,7 @@
             var report = line.replace("Report ready at ", "");
             properties.put("DaticalReport", report);
         });
-
+        
         scanner.scan();
 
      ]]></post-processing>
@@ -1226,8 +1244,8 @@
       <arg file="${PLUGIN_INPUT_PROPS}" />
       <arg file="${PLUGIN_OUTPUT_PROPS}" />
     </command>
-  </step-type>
-
+  </step-type>  
+  
   <step-type name="Add Datical DB Database Definition">
     <description>Creates a new Datical DB Project in the project directory. Useful for when you are only supplied a changelog.xml and wish to create the project dynamically.</description>
     <properties>
@@ -1309,7 +1327,7 @@
         else {
             properties.put("Status", "Success");
         }
-
+        
         //all
         scanner.register("(?i)The DaticalDB log file",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
@@ -1330,7 +1348,7 @@
             var report = line.replace("Report ready at ", "");
             properties.put("DaticalReport", report);
         });
-
+        
         scanner.scan();
 
      ]]></post-processing>
@@ -1341,7 +1359,7 @@
       <arg file="${PLUGIN_INPUT_PROPS}" />
       <arg file="${PLUGIN_OUTPUT_PROPS}" />
     </command>
-  </step-type>
+  </step-type>    
 
   <step-type name="Datical DB Install License">
     <description>Deploys a Datical DB project to a Server.</description>
@@ -1372,7 +1390,7 @@
         else {
             properties.put("Status", "Success");
         }
-
+        
         //all
         scanner.register("(?i)The DaticalDB log file",  function(lineNumber, line) {
         	scanner.addLOI(lineNumber);
@@ -1393,9 +1411,9 @@
             var report = line.replace("Report ready at ", "");
             properties.put("DaticalReport", report);
         });
-
+        
         //installLicense
-
+        
         scanner.scan();
 
      ]]></post-processing>
@@ -1407,5 +1425,5 @@
       <arg file="${PLUGIN_OUTPUT_PROPS}" />
     </command>
   </step-type>
-
+	
 </plugin>

@@ -27,12 +27,29 @@ def getAbsPath(def file) {
 }
 //path properties
 def daticalDBCmd = getAbsPath(props['daticalDBCmd']);
+def daticalDBUsername = props['daticalDBUsername'];
+def daticalDBPassword = props['daticalDBPassword'];
 def daticalDBDriversDir = getAbsPath(props['daticalDBDriversDir']);
 def daticalDBProjectDir = getAbsPath(props['daticalDBProjectDir']);
 def daticalDBAction = "status";
 def daticalDBServer = props['daticalDBServer'];
 
-def cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, '--project', daticalDBProjectDir, daticalDBAction, daticalDBServer];
+def cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, '--project', daticalDBProjectDir];
+
+if (daticalDBUsername) {
+	def usernameString = daticalDBServer + ":::" + daticalDBUsername;
+	cmdArgs << "-un";
+	cmdArgs << usernameString;
+}
+
+if (daticalDBPassword) {
+	def passwordString = daticalDBServer + ":::" + daticalDBPassword;
+	cmdArgs << "-pw";
+	cmdArgs << passwordString;
+}
+
+cmdArgs << daticalDBAction;
+cmdArgs << daticalDBServer;
 
 def daticalDBvm = props['daticalDBvm'];
 if (daticalDBvm) {

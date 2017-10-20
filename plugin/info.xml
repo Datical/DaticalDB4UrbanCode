@@ -55,6 +55,9 @@
 		<release-note plugin-version="23">
 			Added Pipeline parameter to Deploy Command
 		</release-note>
+		<release-note plugin-version="24">
+			Added Support for Runtime Credentials in Forecast, Deploy, Status and StatusDetail steps
+		</release-note>
 	</release-notes>
 
 </pluginInfo>

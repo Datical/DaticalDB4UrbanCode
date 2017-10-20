@@ -27,6 +27,8 @@ def getAbsPath(def file) {
 }
 //path properties
 def daticalDBCmd = getAbsPath(props['daticalDBCmd']);
+def daticalDBUsername = props['daticalDBUsername'];
+def daticalDBPassword = props['daticalDBPassword'];
 def daticalDBDriversDir = getAbsPath(props['daticalDBDriversDir']);
 def daticalDBProjectDir = getAbsPath(props['daticalDBProjectDir']);
 def daticalDBAction = "forecast";
@@ -37,20 +39,20 @@ def daticalDBExportRollbackSQL = props['daticalDBExportRollbackSQL'];
 def daticalDBLabels = props['daticalDBLabels'];
 
 
-def cmdArgs = "";
+def cmdArgs = ""; 
 
 if (daticalDBExportSQL == "true") {
-
+	
 	if (daticalDBExportRollbackSQL == "true") {
-
+		
 		cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, '--project', daticalDBProjectDir, "--genSQL", "--genRollbackSQL"];
-
+		
 	} else {
-
+	
 		cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, '--project', daticalDBProjectDir, "--genSQL"];
 
 	}
-
+	
 } else if (daticalDBExportRollbackSQL == "true") {
 
 	cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, '--project', daticalDBProjectDir, "--genRollbackSQL"];
@@ -59,6 +61,18 @@ if (daticalDBExportSQL == "true") {
 
 	cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, '--project', daticalDBProjectDir];
 
+}
+
+if (daticalDBUsername) {
+	def usernameString = daticalDBContext + ":::" + daticalDBUsername;
+	cmdArgs << "-un";
+	cmdArgs << usernameString;
+}
+
+if (daticalDBPassword) {
+	def passwordString = daticalDBContext + ":::" + daticalDBPassword;
+	cmdArgs << "-pw";
+	cmdArgs << passwordString;
 }
 
 if (daticalDBContext) {
