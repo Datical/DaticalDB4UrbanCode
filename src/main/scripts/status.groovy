@@ -31,6 +31,7 @@ def daticalDBUsername = props['daticalDBUsername'];
 def daticalDBPassword = props['daticalDBPassword'];
 def daticalDBDriversDir = getAbsPath(props['daticalDBDriversDir']);
 def daticalDBProjectDir = getAbsPath(props['daticalDBProjectDir']);
+def daticalProjectName = props['daticalProjectName'];
 def daticalDBPipeline = props['daticalDBPipeline'];
 def daticalDBAction = "status";
 def daticalDBServer = props['daticalDBServer'];
@@ -44,6 +45,10 @@ def cmdArgs = [daticalDBCmd];
 if (daticalService && daticalServiceUsername) {
 	cmdArgs << "--daticalServer=" + daticalService;
 	cmdArgs << "--daticalUsername=" + daticalServiceUsername;
+}
+
+if (daticalProjectName){
+	cmdArgs << "--projectKey=" + daticalProjectName;
 }
 
 // Add driver location and project directory
@@ -70,7 +75,14 @@ if (daticalDBPipeline) {
 }
 
 cmdArgs << daticalDBAction;
-cmdArgs << daticalDBServer;
+
+//Check for service to see if we're running against the service.
+//If we are status the pipeline.  If not status the environment
+if(daticalService && daticalProjectName) {
+	cmdArgs << daticalProjectName;
+} else {
+	cmdArgs << daticalDBServer;
+}
 
 def daticalDBvm = props['daticalDBvm'];
 if (daticalDBvm) {

@@ -30,6 +30,7 @@ def daticalDBPassword = props['daticalDBPassword'];
 def daticalDBDriversDir = getAbsPath(props['daticalDBDriversDir']);
 def daticalDBPipeline = props['daticalDBPipeline'];
 def daticalDBProjectDir = getAbsPath(props['daticalDBProjectDir']);
+def daticalProjectName = props['daticalProjectName'];
 def daticalDBAction = "deploy";
 def daticalDBServer = props['daticalDBServer'];
 def daticalDBContext = props['daticalDBContext'];
@@ -53,6 +54,10 @@ def cmdArgs = [daticalDBCmd];
 if (daticalService && daticalServiceUsername) {
 	cmdArgs << "--daticalServer=" + daticalService;
 	cmdArgs << "--daticalUsername=" + daticalServiceUsername;
+}
+
+if (daticalProjectName){
+	cmdArgs << "--projectKey=" + daticalProjectName;
 }
 
 // Add driver location and project directory

@@ -192,23 +192,14 @@
       <property name="daticalDBCmd" required="true">
         <property-ui type="textBox" label="Datical DB Command" description="The full path to the Datical DB command (e.g., C:\DaticalDB\repl\hammer.bat or /opt/DaticalDB/repl/hammer). Ideally, create a property named daticalDBCmd with the appropriate value." default-value="${p:daticalDBCmd}" />
       </property>
-      <property name="daticalDBUsername" required="true">
-      	<property-ui type="textBox" label="Datical DB Database Username" description = "The username of the Database Server. This is only necessary if username has been removed for the database in Datical project." default-value="${p:daticalDBUsername}"/>
-      </property>
-      <property name="daticalDBPassword" required="true">
-      	<property-ui type="secureBox" label="Datical DB Database Password" description = "The password of the Database Server. This is only necessary if password has been removed for the database in Datical project." default-value="${p:daticalDBPassword}"/>
-      </property>
-      <property name="daticalDBDriversDir" required="true">
+	  <property name="daticalDBDriversDir" required="true">
         <property-ui type="textBox" label="Datical DB Driver Directory" description="The full path where Datical DB drivers are located. Ideally, create a property named daticalDBDriversDir with the appropriate value." default-value="${p:daticalDBDriversDir}" />
+      </property>
+	  <property name="daticalProjectName" required="false">
+        <property-ui type="textBox" label="Datical Project Name" description="The Datical Project Name. Required for using the Datical Service" />
       </property>
       <property name="daticalDBProjectDir" required="true">
         <property-ui type="textBox" label="Datical DB Project Directory" description="The full path where the Datical DB project is located." default-value="."/>
-      </property>
-	  <property name="daticalService" required="false">
-      	<property-ui type="textBox" label="Datical Service Host" description = "Hostname or IP Address for the Datical Service" />
-      </property>
-	  <property name="daticalServiceUsername" required="false">
-      	<property-ui type="textBox" label="Datical Service Username" description = "The username for the Datical Service. Only supported in Datical 5 and later releases." />
       </property>
 	  <property name="daticalDBPipeline" required="true">
         <property-ui type="textBox" label="Datical DB Pipeline" description="The Datical DB Pipeline in which the target server resides." />
@@ -216,7 +207,16 @@
       <property name="daticalDBServer" required="true">
         <property-ui type="textBox" label="Datical DB Server" description="The Datical DB Server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan." />
       </property>
-      <property name="daticalDBContext" required="false">
+	  <property name="daticalDBUsername" required="false">
+      	<property-ui type="textBox" label="Datical DB Database Username" description = "The username of the Database Server. This is only necessary if username has been removed for the database in Datical project." default-value="${p:daticalDBUsername}"/>
+      </property>
+      <property name="daticalDBPassword" required="false">
+      	<property-ui type="secureBox" label="Datical DB Database Password" description = "The password of the Database Server. This is only necessary if password has been removed for the database in Datical project." default-value="${p:daticalDBPassword}"/>
+      </property>
+	  <property name="daticalDBLabels" required="false">
+        <property-ui type="textBox" label="Datical DB Labels" description="The Datical DB Labels of the Change Sets to deploy." />
+      </property>
+	  <property name="daticalDBContext" required="false">
         <property-ui type="textBox" label="Datical DB Context" description="The Datical DB Context of your DB Server." />
       </property>
       <property name="daticalDBRollback" required="false">
@@ -228,20 +228,23 @@
       <property name="daticalDBExportRollbackSQL" required="false">
         <property-ui type="checkBox" label="Export Rollback SQL" description="If checked, Datical DB will export Rollback SQL to be run against the server." />
       </property>
-      <property name="daticalDBvm" required="false">
-      	<property-ui type="textBox" label="Datical DB JVM" description="The Java Virtual Machine to use with Datical DB. (e.g.,  /usr/lib/jvm/java-7-openjdk-amd64)" />
-      </property>
-      <property name="daticalDBvmargs" required="false">
-      	<property-ui type="textBox" label="Datical DB JVM Arguments" description="The Java Virtual Machine Arguments to use with Datical DB. (e.g., -Xms512M -Xmx1024M)" />
-      </property>
       <property name="daticalDBDeployThreshold" required="false">
       	<property-ui type="selectBox" label="Deploy Threshold"  description="Sets the deployment threshold for rules." />
 		<value label="Stop on Error">stopOnError</value>
   		<value label="Stop on Warn">stopOnWarn</value>
 		<value label="Deploy Always">deployAlways</value>
       </property>
-      <property name="daticalDBLabels" required="false">
-        <property-ui type="textBox" label="Datical DB Labels" description="The Datical DB Labels of the Change Sets to deploy." />
+	  <property name="daticalService" required="false">
+      	<property-ui type="textBox" label="Datical Service Host" description = "Hostname or IP Address for the Datical Service" />
+      </property>
+	  <property name="daticalServiceUsername" required="false">
+      	<property-ui type="textBox" label="Datical Service Username" description = "The username for the Datical Service. Only supported in Datical 5 and later releases." />
+      </property>
+	  <property name="daticalDBvm" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM" description="The Java Virtual Machine to use with Datical DB. (e.g.,  /usr/lib/jvm/java-7-openjdk-amd64)" />
+      </property>
+      <property name="daticalDBvmargs" required="false">
+      	<property-ui type="textBox" label="Datical DB JVM Arguments" description="The Java Virtual Machine Arguments to use with Datical DB. (e.g., -Xms512M -Xmx1024M)" />
       </property>
     </properties>
     <post-processing><![CDATA[
@@ -312,34 +315,37 @@
     <description>Validates and Forecasts a Datical DB project against a Server.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
-        <property-ui type="textBox" label="Datical DB Command" description="The full path to the Datical DB command (e.g., C:\DaticalDB\repl\hammer.bat or /opt/DaticalDB/repl/hammer)" default-value="${p:daticalDBCmd}" />
+        <property-ui type="textBox" label="Datical DB Command" description="The full path to the Datical DB command (e.g., C:\DaticalDB\repl\hammer.bat or /opt/DaticalDB/repl/hammer). Ideally, create a property named daticalDBCmd with the appropriate value." default-value="${p:daticalDBCmd}" />
       </property>
-	  <property name="daticalDBServer" required="true">
-        <property-ui type="textBox" label="Datical DB Server" description="The Datical DB Server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan." />
+	  <property name="daticalDBDriversDir" required="true">
+        <property-ui type="textBox" label="Datical DB Driver Directory" description="The full path where Datical DB drivers are located. Ideally, create a property named daticalDBDriversDir with the appropriate value." default-value="${p:daticalDBDriversDir}" />
       </property>
-      <property name="daticalDBUsername" required="true">
-      	<property-ui type="textBox" label="Datical DB Database Username" description = "The username of the Database Server." default-value="${p:daticalDBUsername}"/>
-      </property>
-      <property name="daticalDBPassword" required="true">
-      	<property-ui type="secureBox" label="Datical DB Database Password" description = "The password of the Database Server." default-value="${p:daticalDBPassword}"/>
-      </property>
-      <property name="daticalDBDriversDir" required="true">
-        <property-ui type="textBox" label="Datical DB Driver Directory" description="The full path where Datical DB drivers are located." default-value="${p:daticalDBDriversDir}" />
+	  <property name="daticalProjectName" required="false">
+        <property-ui type="textBox" label="Datical Project Name" description="The Datical Project Name. Required for using the Datical Service" />
       </property>
       <property name="daticalDBProjectDir" required="true">
         <property-ui type="textBox" label="Datical DB Project Directory" description="The full path where the Datical DB project is located." default-value="."/>
       </property>
-	  <property name="daticalService" required="false">
-      	<property-ui type="textBox" label="Datical Service Host" description = "Hostname or IP Address for the Datical Service" />
-      </property>
-	  <property name="daticalServiceUsername" required="false">
-      	<property-ui type="textBox" label="Datical Service Username" description = "The username for the Datical Service. Only supported in Datical 5 and later releases." />
-      </property>
 	  <property name="daticalDBPipeline" required="true">
         <property-ui type="textBox" label="Datical DB Pipeline" description="The Datical DB Pipeline in which the target server resides." />
       </property>
+      <property name="daticalDBServer" required="true">
+        <property-ui type="textBox" label="Datical DB Server" description="The Datical DB Server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan." />
+      </property>
+	  <property name="daticalDBUsername" required="false">
+      	<property-ui type="textBox" label="Datical DB Database Username" description = "The username of the Database Server. This is only necessary if username has been removed for the database in Datical project." default-value="${p:daticalDBUsername}"/>
+      </property>
+      <property name="daticalDBPassword" required="false">
+      	<property-ui type="secureBox" label="Datical DB Database Password" description = "The password of the Database Server. This is only necessary if password has been removed for the database in Datical project." default-value="${p:daticalDBPassword}"/>
+      </property>
+	  <property name="daticalDBLabels" required="false">
+        <property-ui type="textBox" label="Datical DB Labels" description="The Datical DB Labels of the Change Sets to deploy." />
+      </property>
 	  <property name="daticalDBContext" required="false">
         <property-ui type="textBox" label="Datical DB Context" description="The Datical DB Context of your DB Server." />
+      </property>
+      <property name="daticalDBRollback" required="false">
+        <property-ui type="checkBox" label="Automatic Rollback" description="If the Datical DB deploy fails, selecting this box will automatically rollback the server to the initial state using the rollback instructions specified in the Datical DB project and/or the Datical DB defaults." />
       </property>
       <property name="daticalDBExportSQL" required="false">
         <property-ui type="checkBox" label="Export SQL" description="If checked, Datical DB will export SQL to be run against the server." />
@@ -347,20 +353,17 @@
       <property name="daticalDBExportRollbackSQL" required="false">
         <property-ui type="checkBox" label="Export Rollback SQL" description="If checked, Datical DB will export Rollback SQL to be run against the server." />
       </property>
-      <property name="daticalDBDeployThreshold" required="false">
-      	<property-ui type="selectBox" label="Deploy Threshold"  description="Sets the deployment threshold for rules." />
-		<value label="Stop on Error">stopOnError</value>
-  		<value label="Stop on Warn">stopOnWarn</value>
-		<value label="Deploy Always">deployAlways</value>
+	  <property name="daticalService" required="false">
+      	<property-ui type="textBox" label="Datical Service Host" description = "Hostname or IP Address for the Datical Service" />
       </property>
-      <property name="daticalDBvm" required="false">
+	  <property name="daticalServiceUsername" required="false">
+      	<property-ui type="textBox" label="Datical Service Username" description = "The username for the Datical Service. Only supported in Datical 5 and later releases." />
+      </property>
+	  <property name="daticalDBvm" required="false">
       	<property-ui type="textBox" label="Datical DB JVM" description="The Java Virtual Machine to use with Datical DB. (e.g.,  /usr/lib/jvm/java-7-openjdk-amd64)" />
       </property>
       <property name="daticalDBvmargs" required="false">
       	<property-ui type="textBox" label="Datical DB JVM Arguments" description="The Java Virtual Machine Arguments to use with Datical DB. (e.g., -Xms512M -Xmx1024M)" />
-      </property>
-      <property name="daticalDBLabels" required="false">
-        <property-ui type="textBox" label="Datical DB Labels" description="The Datical DB Labels of the Change Sets to deploy." />
       </property>
     </properties>
     <post-processing><![CDATA[
@@ -696,25 +699,34 @@
     <description>Reports on the current Status of a Server.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
-        <property-ui type="textBox" label="Datical DB Command" description="The full path to the Datical DB command (e.g., C:\DaticalDB\repl\hammer.bat or /opt/DaticalDB/repl/hammer)" default-value="${p:daticalDBCmd}" />
+        <property-ui type="textBox" label="Datical DB Command" description="The full path to the Datical DB command (e.g., C:\DaticalDB\repl\hammer.bat or /opt/DaticalDB/repl/hammer). Ideally, create a property named daticalDBCmd with the appropriate value." default-value="${p:daticalDBCmd}" />
       </property>
-	  <property name="daticalDBServer" required="false">
-        <property-ui type="textBox" label="Datical DB Server" description="The Datical DB Server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan." />
+	  <property name="daticalDBDriversDir" required="true">
+        <property-ui type="textBox" label="Datical DB Driver Directory" description="The full path where Datical DB drivers are located. Ideally, create a property named daticalDBDriversDir with the appropriate value." default-value="${p:daticalDBDriversDir}" />
       </property>
-      <property name="daticalDBDriversDir" required="true">
-        <property-ui type="textBox" label="Datical DB Driver Directory" description="The full path where Datical DB drivers are located." default-value="${p:daticalDBDriversDir}" />
+	  <property name="daticalProjectName" required="false">
+        <property-ui type="textBox" label="Datical Project Name" description="The Datical Project Name. Required for using the Datical Service" />
       </property>
       <property name="daticalDBProjectDir" required="true">
         <property-ui type="textBox" label="Datical DB Project Directory" description="The full path where the Datical DB project is located." default-value="."/>
+      </property>
+	  <property name="daticalDBPipeline" required="true">
+        <property-ui type="textBox" label="Datical DB Pipeline" description="The Datical DB Pipeline in which the target server resides." />
+      </property>
+      <property name="daticalDBServer" required="true">
+        <property-ui type="textBox" label="Datical DB Server" description="The Datical DB Server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan." />
+      </property>
+	  <property name="daticalDBUsername" required="false">
+      	<property-ui type="textBox" label="Datical DB Database Username" description = "The username of the Database Server. This is only necessary if username has been removed for the database in Datical project." default-value="${p:daticalDBUsername}"/>
+      </property>
+      <property name="daticalDBPassword" required="false">
+      	<property-ui type="secureBox" label="Datical DB Database Password" description = "The password of the Database Server. This is only necessary if password has been removed for the database in Datical project." default-value="${p:daticalDBPassword}"/>
       </property>
 	  <property name="daticalService" required="false">
       	<property-ui type="textBox" label="Datical Service Host" description = "Hostname or IP Address for the Datical Service" />
       </property>
 	  <property name="daticalServiceUsername" required="false">
       	<property-ui type="textBox" label="Datical Service Username" description = "The username for the Datical Service. Only supported in Datical 5 and later releases." />
-      </property>
-	  <property name="daticalDBPipeline" required="true">
-        <property-ui type="textBox" label="Datical DB Pipeline" description="The Datical DB Pipeline in which the target server resides." />
       </property>
       <property name="daticalDBvm" required="false">
       	<property-ui type="textBox" label="Datical DB JVM" description="The Java Virtual Machine to use with Datical DB. (e.g.,  /usr/lib/jvm/java-7-openjdk-amd64)" />
@@ -776,31 +788,34 @@
     <description>Reports on the detailed current Status of a Server.</description>
     <properties>
       <property name="daticalDBCmd" required="true">
-        <property-ui type="textBox" label="Datical DB Command" description="The full path to the Datical DB command (e.g., C:\DaticalDB\repl\hammer.bat or /opt/DaticalDB/repl/hammer)" default-value="${p:daticalDBCmd}" />
+        <property-ui type="textBox" label="Datical DB Command" description="The full path to the Datical DB command (e.g., C:\DaticalDB\repl\hammer.bat or /opt/DaticalDB/repl/hammer). Ideally, create a property named daticalDBCmd with the appropriate value." default-value="${p:daticalDBCmd}" />
       </property>
-	  <property name="daticalDBServer" required="false">
-        <property-ui type="textBox" label="Datical DB Server" description="The Datical DB Server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan." />
+	  <property name="daticalDBDriversDir" required="true">
+        <property-ui type="textBox" label="Datical DB Driver Directory" description="The full path where Datical DB drivers are located. Ideally, create a property named daticalDBDriversDir with the appropriate value." default-value="${p:daticalDBDriversDir}" />
       </property>
-      <property name="daticalDBUsername" required="true">
-      	<property-ui type="textBox" label="Datical DB Database Username" description = "The username of the Database Server." default-value="${p:daticalDBUsername}"/>
-      </property>
-      <property name="daticalDBPassword" required="true">
-      	<property-ui type="secureBox" label="Datical DB Database Password" description = "The password of the Database Server." default-value="${p:daticalDBPassword}"/>
-      </property>
-      <property name="daticalDBDriversDir" required="true">
-        <property-ui type="textBox" label="Datical DB Driver Directory" description="The full path where Datical DB drivers are located." default-value="${p:daticalDBDriversDir}" />
+	  <property name="daticalProjectName" required="false">
+        <property-ui type="textBox" label="Datical Project Name" description="The Datical Project Name. Required for using the Datical Service" />
       </property>
       <property name="daticalDBProjectDir" required="true">
         <property-ui type="textBox" label="Datical DB Project Directory" description="The full path where the Datical DB project is located." default-value="."/>
+      </property>
+	  <property name="daticalDBPipeline" required="true">
+        <property-ui type="textBox" label="Datical DB Pipeline" description="The Datical DB Pipeline in which the target server resides." />
+      </property>
+      <property name="daticalDBServer" required="false">
+        <property-ui type="textBox" label="Datical DB Server" description="The Datical DB Server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan." />
+      </property>
+	  <property name="daticalDBUsername" required="false">
+      	<property-ui type="textBox" label="Datical DB Database Username" description = "The username of the Database Server. This is only necessary if username has been removed for the database in Datical project." default-value="${p:daticalDBUsername}"/>
+      </property>
+      <property name="daticalDBPassword" required="false">
+      	<property-ui type="secureBox" label="Datical DB Database Password" description = "The password of the Database Server. This is only necessary if password has been removed for the database in Datical project." default-value="${p:daticalDBPassword}"/>
       </property>
 	  <property name="daticalService" required="false">
       	<property-ui type="textBox" label="Datical Service Host" description = "Hostname or IP Address for the Datical Service" />
       </property>
 	  <property name="daticalServiceUsername" required="false">
       	<property-ui type="textBox" label="Datical Service Username" description = "The username for the Datical Service. Only supported in Datical 5 and later releases." />
-      </property>
-	  <property name="daticalDBPipeline" required="true">
-        <property-ui type="textBox" label="Datical DB Pipeline" description="The Datical DB Pipeline in which the target server resides." />
       </property>
       <property name="daticalDBvm" required="false">
       	<property-ui type="textBox" label="Datical DB JVM" description="The Java Virtual Machine to use with Datical DB. (e.g.,  /usr/lib/jvm/java-7-openjdk-amd64)" />
@@ -1308,10 +1323,10 @@
       <property name="daticalDBPort" required="true">
       	<property-ui type="textBox" label="Datical DB Database Port" description = "The port of the Database Server." default-value="50000"/>
       </property>
-      <property name="daticalDBUsername" required="true">
+      <property name="daticalDBUsername" required="false">
       	<property-ui type="textBox" label="Datical DB Database Username" description = "The username of the Database Server." default-value="db2inst1"/>
       </property>
-      <property name="daticalDBPassword" required="true">
+      <property name="daticalDBPassword" required="false">
       	<property-ui type="secureBox" label="Datical DB Database Password" description = "The password of the Database Server." default-value="p455w0rd"/>
       </property>
 		<!-- OPTIONAL -->
