@@ -2,6 +2,16 @@
 <plugin-upgrade xmlns="http://www.urbancode.com/UpgradeXMLSchema_v1"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
+	<migrate to-version="25">
+
+		<migrate-command name="Deploy with Datical DB">
+			<migrate-properties>
+				<migrate-property name="daticalServiceUsername"/>
+				<migrate-property name="daticalService"/>
+			</migrate-properties>
+		</migrate-command>
+
+	</migrate>
 
 	<migrate to-version="23">
 

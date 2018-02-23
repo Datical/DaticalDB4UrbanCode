@@ -14,8 +14,6 @@ catch (IOException e) {
 final def cwd = new File('.');
 final def cmdHelper = new CommandHelper(cwd);
 
-
-
 //--------------------------------------------------------------------------------------------------
 def getAbsPath(def file) {
     def tempFile = null;
@@ -39,6 +37,8 @@ def daticalDBRollback = props['daticalDBRollback']
 def daticalDBExportSQL = props['daticalDBExportSQL'];
 def daticalDBExportRollbackSQL = props['daticalDBExportRollbackSQL'];
 def daticalDBLabels = props['daticalDBLabels'];
+def daticalServiceUsername = props['daticalServiceUsername'];
+def daticalService = props['daticalService'];
 
 if (daticalDBRollback == "false") {
     daticalDBAction = "deploy";
@@ -46,29 +46,29 @@ if (daticalDBRollback == "false") {
 	daticalDBAction = "deploy-autoRollback";
 }
 
-def cmdArgs = ""; 
+// START building the CLI args.  Start with the pointer to hammer
+def cmdArgs = [daticalDBCmd]; 
 
-if (daticalDBExportSQL == "true") {
-	
-	if (daticalDBExportRollbackSQL == "true") {
-		
-		cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, '--project', daticalDBProjectDir, "--genSQL", "--genRollbackSQL"];
-		
-	} else {
-	
-		cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, '--project', daticalDBProjectDir, "--genSQL"];
-
-	}
-	
-} else if (daticalDBExportRollbackSQL == "true") {
-
-	cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, '--project', daticalDBProjectDir, "--genRollbackSQL"];
-
-} else {
-
-	cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, '--project', daticalDBProjectDir];
-
+//Check for Datical Service Specific Properties nd BUild the Appropriate Command Line
+if (daticalService && daticalServiceUsername) {
+	cmdArgs << "--daticalServer=" + daticalService;
+	cmdArgs << "--daticalUsername=" + daticalServiceUsername;
 }
+
+// Add driver location and project directory
+cmdArgs << '--drivers';
+cmdArgs << daticalDBDriversDir;
+cmdArgs << '--project';
+cmdArgs << daticalDBProjectDir;
+
+// Handle SQL Exports 
+if (daticalDBExportSQL == "true") {
+	cmdArgs << '--genSQL';
+}	
+
+if (daticalDBExportRollbackSQL == "true") {
+	cmdArgs <<  '--genRollbackSQL';
+} 
 
 if (daticalDBUsername) {
 	def usernameString = daticalDBContext + ":::" + daticalDBUsername;

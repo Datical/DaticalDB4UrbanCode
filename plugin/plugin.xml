@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://www.urbancode.com/PluginXMLSchema_v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <header>
-    <identifier version="24" id="com.datical.integration.udeploy.DaticalDB4UrbanCode" name="Datical DB" />
+    <identifier version="25" id="com.datical.integration.udeploy.DaticalDB4UrbanCode" name="Datical DB" />
     <description>Datical DB makes it incredibly easy to automate and
 			manage database schema changes for high volume, complex releases,
 			across any environment, for any database. No agents required.
@@ -204,6 +204,12 @@
       <property name="daticalDBProjectDir" required="true">
         <property-ui type="textBox" label="Datical DB Project Directory" description="The full path where the Datical DB project is located." default-value="."/>
       </property>
+	  <property name="daticalService" required="false">
+      	<property-ui type="textBox" label="Datical Service Host" description = "Hostname or IP Address for the Datical Service" />
+      </property>
+	  <property name="daticalServiceUsername" required="false">
+      	<property-ui type="textBox" label="Datical Service Username" description = "The username for the Datical Service. Only supported in Datical 5 and later releases." />
+      </property>
 	  <property name="daticalDBPipeline" required="true">
         <property-ui type="textBox" label="Datical DB Pipeline" description="The Datical DB Pipeline in which the target server resides." />
       </property>
@@ -308,6 +314,9 @@
       <property name="daticalDBCmd" required="true">
         <property-ui type="textBox" label="Datical DB Command" description="The full path to the Datical DB command (e.g., C:\DaticalDB\repl\hammer.bat or /opt/DaticalDB/repl/hammer)" default-value="${p:daticalDBCmd}" />
       </property>
+	  <property name="daticalDBServer" required="true">
+        <property-ui type="textBox" label="Datical DB Server" description="The Datical DB Server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan." />
+      </property>
       <property name="daticalDBUsername" required="true">
       	<property-ui type="textBox" label="Datical DB Database Username" description = "The username of the Database Server." default-value="${p:daticalDBUsername}"/>
       </property>
@@ -320,10 +329,16 @@
       <property name="daticalDBProjectDir" required="true">
         <property-ui type="textBox" label="Datical DB Project Directory" description="The full path where the Datical DB project is located." default-value="."/>
       </property>
-      <property name="daticalDBServer" required="true">
-        <property-ui type="textBox" label="Datical DB Server" description="The Datical DB Server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan." />
+	  <property name="daticalService" required="false">
+      	<property-ui type="textBox" label="Datical Service Host" description = "Hostname or IP Address for the Datical Service" />
       </property>
-      <property name="daticalDBContext" required="false">
+	  <property name="daticalServiceUsername" required="false">
+      	<property-ui type="textBox" label="Datical Service Username" description = "The username for the Datical Service. Only supported in Datical 5 and later releases." />
+      </property>
+	  <property name="daticalDBPipeline" required="true">
+        <property-ui type="textBox" label="Datical DB Pipeline" description="The Datical DB Pipeline in which the target server resides." />
+      </property>
+	  <property name="daticalDBContext" required="false">
         <property-ui type="textBox" label="Datical DB Context" description="The Datical DB Context of your DB Server." />
       </property>
       <property name="daticalDBExportSQL" required="false">
@@ -683,14 +698,23 @@
       <property name="daticalDBCmd" required="true">
         <property-ui type="textBox" label="Datical DB Command" description="The full path to the Datical DB command (e.g., C:\DaticalDB\repl\hammer.bat or /opt/DaticalDB/repl/hammer)" default-value="${p:daticalDBCmd}" />
       </property>
+	  <property name="daticalDBServer" required="false">
+        <property-ui type="textBox" label="Datical DB Server" description="The Datical DB Server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan." />
+      </property>
       <property name="daticalDBDriversDir" required="true">
         <property-ui type="textBox" label="Datical DB Driver Directory" description="The full path where Datical DB drivers are located." default-value="${p:daticalDBDriversDir}" />
       </property>
       <property name="daticalDBProjectDir" required="true">
         <property-ui type="textBox" label="Datical DB Project Directory" description="The full path where the Datical DB project is located." default-value="."/>
       </property>
-      <property name="daticalDBServer" required="false">
-        <property-ui type="textBox" label="Datical DB Server" description="The Datical DB Server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan." />
+	  <property name="daticalService" required="false">
+      	<property-ui type="textBox" label="Datical Service Host" description = "Hostname or IP Address for the Datical Service" />
+      </property>
+	  <property name="daticalServiceUsername" required="false">
+      	<property-ui type="textBox" label="Datical Service Username" description = "The username for the Datical Service. Only supported in Datical 5 and later releases." />
+      </property>
+	  <property name="daticalDBPipeline" required="true">
+        <property-ui type="textBox" label="Datical DB Pipeline" description="The Datical DB Pipeline in which the target server resides." />
       </property>
       <property name="daticalDBvm" required="false">
       	<property-ui type="textBox" label="Datical DB JVM" description="The Java Virtual Machine to use with Datical DB. (e.g.,  /usr/lib/jvm/java-7-openjdk-amd64)" />
@@ -754,6 +778,9 @@
       <property name="daticalDBCmd" required="true">
         <property-ui type="textBox" label="Datical DB Command" description="The full path to the Datical DB command (e.g., C:\DaticalDB\repl\hammer.bat or /opt/DaticalDB/repl/hammer)" default-value="${p:daticalDBCmd}" />
       </property>
+	  <property name="daticalDBServer" required="false">
+        <property-ui type="textBox" label="Datical DB Server" description="The Datical DB Server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan." />
+      </property>
       <property name="daticalDBUsername" required="true">
       	<property-ui type="textBox" label="Datical DB Database Username" description = "The username of the Database Server." default-value="${p:daticalDBUsername}"/>
       </property>
@@ -766,8 +793,14 @@
       <property name="daticalDBProjectDir" required="true">
         <property-ui type="textBox" label="Datical DB Project Directory" description="The full path where the Datical DB project is located." default-value="."/>
       </property>
-      <property name="daticalDBServer" required="false">
-        <property-ui type="textBox" label="Datical DB Server" description="The Datical DB Server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan." />
+	  <property name="daticalService" required="false">
+      	<property-ui type="textBox" label="Datical Service Host" description = "Hostname or IP Address for the Datical Service" />
+      </property>
+	  <property name="daticalServiceUsername" required="false">
+      	<property-ui type="textBox" label="Datical Service Username" description = "The username for the Datical Service. Only supported in Datical 5 and later releases." />
+      </property>
+	  <property name="daticalDBPipeline" required="true">
+        <property-ui type="textBox" label="Datical DB Pipeline" description="The Datical DB Pipeline in which the target server resides." />
       </property>
       <property name="daticalDBvm" required="false">
       	<property-ui type="textBox" label="Datical DB JVM" description="The Java Virtual Machine to use with Datical DB. (e.g.,  /usr/lib/jvm/java-7-openjdk-amd64)" />
