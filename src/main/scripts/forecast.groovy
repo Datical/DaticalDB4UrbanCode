@@ -29,6 +29,7 @@ def daticalDBUsername = props['daticalDBUsername'];
 def daticalDBPassword = props['daticalDBPassword'];
 def daticalDBDriversDir = getAbsPath(props['daticalDBDriversDir']);
 def daticalDBProjectDir = getAbsPath(props['daticalDBProjectDir']);
+def daticalImmutableProject = props['daticalImmutableProject'];
 def daticalProjectName = props['daticalProjectName'];
 def daticalDBPipeline = props['daticalDBPipeline'];
 def daticalDBAction = "forecast";
@@ -47,6 +48,11 @@ def cmdArgs = [daticalDBCmd];
 if (daticalService && daticalServiceUsername) {
 	cmdArgs << "--daticalServer=" + daticalService;
 	cmdArgs << "--daticalUsername=" + daticalServiceUsername;
+}
+
+// Set the immutableProject flag if needed
+if (daticalImmutableProject) {
+	cmdArgs << "--immutableProject=" + daticalImmutableProject;
 }
 
 if (daticalProjectName){

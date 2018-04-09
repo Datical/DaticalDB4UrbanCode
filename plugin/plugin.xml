@@ -201,6 +201,9 @@
       <property name="daticalDBProjectDir" required="true">
         <property-ui type="textBox" label="Datical DB Project Directory" description="The full path where the Datical DB project is located." default-value="."/>
       </property>
+	  <property name="daticalImmutableProject" required="false">
+        <property-ui type="checkBox" label="Use Immutable Project" description="When checked, Datical will use project information in an immutable artifact instead of project information received from the Datical Server" />
+      </property>
 	  <property name="daticalDBPipeline" required="true">
         <property-ui type="textBox" label="Datical DB Pipeline" description="The Datical DB Pipeline in which the target server resides." />
       </property>
@@ -325,6 +328,9 @@
       </property>
       <property name="daticalDBProjectDir" required="true">
         <property-ui type="textBox" label="Datical DB Project Directory" description="The full path where the Datical DB project is located." default-value="."/>
+      </property>
+	  <property name="daticalImmutableProject" required="false">
+        <property-ui type="checkBox" label="Use Immutable Project" description="When checked, Datical will use project information in an immutable artifact instead of project information received from the Datical Server" />
       </property>
 	  <property name="daticalDBPipeline" required="true">
         <property-ui type="textBox" label="Datical DB Pipeline" description="The Datical DB Pipeline in which the target server resides." />
@@ -710,11 +716,14 @@
       <property name="daticalDBProjectDir" required="true">
         <property-ui type="textBox" label="Datical DB Project Directory" description="The full path where the Datical DB project is located." default-value="."/>
       </property>
-	  <property name="daticalDBPipeline" required="true">
-        <property-ui type="textBox" label="Datical DB Pipeline" description="The Datical DB Pipeline in which the target server resides." />
+	  <property name="daticalImmutableProject" required="false">
+        <property-ui type="checkBox" label="Use Immutable Project" description="When checked, Datical will use project information in an immutable artifact instead of project information received from the Datical Server" />
       </property>
       <property name="daticalDBServer" required="true">
         <property-ui type="textBox" label="Datical DB Server" description="The Datical DB Server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan." />
+      </property>
+	  <property name="daticalDBPipeline" required="false">
+        <property-ui type="textBox" label="Datical DB Pipeline" description="The Datical DB Pipeline in which the target server resides." />
       </property>
 	  <property name="daticalDBUsername" required="false">
       	<property-ui type="textBox" label="Datical DB Database Username" description = "The username of the Database Server. This is only necessary if username has been removed for the database in Datical project." default-value="${p:daticalDBUsername}"/>
@@ -799,11 +808,14 @@
       <property name="daticalDBProjectDir" required="true">
         <property-ui type="textBox" label="Datical DB Project Directory" description="The full path where the Datical DB project is located." default-value="."/>
       </property>
-	  <property name="daticalDBPipeline" required="true">
-        <property-ui type="textBox" label="Datical DB Pipeline" description="The Datical DB Pipeline in which the target server resides." />
+	  <property name="daticalImmutableProject" required="false">
+        <property-ui type="checkBox" label="Use Immutable Project" description="When checked, Datical will use project information in an immutable artifact instead of project information received from the Datical Server" />
       </property>
       <property name="daticalDBServer" required="false">
         <property-ui type="textBox" label="Datical DB Server" description="The Datical DB Server you wish to manage with Datical DB. You can determine this value by opening Datical DB and choosing a server listed in your Deployment Plan." />
+      </property>
+	  <property name="daticalDBPipeline" required="false">
+        <property-ui type="textBox" label="Datical DB Pipeline" description="The Datical DB Pipeline in which the target server resides." />
       </property>
 	  <property name="daticalDBUsername" required="false">
       	<property-ui type="textBox" label="Datical DB Database Username" description = "The username of the Database Server. This is only necessary if username has been removed for the database in Datical project." default-value="${p:daticalDBUsername}"/>
