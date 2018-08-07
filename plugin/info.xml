@@ -58,6 +58,10 @@
 		<release-note plugin-version="24">
 			Added Support for Runtime Credentials in Forecast, Deploy, Status and Status Details steps
 		</release-note>
+		<release-note plugin-version="25">
+			Added Pipeline Parameter to Status, Status Details and Forecast Commands
+			Added Support for Datical 5 Server Parameters to Forecast, Deploy, Status, and Status Details Commands
+		</release-note>
 	</release-notes>
 
 </pluginInfo>
