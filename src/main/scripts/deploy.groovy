@@ -42,6 +42,7 @@ def daticalDBLabels = props['daticalDBLabels'];
 def daticalServiceUsername = props['daticalServiceUsername'];
 def daticalService = props['daticalService'];
 
+
 if (daticalDBRollback == "false") {
     daticalDBAction = "deploy";
 } else {
