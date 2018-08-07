@@ -41,7 +41,7 @@ if (daticalDBChangeLog) {
 	cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir,  '--project', daticalDBProjectDir,daticalDBAction, daticalDBServerReference, daticalDBServerComparison, daticalDBChangeLog];
 } else {
 	cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir,  '--project', daticalDBProjectDir,daticalDBAction, daticalDBServerReference, daticalDBServerComparison];
-}	
+}
 
 def daticalDBLabels = props['daticalDBLabels'];
 if (daticalDBLabels) {

@@ -20,6 +20,14 @@ This plug-in is protected under the [Apache 2.0 License](https://www.apache.org/
 
 Release Notes:
 
+### Version 25 - May 2, 2018
+
+Added Support for Datical 5 Command Parameters and the immutableProject flag for artifact based Deployments
+
+### Version 24 - October 20, 2017
+
+Added Support for Runtime Credentials in Forecast, Deploy, Status, and Status Details steps
+
 ### Version 23 - September 27, 2017
 
 Added Pipeline parameter to Deploy Command

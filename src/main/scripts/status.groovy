@@ -27,12 +27,68 @@ def getAbsPath(def file) {
 }
 //path properties
 def daticalDBCmd = getAbsPath(props['daticalDBCmd']);
+def daticalDBUsername = props['daticalDBUsername'];
+def daticalDBPassword = props['daticalDBPassword'];
 def daticalDBDriversDir = getAbsPath(props['daticalDBDriversDir']);
 def daticalDBProjectDir = getAbsPath(props['daticalDBProjectDir']);
+def daticalImmutableProject = props['daticalImmutableProject'];
+def daticalProjectName = props['daticalProjectName'];
+def daticalDBPipeline = props['daticalDBPipeline'];
 def daticalDBAction = "status";
 def daticalDBServer = props['daticalDBServer'];
+def daticalServiceUsername = props['daticalServiceUsername'];
+def daticalService = props['daticalService'];
 
-def cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, '--project', daticalDBProjectDir, daticalDBAction, daticalDBServer];
+// START building the CLI args.  Start with the pointer to hammer
+def cmdArgs = [daticalDBCmd]; 
+
+//Check for Datical Service Specific Properties nd BUild the Appropriate Command Line
+if (daticalService && daticalServiceUsername) {
+	cmdArgs << "--daticalServer=" + daticalService;
+	cmdArgs << "--daticalUsername=" + daticalServiceUsername;
+}
+
+// Set the immutableProject flag if needed
+if (daticalImmutableProject) {
+	cmdArgs << "--immutableProject=" + daticalImmutableProject;
+}
+
+if (daticalProjectName){
+	cmdArgs << "--projectKey=" + daticalProjectName;
+}
+
+// Add driver location and project directory
+cmdArgs << '--drivers';
+cmdArgs << daticalDBDriversDir;
+cmdArgs << '--project';
+cmdArgs << daticalDBProjectDir;
+
+if (daticalDBUsername) {
+	def usernameString = daticalDBServer + ":::" + daticalDBUsername;
+	cmdArgs << "-un";
+	cmdArgs << usernameString;
+}
+
+if (daticalDBPassword) {
+	def passwordString = daticalDBServer + ":::" + daticalDBPassword;
+	cmdArgs << "-pw";
+	cmdArgs << passwordString;
+}
+
+if (daticalDBPipeline) {
+	cmdArgs << "--pipeline";
+	cmdArgs << daticalDBPipeline;
+}
+
+cmdArgs << daticalDBAction;
+
+//Check for service to see if we're running against the service.
+//If we are status the pipeline.  If not status the environment
+if(daticalService && daticalProjectName) {
+	cmdArgs << daticalProjectName;
+} else {
+	cmdArgs << daticalDBServer;
+}
 
 def daticalDBvm = props['daticalDBvm'];
 if (daticalDBvm) {

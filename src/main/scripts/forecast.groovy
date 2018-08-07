@@ -14,8 +14,6 @@ catch (IOException e) {
 final def cwd = new File('.');
 final def cmdHelper = new CommandHelper(cwd);
 
-
-
 //--------------------------------------------------------------------------------------------------
 def getAbsPath(def file) {
     def tempFile = null;
@@ -27,38 +25,65 @@ def getAbsPath(def file) {
 }
 //path properties
 def daticalDBCmd = getAbsPath(props['daticalDBCmd']);
+def daticalDBUsername = props['daticalDBUsername'];
+def daticalDBPassword = props['daticalDBPassword'];
 def daticalDBDriversDir = getAbsPath(props['daticalDBDriversDir']);
 def daticalDBProjectDir = getAbsPath(props['daticalDBProjectDir']);
+def daticalImmutableProject = props['daticalImmutableProject'];
+def daticalProjectName = props['daticalProjectName'];
+def daticalDBPipeline = props['daticalDBPipeline'];
 def daticalDBAction = "forecast";
 def daticalDBServer = props['daticalDBServer'];
 def daticalDBContext = props['daticalDBContext'];
 def daticalDBExportSQL = props['daticalDBExportSQL'];
 def daticalDBExportRollbackSQL = props['daticalDBExportRollbackSQL'];
 def daticalDBLabels = props['daticalDBLabels'];
+def daticalServiceUsername = props['daticalServiceUsername'];
+def daticalService = props['daticalService'];
 
+// START building the CLI args.  Start with the pointer to hammer
+def cmdArgs = [daticalDBCmd]; 
 
-def cmdArgs = ""; 
+//Check for Datical Service Specific Properties nd BUild the Appropriate Command Line
+if (daticalService && daticalServiceUsername) {
+	cmdArgs << "--daticalServer=" + daticalService;
+	cmdArgs << "--daticalUsername=" + daticalServiceUsername;
+}
 
+// Set the immutableProject flag if needed
+if (daticalImmutableProject) {
+	cmdArgs << "--immutableProject=" + daticalImmutableProject;
+}
+
+if (daticalProjectName){
+	cmdArgs << "--projectKey=" + daticalProjectName;
+}
+
+// Add driver location and project directory
+cmdArgs << '--drivers';
+cmdArgs << daticalDBDriversDir;
+cmdArgs << '--project';
+cmdArgs << daticalDBProjectDir;
+
+// Handle SQL Exports 
 if (daticalDBExportSQL == "true") {
-	
-	if (daticalDBExportRollbackSQL == "true") {
-		
-		cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, '--project', daticalDBProjectDir, "--genSQL", "--genRollbackSQL"];
-		
-	} else {
-	
-		cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, '--project', daticalDBProjectDir, "--genSQL"];
+	cmdArgs << '--genSQL';
+}	
 
-	}
-	
-} else if (daticalDBExportRollbackSQL == "true") {
+if (daticalDBExportRollbackSQL == "true") {
+	cmdArgs <<  '--genRollbackSQL';
+} 
 
-	cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, '--project', daticalDBProjectDir, "--genRollbackSQL"];
+if (daticalDBUsername) {
+	def usernameString = daticalDBContext + ":::" + daticalDBUsername;
+	cmdArgs << "-un";
+	cmdArgs << usernameString;
+}
 
-} else {
-
-	cmdArgs = [daticalDBCmd, '-drivers', daticalDBDriversDir, '--project', daticalDBProjectDir];
-
+if (daticalDBPassword) {
+	def passwordString = daticalDBContext + ":::" + daticalDBPassword;
+	cmdArgs << "-pw";
+	cmdArgs << passwordString;
 }
 
 if (daticalDBContext) {
@@ -75,6 +100,11 @@ if (daticalDBDeployThreshold) {
 if (daticalDBLabels) {
 	cmdArgs << "--labels";
 	cmdArgs << daticalDBLabels;
+}
+
+if (daticalDBPipeline) {
+	cmdArgs << "--pipeline";
+	cmdArgs << daticalDBPipeline;
 }
 
 cmdArgs << daticalDBAction;
